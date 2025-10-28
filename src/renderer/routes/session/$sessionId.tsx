@@ -109,7 +109,12 @@ function RouteComponent() {
           const newMessage = createMessage('user', input)
           if (pictureKeys?.length) {
             newMessage.contentParts = newMessage.contentParts ?? []
-            newMessage.contentParts.push(...pictureKeys.map((k) => ({ type: 'image' as const, storageKey: k })))
+            for (const p of pictureKeys as Array<{ storageKey: string; path?: string }>) {
+              newMessage.contentParts.push({ type: 'image' as const, storageKey: p.storageKey })
+              if (p.path) {
+                newMessage.contentParts.push({ type: 'text', text: `Image path: ${p.path}` })
+              }
+            }
           }
           sessionActions.submitNewUserMessage({
             currentSessionId: currentSessionId,

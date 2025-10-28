@@ -49,7 +49,7 @@ import { Keys } from './Shortcut'
 
 export type InputBoxPayload = {
   input: string
-  pictureKeys?: string[]
+  pictureKeys?: { storageKey: string; path?: string }[]
   attachments?: File[]
   links?: { url: string }[]
   needGenerating?: boolean
@@ -100,7 +100,7 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
     const shortcuts = useAtomValue(atoms.shortcutsAtom)
     const widthFull = useAtomValue(atoms.widthFullAtom) || fullWidth
 
-    const [pictureKeys, setPictureKeys] = useState<string[]>([])
+    const [pictureKeys, setPictureKeys] = useState<{ storageKey: string; path?: string }[]>([])
     const [attachments, setAttachments] = useState<File[]>([])
 
     const [sessionKnowledgeBaseMap, setSessionKnowledgeBaseMap] = useAtom(atoms.sessionKnowledgeBaseMapAtom)
@@ -329,7 +329,7 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
           const base64 = await picUtils.getImageBase64AndResize(file)
           const key = StorageKeyGenerator.picture('input-box')
           await storage.setBlob(key, base64)
-          setPictureKeys((prev) => [...prev, key].slice(-8)) // 最多插入 8 个图片
+          setPictureKeys((prev) => [...prev, { storageKey: key, path: file.path }].slice(-8)) // 最多插入 8 个图片
         } else {
           setAttachments((prev) => [...prev, file].slice(-10)) // 最多插入 10 个附件
         }
@@ -353,7 +353,7 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
     }
 
     const onImageDeleteClick = async (picKey: string) => {
-      setPictureKeys(pictureKeys?.filter((k) => k !== picKey))
+      setPictureKeys(pictureKeys?.filter((k) => k.storageKey !== picKey))
       // 不删除图片数据，因为可能在其他地方引用，比如通过上下键盘的历史消息快捷输入、发送的消息中引用
       // await storage.delBlob(picKey)
     }
@@ -495,8 +495,8 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
 
           {(!!pictureKeys.length || !!attachments.length || !!links.length) && (
             <Flex px="sm" pb="xs" align="center" wrap="wrap" onClick={() => dom.focusMessageInput()}>
-              {pictureKeys?.map((picKey) => (
-                <ImageMiniCard key={picKey} storageKey={picKey} onDelete={() => onImageDeleteClick(picKey)} />
+              {pictureKeys?.map((p) => (
+                <ImageMiniCard key={p.storageKey} storageKey={p.storageKey} onDelete={() => onImageDeleteClick(p.storageKey)} />
               ))}
               {attachments?.map((file) => (
                 <FileMiniCard
