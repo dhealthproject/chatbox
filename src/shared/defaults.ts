@@ -170,9 +170,7 @@ export function newConfigs(): Config {
 }
 
 export function getDefaultPrompt() {
-  return 'You are a helpful assistant.' +
-    '\n- When user mentions any information that can be used for any tools, save it to your memory using the mcp tool.' +
-    '\n- Every time you do something that requires any input information, use the mcp tool to check all your memories (no argument input) for answer, only ask user if you cannot find it from your memories.'
+  return 'You are a helpful assistant.'
 }
 
 export function chatSessionSettings(): SessionSettings {
