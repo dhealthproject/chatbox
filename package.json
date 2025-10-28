@@ -1,7 +1,7 @@
 {
   "name": "xyz.chatboxapp.ce",
   "productName": "xyz.chatboxapp.ce",
-  "version": "0.0.1",
+  "version": "1.16.3",
   "engines": {
     "node": ">=20.0.0 <23.0.0",
     "npm": ">=10.0.0"
@@ -21,9 +21,9 @@
     "release:mac": "bash release-mac.sh",
     "release:linux": "bash release-linux.sh",
     "release:win": "bash release-win.sh",
-    "electron:publish-mac": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish always --mac",
-    "electron:publish-linux": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish always --linux",
-    "electron:publish-win": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish always --win",
+    "electron:publish-mac": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish never --mac",
+    "electron:publish-linux": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish never --linux",
+    "electron:publish-win": "ts-node ./.erb/scripts/clean.js dist && npm install && npm run postinstall && npm run build && electron-builder build --publish never --win",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "dev": "npm start",
     "dev:web": "cross-env DEV_WEB_ONLY=true CHATBOX_BUILD_PLATFORM=web npm start",
@@ -110,7 +110,7 @@
     "detect-port": "^1.5.1",
     "dotenv": "^16.3.1",
     "electron": "^26.6.10",
-    "electron-builder": "^24.2.1",
+    "electron-builder": "^26.0.12",
     "electron-devtools-installer": "^3.2.0",
     "electronmon": "^2.0.2",
     "eslint": "^8.42.0",

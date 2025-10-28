@@ -51,11 +51,12 @@ type MigrateStore = {
   setBlob?: (key: string, value: string) => Promise<void>
 }
 
-export const CurrentVersion = 10
+export const CurrentVersion = 13
 
 export async function migrateOnData(dataStore: MigrateStore, canRelaunch = true) {
   let needRelaunch = false
   let configVersion = await dataStore.getData(StorageKey.ConfigVersion, 0)
+  console.log('configVersion: ', configVersion);
 
   if (configVersion >= CurrentVersion) {
     return
@@ -145,6 +146,22 @@ export async function migrateOnData(dataStore: MigrateStore, canRelaunch = true)
     configVersion = 11
     await dataStore.setData(StorageKey.ConfigVersion, configVersion)
     log.info(`migrate_10_to_11, needRelaunch: ${needRelaunch}`)
+  }
+
+  if (configVersion < 12) {
+    const _needRelaunch = await migrate_11_to_12(dataStore)
+    needRelaunch ||= _needRelaunch
+    configVersion = 12
+    await dataStore.setData(StorageKey.ConfigVersion, configVersion)
+    log.info(`migrate_11_to_12, needRelaunch: ${needRelaunch}`)
+  }
+
+  if (configVersion < 13) {
+    const _needRelaunch = await migrate_12_to_13(dataStore)
+    needRelaunch ||= _needRelaunch
+    configVersion = 13
+    await dataStore.setData(StorageKey.ConfigVersion, configVersion)
+    log.info(`migrate_12_to_13, needRelaunch: ${needRelaunch}`)
   }
 
   // 如果需要重启，则重启应用
@@ -638,5 +655,29 @@ async function migrate_10_to_11(dataStore: MigrateStore) {
   }
   await dataStore.setData(StorageKey.Settings, settings)
   log.info('migrate_10_to_11, done')
+  return false
+}
+
+async function migrate_11_to_12(dataStore: MigrateStore) {
+  const currentSettings = await dataStore.getData(StorageKey.Settings, defaults.settings())
+  const defaultSettings = defaults.settings()
+  const updatedSettings = {
+    ...currentSettings,
+    mcp: defaultSettings.mcp,
+  } as Settings
+  await dataStore.setData(StorageKey.Settings, updatedSettings)
+  log.info('migrate_11_to_12, done')
+  return false
+}
+
+async function migrate_12_to_13(dataStore: MigrateStore) {
+  const currentSettings = await dataStore.getData(StorageKey.Settings, defaults.settings())
+  const defaultSettings = defaults.settings()
+  const updatedSettings = {
+    ...currentSettings,
+    mcp: defaultSettings.mcp,
+  } as Settings
+  await dataStore.setData(StorageKey.Settings, updatedSettings)
+  log.info('migrate_12_to_13, done')
   return false
 }

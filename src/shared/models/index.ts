@@ -18,6 +18,7 @@ import SiliconFlow from './siliconflow'
 import type { ModelInterface } from './types'
 import VolcEngine from './volcengine'
 import XAI from './xai'
+import AIDH from './aidh'
 
 export function getProviderSettings(setting: Settings) {
   console.debug('getModel', setting.provider, setting.modelId)
@@ -60,6 +61,19 @@ export function getModel(setting: Settings, config: Config, dependencies: ModelD
   }
 
   switch (provider) {
+    case ModelProviderEnum.AIDH:
+      return new AIDH(
+        {
+          apiKey: providerSetting.apiKey || '',
+          model,
+          temperature: setting.temperature,
+          topP: setting.topP,
+          maxTokens: setting.maxTokens,
+          stream: true,
+          useProxy: providerSetting.useProxy,
+        },
+        dependencies
+      )
     case ModelProviderEnum.ChatboxAI:
       return new ChatboxAI(
         {
@@ -293,6 +307,7 @@ export function getModel(setting: Settings, config: Config, dependencies: ModelD
 }
 
 export const aiProviderNameHash: Record<ModelProvider, string> = {
+  [ModelProviderEnum.AIDH]: 'AIDH',
   [ModelProviderEnum.OpenAI]: 'OpenAI API',
   [ModelProviderEnum.Azure]: 'Azure OpenAI API',
   [ModelProviderEnum.ChatGLM6B]: 'ChatGLM API',
@@ -312,6 +327,12 @@ export const aiProviderNameHash: Record<ModelProvider, string> = {
 }
 
 export const AIModelProviderMenuOptionList = [
+  {
+    value: ModelProviderEnum.AIDH,
+    label: aiProviderNameHash[ModelProviderEnum.AIDH],
+    featured: true,
+    disabled: false,
+  },
   {
     value: ModelProviderEnum.ChatboxAI,
     label: aiProviderNameHash[ModelProviderEnum.ChatboxAI],

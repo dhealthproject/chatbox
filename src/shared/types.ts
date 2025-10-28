@@ -242,6 +242,7 @@ export function createMessage(role: MessageRole = MessageRoleEnum.User, content:
 export type ToolUseScope = 'web-browsing' | 'knowledge-base'
 
 export enum ModelProviderEnum {
+  AIDH = 'aidh',
   ChatboxAI = 'chatbox-ai',
   OpenAI = 'openai',
   Azure = 'azure',
@@ -312,6 +313,7 @@ export type ProviderSettings = Partial<{
 export type ProviderInfo = (ProviderBaseInfo | CustomProviderBaseInfo) & ProviderSettings
 
 export enum ModelProviderType {
+  dHealthIntelligence = 'dhealth-intelligence',
   ChatboxAI = 'chatbox-ai',
   OpenAI = 'openai',
   Gemini = 'gemini',
