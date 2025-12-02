@@ -33,6 +33,7 @@ import {
 } from './store-node'
 import { resolveHtmlPath } from './util'
 import * as windowState from './window_state'
+import { startLocalServer, stopLocalServer } from './server'
 
 // Only import knowledge-base module if not on win32 arm64 (libsql doesn't support win32 arm64)
 if (!(process.platform === 'win32' && process.arch === 'arm64')) {
@@ -65,6 +66,21 @@ if (process.defaultApp) {
 
 let mainWindow: BrowserWindow | null = null
 let tray: Tray | null = null
+
+const SAFE_POPUP_DOMAINS = ['google.com', 'googleusercontent.com']
+
+function isAllowedInAppPopup(url: string): boolean {
+  if (url === 'about:blank') {
+    return true
+  }
+  try {
+    const { hostname } = new URL(url)
+    return SAFE_POPUP_DOMAINS.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))
+  } catch (error) {
+    log.warn('windowOpenHandler: failed to parse url', { url, error })
+    return false
+  }
+}
 
 // --------- 快捷键 ---------
 
@@ -232,6 +248,20 @@ if (isDebug) {
 // --------- 窗口管理 ---------
 
 async function createWindow() {
+  // Start local server in production
+  let serverPort = 55555
+  if (process.env.NODE_ENV === 'production') {
+    try {
+      serverPort = await startLocalServer(serverPort)
+      console.log(`Production server running on port ${serverPort}`)
+      // Store the port for util.ts to use
+      process.env.PRODUCTION_PORT = serverPort.toString()
+    } catch (error) {
+      console.error('Failed to start local server:', error)
+      // Fallback to file:// protocol if server fails
+    }
+  }
+
   if (isDebug) {
     // 不在安装 DEBUG 浏览器插件。可能不兼容，所以不如直接在网页里debug
     // await installExtensions()
@@ -305,6 +335,22 @@ async function createWindow() {
 
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
+    if (isAllowedInAppPopup(edata.url)) {
+      return {
+        action: 'allow',
+        overrideBrowserWindowOptions: {
+          parent: mainWindow ?? undefined,
+          autoHideMenuBar: true,
+          webPreferences: {
+            nodeIntegration: false,
+            contextIsolation: true,
+            webSecurity: true,
+            sandbox: true,
+          },
+        },
+      }
+    }
+
     shell.openExternal(edata.url)
     return { action: 'deny' }
   })
@@ -318,6 +364,11 @@ async function createWindow() {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
+        'Content-Security-Policy': [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googleapis.com https://*.googleusercontent.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://*.googleapis.com https://accounts.google.com https://*.google.com https://ssl.gstatic.com https://*.googleusercontent.com; style-src 'self' 'unsafe-inline' data: blob: https://apis.google.com https://*.googleapis.com https://accounts.google.com https://*.google.com; img-src 'self' data: https: blob:; font-src 'self' data: blob: https://*.gstatic.com; connect-src 'self' https://rpc.dhealth.com https://aidh-inference.dhealth.com https://apis.google.com https://*.googleapis.com https://accounts.google.com https://*.google.com https://*.googleusercontent.com http://localhost:* ws://localhost:*; frame-src 'self' 'unsafe-inline' https://apis.google.com https://*.google.com https://*.googleapis.com https://accounts.google.com https://docs.google.com https://*.googleusercontent.com blob: data:; child-src 'self' https://*.google.com https://*.googleapis.com https://docs.google.com https://*.googleusercontent.com blob: data:",
+        ],
+        // 'Cross-Origin-Opener-Policy': ['same-origin-allow-popups'],
+        // 'Cross-Origin-Embedder-Policy': ['unsafe-none'], // Allow local server
         // 'Content-Security-Policy': ['default-src \'self\'']
         // 'Content-Security-Policy': ['*'], // 为了支持代理
       },
@@ -418,6 +469,7 @@ if (!gotTheLock) {
           log.error('shortcut: failed to unregister', e)
         }
         mcpIpc.closeAllTransports()
+        stopLocalServer()
         destroyTray()
       })
       app.on('before-quit', () => {

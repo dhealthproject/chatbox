@@ -9,7 +9,10 @@ export function resolveHtmlPath(htmlFileName: string) {
     url.pathname = htmlFileName
     return url.href
   }
-  return `file://${path.resolve(__dirname, '../renderer/', htmlFileName)}`
+  const productionPort = process.env.PRODUCTION_PORT || 1212
+  const url = new URL(`http://localhost:${productionPort}`)
+  url.pathname = htmlFileName
+  return url.href
 }
 
 export function sliceTextWithEllipsis(text: string, maxLength: number) {

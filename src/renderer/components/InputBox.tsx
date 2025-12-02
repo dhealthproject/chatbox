@@ -6,6 +6,7 @@ import {
   IconArrowBackUp,
   IconArrowUp,
   IconCirclePlus,
+  IconBrandGoogleDrive,
   IconFilePencil,
   IconFolder,
   IconHammer,
@@ -46,6 +47,8 @@ import KnowledgeBaseMenu from './knowledge-base/KnowledgeBaseMenu'
 import ModelSelector from './ModelSelectorNew'
 import MCPMenu from './mcp/MCPMenu'
 import { Keys } from './Shortcut'
+import { GOOGLE_API_KEY, GOOGLE_OAUTH_CLIENT_ID } from '@/variables'
+import { downloadDriveFile, pickFromGoogleDrive } from '@/packages/google/drivePicker'
 
 export type InputBoxPayload = {
   input: string
@@ -352,6 +355,40 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
       fileInputRef.current?.click()
     }
 
+    const onGoogleDrivePick = async () => {
+      try {
+        if (!GOOGLE_API_KEY || !GOOGLE_OAUTH_CLIENT_ID) {
+          toastActions.add(t('Google Drive is not configured. Please set GOOGLE_API_KEY and GOOGLE_OAUTH_CLIENT_ID.'))
+          return
+        }
+        const pick = await pickFromGoogleDrive({
+          apiKey: GOOGLE_API_KEY,
+          clientId: GOOGLE_OAUTH_CLIENT_ID,
+          // redirectUri: 'chatbox://oauth/result'
+        })
+        if (!pick) return
+        const files: File[] = []
+        for (const f of pick.files) {
+          const blob = await downloadDriveFile(f.id, pick.accessToken)
+          const fileName = f.name || `${f.id}`
+          const file = new File([blob], fileName, { type: f.mimeType })
+          files.push(file)
+        }
+        if (files.length) {
+          insertFiles(files)
+          dom.focusMessageInput()
+        }
+      } catch (e) {
+        console.error(e)
+        const errorMessage = e instanceof Error ? e.message : String(e)
+        toastActions.add(
+          errorMessage.includes('OAuth configuration error')
+            ? errorMessage
+            : t('Failed to pick from Google Drive: {{error}}', { error: errorMessage })
+        )
+      }
+    }
+
     const onImageDeleteClick = async (picKey: string) => {
       setPictureKeys(pictureKeys?.filter((k) => k.storageKey !== picKey))
       // 不删除图片数据，因为可能在其他地方引用，比如通过上下键盘的历史消息快捷输入、发送的消息中引用
@@ -496,7 +533,11 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
           {(!!pictureKeys.length || !!attachments.length || !!links.length) && (
             <Flex px="sm" pb="xs" align="center" wrap="wrap" onClick={() => dom.focusMessageInput()}>
               {pictureKeys?.map((p) => (
-                <ImageMiniCard key={p.storageKey} storageKey={p.storageKey} onDelete={() => onImageDeleteClick(p.storageKey)} />
+                <ImageMiniCard
+                  key={p.storageKey}
+                  storageKey={p.storageKey}
+                  onDelete={() => onImageDeleteClick(p.storageKey)}
+                />
               ))}
               {attachments?.map((file) => (
                 <FileMiniCard
@@ -569,6 +610,12 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
                   <Tooltip label={t('Select File')} withArrow position="top">
                     <ActionIcon size="24px" variant="subtle" color="chatbox-secondary" onClick={onFileUploadClick}>
                       <IconFolder strokeWidth={1.8} />
+                    </ActionIcon>
+                  </Tooltip>
+
+                  <Tooltip label={t('Google Drive')} withArrow position="top">
+                    <ActionIcon size="24px" variant="subtle" color="chatbox-secondary" onClick={onGoogleDrivePick}>
+                      <IconBrandGoogleDrive strokeWidth={1.8} />
                     </ActionIcon>
                   </Tooltip>
 
@@ -676,6 +723,9 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
                       </Menu.Item>
                       <Menu.Item leftSection={<IconFolder size={16} />} onClick={onFileUploadClick}>
                         {t('Select File')}
+                      </Menu.Item>
+                      <Menu.Item leftSection={<IconBrandGoogleDrive size={16} />} onClick={onGoogleDrivePick}>
+                        {t('Google Drive')}
                       </Menu.Item>
 
                       <Menu.Item leftSection={<IconLink size={16} />} onClick={handleAttachLink}>

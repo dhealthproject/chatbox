@@ -11,3 +11,7 @@ export const CHATBOX_BUILD_PLATFORM = (process.env.CHATBOX_BUILD_PLATFORM || 'un
 export const USE_LOCAL_API = process.env.USE_LOCAL_API || ''
 
 export const NODE_ENV = process.env.NODE_ENV || 'development'
+
+// Google Drive integration
+export const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || ''
+export const GOOGLE_OAUTH_CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID || ''

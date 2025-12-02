@@ -29,7 +29,7 @@ const configuration: webpack.Configuration = {
   output: {
     path: webpackPaths.distRendererPath,
     publicPath: process.env.CHATBOX_BUILD_PLATFORM === 'web' ? '/' : './',
-    filename: 'assets/js/[name].[contenthash].js', // JS文件放在assets/js目录下
+    filename: 'renderer.prod.js',
     library: {
       type: 'umd',
     },
