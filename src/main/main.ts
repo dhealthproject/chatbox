@@ -560,6 +560,28 @@ ipcMain.handle('relaunch', () => {
   app.quit()
 })
 
+// Native tools IPC handlers
+ipcMain.handle('native-fetch', async (event, url: string) => {
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
+    })
+    if (!response.ok) {
+      return { error: `HTTP ${response.status}: ${response.statusText}` }
+    }
+    const contentType = response.headers.get('content-type')
+    if (!contentType?.includes('text/html')) {
+      return { error: `Content is not HTML (${contentType || 'unknown type'})` }
+    }
+    const html = await response.text()
+    return { success: true, html }
+  } catch (error) {
+    return { error: `Failed to fetch: ${(error as Error).message}` }
+  }
+})
+
 ipcMain.handle('analysticTrackingEvent', (event, dataJson) => {
   const data = JSON.parse(dataJson)
   analystic.event(data.name, data.params).catch((e) => {

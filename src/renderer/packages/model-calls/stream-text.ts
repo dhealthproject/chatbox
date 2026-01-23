@@ -19,6 +19,7 @@ import {
 } from '../../../shared/types'
 import { getToolSet } from '../knowledge-base/tools'
 import { mcpController } from '../mcp/controller'
+import { getNativeTools } from '../native-tools/controller'
 import { convertToCoreMessages, injectModelSystemPrompt } from './message-utils'
 import { imageOCR } from './preprocess'
 import {
@@ -246,6 +247,7 @@ export async function streamText(
 
     let tools: ToolSet = {
       ...mcpController.getAvailableTools(),
+      ...getNativeTools(),
     }
     if (webBrowsing) {
       tools.web_search = webSearchTool

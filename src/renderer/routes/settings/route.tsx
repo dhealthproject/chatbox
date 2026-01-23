@@ -55,6 +55,15 @@ const ITEMS = [
         },
       ]
     : []),
+  ...(featureFlags.nativeTools
+    ? [
+        {
+          key: 'native-tools',
+          label: 'Native Tools',
+          icon: <IconBox className="w-full h-full" />,
+        },
+      ]
+    : []),
   {
     key: 'chat',
     label: 'Chat Settings',
