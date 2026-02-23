@@ -11,6 +11,7 @@ import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { merge } from 'webpack-merge'
 import JavaScriptObfuscator from 'webpack-obfuscator'
+import CopyPlugin from 'copy-webpack-plugin'
 import checkNodeEnv from '../scripts/check-node-env'
 import baseConfig from './webpack.config.base'
 import webpackPaths from './webpack.paths'
@@ -147,6 +148,15 @@ const configuration: webpack.Configuration = {
       isBrowser: false,
       isDevelopment: false,
       favicon: path.join(webpackPaths.srcRendererPath, 'favicon.ico'),
+    }),
+
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.join(webpackPaths.srcRendererPath, 'oauth2callback.html'),
+          to: path.join(webpackPaths.distRendererPath, 'oauth2callback.html'),
+        },
+      ],
     }),
 
     new webpack.DefinePlugin({
