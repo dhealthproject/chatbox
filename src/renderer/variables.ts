@@ -15,3 +15,5 @@ export const NODE_ENV = process.env.NODE_ENV || 'development'
 // Google Drive integration
 export const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || ''
 export const GOOGLE_OAUTH_CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID || ''
+export const AIDH_API_URL = process.env.AIDH_API_URL || ''
+export const AIDH_API_KEY = process.env.AIDH_API_KEY || ''

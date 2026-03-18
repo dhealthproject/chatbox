@@ -80,10 +80,10 @@ const configuration: webpack.Configuration = {
       CHATBOX_BUILD_TARGET: 'unknown',
       CHATBOX_BUILD_PLATFORM: 'unknown',
       USE_LOCAL_API: '',
+      AIDH_API_URL: 'https://aidh-inference.dhealth.com/v1',
+      AIDH_API_KEY: 'dhealth',
       GOOGLE_API_KEY: 'AIzaSyAi98HVQaZTcdFuM0snf711KcaiEdZcljI',
       GOOGLE_OAUTH_CLIENT_ID: '1014546887035-51mtofld38h3snjesqhbc3o68jghnqaa.apps.googleusercontent.com',
-      // GOOGLE_API_KEY: 'AIzaSyAi98HVQaZTcdFuM0snf711KcaiEdZcljI',
-      // GOOGLE_OAUTH_CLIENT_ID: '1014546887035-d0cduh98k727j8710ljdkjo3f8dilcqg.apps.googleusercontent.com',
     }),
   ],
 }

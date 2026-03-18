@@ -1,9 +1,5 @@
 import { ToolSet } from 'ai'
 import { fetchTool } from './fetch'
-import { sequentialThinkingTool } from './sequential-thinking'
-import { arxivTool } from './arxiv'
-import { context7Tool } from './context7'
-import { edgeoneTool } from './edgeone-pages'
 import { GDriveTool } from './gdrive/gdrive'
 
 /**
@@ -26,38 +22,17 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     category: 'web',
     available: true,
   },
-  // native_sequential_thinking: {
-  //   name: 'Sequential Thinking',
-  //   description: 'Structured reasoning and step-by-step problem solving',
-  //   category: 'reasoning',
-  //   available: true,
-  // },
-  // native_arxiv: {
-  //   name: 'ArXiv Search',
-  //   description: 'Search for research papers on arXiv',
-  //   category: 'research',
-  //   available: true,
-  // },
-  // native_context7: {
-  //   name: 'Context7 Docs',
-  //   description: 'Look up technical documentation and API references',
-  //   category: 'web',
-  //   available: true,
-  //   requiresConfig: ['CONTEXT7_API_KEY'],
-  // },
-  // native_edgeone: {
-  //   name: 'EdgeOne Pages',
-  //   description: 'Deploy HTML/static content to Cloudflare CDN',
-  //   category: 'deployment',
-  //   available: true,
-  //   requiresConfig: ['CF_ACCOUNT_ID', 'CF_API_TOKEN'],
-  // },
   gdrive_reader: {
-    name: 'Google Drive Reader',
+    name: 'Google Drive Folder Reader',
+    description: 'List and explore Google Drive folders',
+    category: 'web',
+    available: true,
+  },
+  gdrive_read_file: {
+    name: 'Google Drive File Reader',
     description: 'Read and extract content from Google Drive files',
     category: 'web',
     available: true,
-    requiresConfig: ['GOOGLE_DRIVE_CLIENT_ID', 'GOOGLE_DRIVE_CLIENT_SECRET'],
   }
 }
 
@@ -65,13 +40,11 @@ const toolConfigs: Record<string, NativeToolConfig> = {
  * Get all native tools as a ToolSet for the LLM
  */
 export function getNativeTools(): ToolSet {
+  const gdriveInstance = GDriveTool.createInstance()
   return {
     native_fetch: fetchTool,
-    // native_sequential_thinking: sequentialThinkingTool,
-    // native_arxiv: arxivTool,
-    // native_context7: context7Tool,
-    // native_edgeone: edgeoneTool,
-    gdrive_reader: GDriveTool.createInstance().gdriveTool,
+    gdrive_reader: gdriveInstance.gdriveTool,
+    gdrive_read_file: gdriveInstance.gdriveReadFileTool,
   }
 }
 
