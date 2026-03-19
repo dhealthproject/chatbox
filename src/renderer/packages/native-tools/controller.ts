@@ -1,6 +1,7 @@
 import { ToolSet } from 'ai'
 import { fetchTool } from './fetch'
 import { GDriveTool } from './gdrive/gdrive'
+import { MemoryTool } from './memory'
 
 /**
  * Native tools registry and exporter
@@ -33,6 +34,24 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     description: 'Read and extract content from Google Drive files',
     category: 'web',
     available: true,
+  },
+  memory_set: {
+    name: 'Set Memory',
+    description: 'Set a memory entry',
+    category: 'research',
+    available: true,
+  },
+  memory_read: {
+    name: 'Read Memory',
+    description: 'Read an existing memory entry',
+    category: 'research',
+    available: true,
+  },
+  memory_delete: {
+    name: 'Delete Memory',
+    description: 'Delete a memory entry',
+    category: 'research',
+    available: true,
   }
 }
 
@@ -41,10 +60,14 @@ const toolConfigs: Record<string, NativeToolConfig> = {
  */
 export function getNativeTools(): ToolSet {
   const gdriveInstance = GDriveTool.createInstance()
+  const memoryTool = MemoryTool.createInstance()
   return {
     native_fetch: fetchTool,
     gdrive_reader: gdriveInstance.gdriveTool,
     gdrive_read_file: gdriveInstance.gdriveReadFileTool,
+    memory_set: memoryTool.setMemoryTool,
+    memory_read: memoryTool.readMemoryTool,
+    memory_delete: memoryTool.deleteMemoryTool,
   }
 }
 
