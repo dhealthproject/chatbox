@@ -28,7 +28,7 @@ export default function ProviderImageIcon(props: {
     )
   }
 
-  const iconSrc = icons.find((icon) => icon.name === provider)?.src
+  const iconSrc = icons.find((icon) => icon.name === provider)?.src.replace('./', '/');
 
   return iconSrc ? (
     <Image w={size} h={size} src={iconSrc} className={className} alt={`${providerName || provider} image icon`} />

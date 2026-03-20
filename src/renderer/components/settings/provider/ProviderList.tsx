@@ -14,7 +14,7 @@ import platform from '@/platform'
 const iconContext = require.context('../../../static/icons/providers', false, /\.png$/)
 const icons: { name: string; src: string }[] = iconContext.keys().map((key: string) => ({
   name: key.replace('./', '').replace('.png', ''),
-  src: iconContext(key),
+  src: iconContext(key).replace('./', '/'),
 }))
 
 interface ProviderListProps {
