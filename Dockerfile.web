@@ -13,7 +13,7 @@ RUN npm ci --prefer-offline --no-audit --ignore-scripts
 COPY . .
 
 # Build the web version
-RUN npm run build
+RUN npm run build:renderer
 
 # Production stage
 FROM node:22.12.0-alpine
