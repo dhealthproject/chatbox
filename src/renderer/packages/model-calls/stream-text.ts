@@ -247,9 +247,12 @@ export async function streamText(
 
     let tools: ToolSet = {
       ...mcpController.getAvailableTools(),
-      ...getNativeTools(),
     }
     if (webBrowsing) {
+      tools = {
+        ...tools,
+        ...getNativeTools(),
+      }
       tools.web_search = webSearchTool
     }
     if (knowledgeBase) {

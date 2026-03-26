@@ -47,8 +47,10 @@ import KnowledgeBaseMenu from './knowledge-base/KnowledgeBaseMenu'
 import ModelSelector from './ModelSelectorNew'
 import MCPMenu from './mcp/MCPMenu'
 import { Keys } from './Shortcut'
-import { GOOGLE_API_KEY, GOOGLE_OAUTH_CLIENT_ID } from '@/variables'
+import { AIDH_API_KEY, AIDH_API_URL, GOOGLE_API_KEY, GOOGLE_OAUTH_CLIENT_ID } from '@/variables'
 import { downloadDriveFile, pickFromGoogleDrive } from '@/packages/google/drivePicker'
+import { FileContent } from '@/packages/native-tools/gdrive/gdrive'
+import axios from 'axios'
 
 export type InputBoxPayload = {
   input: string
@@ -325,14 +327,41 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
       setLinks(newLinks)
     }
 
+    const requestFileProcessing = async(
+      mime: string | undefined,
+      dataBuffer: Uint8Array
+    ): Promise<{ content: FileContent[] }> => {
+      const fileProcessingUrl = `${AIDH_API_URL}/file/process`;
+      const resp = await axios.post(
+        fileProcessingUrl,
+        { mime, dataBuffer: Array.from(dataBuffer) },
+        {
+          headers: {
+            'Authorization': `Bearer ${AIDH_API_KEY}`,
+          },
+          responseType: 'json',
+        }
+      );
+      return resp.data;
+    }
+
     const insertFiles = async (files: File[]) => {
       for (const file of files) {
         // 文件和图片插入方法复用，会导致 svg、gif 这类不支持的图片也被插入，但暂时没看到有什么问题
+        console.log("FILE TYPE", file.type)
         if (file.type.startsWith('image/')) {
           const base64 = await picUtils.getImageBase64AndResize(file)
           const key = StorageKeyGenerator.picture('input-box')
           await storage.setBlob(key, base64)
           setPictureKeys((prev) => [...prev, { storageKey: key, path: file.path }].slice(-8)) // 最多插入 8 个图片
+        } else if (file.type === 'application/pdf') {
+          const results = await requestFileProcessing(file.type, new Uint8Array(await file.arrayBuffer()))
+          for (const result of results.content) {
+            const base64 = `data:${result.mimeType};base64,${result.data}`
+            const key = StorageKeyGenerator.picture('input-box')
+            await storage.setBlob(key, base64)
+            setPictureKeys((prev) => [...prev, { storageKey: key, path: file.path }].slice(-8)) // 最多插入 8 个图片
+          }
         } else {
           setAttachments((prev) => [...prev, file].slice(-10)) // 最多插入 10 个附件
         }

@@ -99,7 +99,7 @@ function NativeToolsSettings() {
                       <Group gap={6} mt="sm" pt="sm" style={{ borderTop: '1px solid var(--mantine-color-gray-2)' }}>
                         <IconAlertCircle size={12} style={{ color: 'var(--mantine-color-orange-6)' }} />
                         <Text size="xs" c="orange">
-                          Requires: {config.requiresConfig.join(', ')}
+                          Requires: {config.requiresConfig?.join(', ')}
                         </Text>
                       </Group>
                     )}

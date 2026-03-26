@@ -72,7 +72,7 @@ export class GDriveTool {
     }
 
     // Request new token via browser OAuth flow
-    const scopes = 'https://www.googleapis.com/auth/drive.readonly';
+    const scopes = 'https://www.googleapis.com/auth/drive.file';
     const redirectUri = `${window.location.origin}/oauth2callback`;
     
     const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
