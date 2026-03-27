@@ -8,6 +8,7 @@ import {
   type Settings,
   Theme,
 } from './types'
+import { AIDH_API_URL } from '@/variables'
 
 export function settings(): Settings {
   return {
@@ -194,17 +195,17 @@ export const SystemProviders: ProviderBaseInfo[] = [
   {
     id: ModelProviderEnum.AIDH,
     name: 'AIDH',
-    type: ModelProviderType.OpenAI,
+    type: ModelProviderType.AIDH,
     urls: {
       website: 'https://dhealth.com',
     },
     defaultSettings: {
-      apiHost: 'https://aidh-inference.dhealth.com/v1',
+      apiHost: AIDH_API_URL,
       apiPath: '/chat/completions',
       models: [
         {
-          modelId: 'anthropic.claude-sonnet-4-5-20250929-v1:0',
-          capabilities: ['vision', 'tool_use'],
+          modelId: 'gva/claude-sonnet-4-6',
+          capabilities: ['vision', 'reasoning', 'tool_use'],
           contextWindow: 200_000,
         }
       ]

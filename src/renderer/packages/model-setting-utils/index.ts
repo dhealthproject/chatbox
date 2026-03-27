@@ -17,9 +17,11 @@ import PerplexitySettingUtil from './perplexity-setting-util'
 import SiliconFlowSettingUtil from './siliconflow-setting-util'
 import VolcEngineSettingUtil from './volcengine-setting-util'
 import XAISettingUtil from './xai-setting-util'
+import AIDHSettingUtil from './aidh-setting-util'
 
 export function getModelSettingUtil(aiProvider: ModelProvider): ModelSettingUtil {
   const hash: Record<ModelProvider, new () => ModelSettingUtil> = {
+    [ModelProviderEnum.AIDH]: AIDHSettingUtil,
     [ModelProviderEnum.Azure]: AzureSettingUtil,
     [ModelProviderEnum.ChatboxAI]: ChatboxAISettingUtil,
     [ModelProviderEnum.ChatGLM6B]: ChatGLMSettingUtil,

@@ -81,11 +81,11 @@ function Root() {
               // 用户选择Add Custom Provider的话，暂时无法直接拉起添加自定义供应商的弹窗，先跳去默认的供应商配置页
               if (provider === 'custom') {
                 navigate({
-                  to: '/settings/provider/chatbox-ai',
+                  to: '/settings/provider/aidh',
                   search: {
                     custom: true,
                   },
-                })
+                } as any)
               } else {
                 navigate({
                   to: '/settings/provider/$providerId',
@@ -96,8 +96,8 @@ function Root() {
               }
             } else {
               navigate({
-                to: '/settings/provider/chatbox-ai',
-              })
+                to: '/settings/provider/aidh',
+              } as any)
             }
           }
 

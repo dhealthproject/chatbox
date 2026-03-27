@@ -313,7 +313,7 @@ export type ProviderSettings = Partial<{
 export type ProviderInfo = (ProviderBaseInfo | CustomProviderBaseInfo) & ProviderSettings
 
 export enum ModelProviderType {
-  dHealthIntelligence = 'dhealth-intelligence',
+  AIDH = 'aidh',
   ChatboxAI = 'chatbox-ai',
   OpenAI = 'openai',
   Gemini = 'gemini',
