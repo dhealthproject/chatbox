@@ -21,6 +21,19 @@ async function convertContentParts<T extends TextPart | ImagePart | FilePart>(
           if (options?.modelSupportVision === false) {
             return { type: 'text', text: `This is an image, OCR Result: \n${c.ocrResult}` } as T
           }
+          const dataUrl = c.url
+          if (dataUrl?.startsWith('data:') && dataUrl.includes(';base64,')) {
+            const mimeType = dataUrl.slice('data:'.length, dataUrl.indexOf(';'))
+            const base64Data = dataUrl.slice(dataUrl.indexOf(',') + 1)
+            return {
+              type: imageType,
+              ...(imageType === 'image' ? { image: base64Data } : { data: base64Data }),
+              mimeType: mimeType || 'image/png',
+            } as T
+          }
+          if (!c.storageKey) {
+            return null
+          }
           try {
             const imageData = await dependencies.storage.getImage(c.storageKey)
             if (!imageData) {

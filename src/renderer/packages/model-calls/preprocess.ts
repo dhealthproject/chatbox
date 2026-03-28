@@ -10,9 +10,12 @@ export async function imageOCR(ocrModel: ModelInterface, messages: Message[]) {
   return await pMap(messages, async (msg) => {
     await pMap(msg.contentParts, async (c) => {
       if (c.type === 'image' && !c.ocrResult) {
+        const storageKey = c.storageKey
+        if (!storageKey) {
+          return c
+        }
         const image = c
-        const dataUrl = image.storageKey
-        const imageData = await dependencies.storage.getImage(dataUrl)
+        const imageData = await dependencies.storage.getImage(storageKey)
         if (!imageData) {
           return c
         }

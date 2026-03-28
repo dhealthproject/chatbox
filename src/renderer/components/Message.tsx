@@ -328,11 +328,9 @@ const _Message: FC<Props> = (props) => {
     NiceModal.show('session-settings', { chatConfigDialogSessionId: props.sessionId })
   }
 
-  function showPicture(storageKey: string) {
+  function showPicture(picture: { storageKey: string } | { url: string }) {
     setPictureShow({
-      picture: {
-        storageKey,
-      },
+      picture,
       extraButtons:
         msg.role === 'assistant' && platform.type === 'mobile'
           ? [
@@ -546,15 +544,27 @@ const _Message: FC<Props> = (props) => {
                         </div>
                       ) : item.type === 'image' ? (
                         props.sessionType !== 'picture' && (
-                          <div key={`image-${item.storageKey}`}>
+                          <div
+                            key={`image-${item.storageKey ?? item.url ?? `idx-${index}`}`}
+                          >
                             <div
                               className="w-[100px] min-w-[100px] h-[100px] min-h-[100px]
                                                     md:w-[200px] md:min-w-[200px] md:h-[200px] md:min-h-[200px]
                                                     inline-flex items-center justify-center                                                                                                                                                  
                                                     hover:cursor-pointer hover:border-slate-800/20 transition-all duration-200"
-                              onClick={() => showPicture(item.storageKey)}
+                              onClick={() => {
+                                if (item.storageKey) {
+                                  showPicture({ storageKey: item.storageKey })
+                                } else if (item.url) {
+                                  showPicture({ url: item.url })
+                                }
+                              }}
                             >
-                              {item.storageKey && <ImageInStorage storageKey={item.storageKey} className="w-full" />}
+                              {item.storageKey ? (
+                                <ImageInStorage storageKey={item.storageKey} className="w-full" />
+                              ) : item.url ? (
+                                <Img src={item.url} className="w-full" />
+                              ) : null}
                             </div>
                           </div>
                         )

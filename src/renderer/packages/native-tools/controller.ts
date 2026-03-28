@@ -2,6 +2,8 @@ import { ToolSet } from 'ai'
 import { fetchTool } from './fetch'
 import { GDriveTool } from './gdrive/gdrive'
 import { MemoryTool } from './memory'
+import { CHMED16A1Tool } from './chmed16a1/chmed16a1'
+import { generate } from '@/stores/sessionActions'
 
 /**
  * Native tools registry and exporter
@@ -52,7 +54,19 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     description: 'Delete a memory entry',
     category: 'research',
     available: true,
-  }
+  },
+  get_medicament_id: {
+    name: 'Get Medicament ID',
+    description: 'Get medicament ID from Swissmedic database based on medicament string',
+    category: 'research',
+    available: true,
+  },
+  generate_chmed16a1_qr_codes: {
+    name: 'Generate CHMED16A1 QR Codes',
+    description: 'Generate CHMED16A1 QR codes from a given JSON string',
+    category: 'research',
+    available: true,
+  },
 }
 
 /**
@@ -61,6 +75,7 @@ const toolConfigs: Record<string, NativeToolConfig> = {
 export function getNativeTools(): ToolSet {
   const gdriveInstance = GDriveTool.createInstance()
   const memoryTool = MemoryTool.createInstance()
+  const chmed16a1Tool = CHMED16A1Tool.createInstance()
   return {
     native_fetch: fetchTool,
     gdrive_reader: gdriveInstance.gdriveTool,
@@ -68,6 +83,8 @@ export function getNativeTools(): ToolSet {
     memory_set: memoryTool.setMemoryTool,
     memory_read: memoryTool.readMemoryTool,
     memory_delete: memoryTool.deleteMemoryTool,
+    get_medicament_id: chmed16a1Tool.getMedicamentIdTool,
+    generate_chmed16a1_qr_codes: chmed16a1Tool.generateQRCodesTool,
   }
 }
 

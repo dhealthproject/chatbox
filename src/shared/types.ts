@@ -45,7 +45,7 @@ export const MessageRoleEnum = {
 export type MessageRole = (typeof MessageRoleEnum)[keyof typeof MessageRoleEnum]
 
 export type MessageTextPart = { type: 'text'; text: string }
-export type MessageImagePart = { type: 'image'; storageKey: string; ocrResult?: string }
+export type MessageImagePart = { type: 'image'; storageKey?: string; url?: string; ocrResult?: string }
 export type MessageInfoPart = { type: 'info'; text: string; values?: Record<string, unknown> }
 /**
  * Represents a reasoning/thinking part of a message with timing information

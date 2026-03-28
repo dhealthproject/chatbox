@@ -35,7 +35,19 @@ export interface CallSettings {
 
 interface ToolExecutionResult {
   toolCallId: string
+  toolName?: string
   result: unknown
+}
+
+const GENERATE_CHMED16A1_QR_TOOL = 'generate_chmed16a1_qr_codes'
+
+function isChmed16a1QrSuccessResult(r: unknown): r is { status: 'success'; imageDataUrl: string } {
+  return (
+    typeof r === 'object' &&
+    r !== null &&
+    (r as { status?: string }).status === 'success' &&
+    typeof (r as { imageDataUrl?: string }).imageDataUrl === 'string'
+  )
 }
 
 interface ToolCallInfo {
@@ -49,7 +61,7 @@ type KnownStreamChunk =
   | { type: 'reasoning'; textDelta: string }
   | { type: 'reasoning-signature'; signature: string }
   | { type: 'tool-call'; toolCallId: string; toolName: string; args: unknown }
-  | { type: 'tool-result'; toolCallId: string; result: unknown }
+  | { type: 'tool-result'; toolCallId: string; toolName?: string; result: unknown }
   | { type: 'file'; mimeType: string; base64: string }
   | { type: 'error'; error: unknown }
 
@@ -232,6 +244,26 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
       } else {
         toolCallPart.state = 'result'
         toolCallPart.result = toolResult.result
+
+        const name = toolResult.toolName ?? toolCallPart.toolName
+        if (
+          name === GENERATE_CHMED16A1_QR_TOOL &&
+          isChmed16a1QrSuccessResult(toolResult.result)
+        ) {
+          const idx = contentParts.indexOf(toolCallPart)
+          if (idx !== -1) {
+            contentParts.splice(idx + 1, 0, {
+              type: 'image',
+              url: toolResult.result.imageDataUrl,
+            })
+          }
+          toolCallPart.result = { status: 'success' }
+        } else if (name === GENERATE_CHMED16A1_QR_TOOL && toolResult.result && typeof toolResult.result === 'object') {
+          const r = toolResult.result as { status?: string; error?: string }
+          if (r.status === 'failed') {
+            toolCallPart.result = { status: 'failed', ...(r.error ? { error: r.error } : {}) }
+          }
+        }
       }
     }
   }

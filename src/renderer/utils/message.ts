@@ -42,7 +42,11 @@ export function migrateMessage(
   ) {
     const imageParts = (message as Message & { pictures?: MessagePicture[] }).pictures
       ?.filter((pic) => pic.storageKey || pic.url)
-      .map((pic) => ({ type: 'image' as const, storageKey: pic.storageKey!, url: pic.url }))
+      .map((pic) => ({
+        type: 'image' as const,
+        ...(pic.storageKey !== undefined ? { storageKey: pic.storageKey } : {}),
+        ...(pic.url !== undefined ? { url: pic.url } : {}),
+      }))
     result.contentParts = [{ type: 'text', text: String(message.content ?? '') }, ...(imageParts || [])]
   }
 
