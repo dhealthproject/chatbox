@@ -1,7 +1,19 @@
-export const medicaments = [
+[
+  {
+    "Prd_Nr": 100067,
+    "Swissmedic_Nr": 62520,
+    "Swissmedic_Nm": "",
+    "Abgabekategorie": "D"
+  },
   {
     "Prd_Nr": 1422633,
     "Swissmedic_Nr": 51681,
+    "Swissmedic_Nm": "",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1445761,
+    "Swissmedic_Nr": 59656,
     "Swissmedic_Nm": "",
     "Abgabekategorie": "D"
   },
@@ -10,6 +22,12 @@ export const medicaments = [
     "Swissmedic_Nr": 13749,
     "Swissmedic_Nm": "",
     "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1517357,
+    "Swissmedic_Nr": 59064,
+    "Swissmedic_Nm": "",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1542659,
@@ -24,10 +42,10 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1557474,
-    "Swissmedic_Nr": 68271,
+    "Prd_Nr": 1556596,
+    "Swissmedic_Nr": 68702,
     "Swissmedic_Nm": "",
-    "Abgabekategorie": "B"
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1558021,
@@ -54,16 +72,10 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1617600,
-    "Swissmedic_Nr": 0,
+    "Prd_Nr": 1605451,
+    "Swissmedic_Nr": 56866,
     "Swissmedic_Nm": "",
-    "Abgabekategorie": ""
-  },
-  {
-    "Prd_Nr": 1617601,
-    "Swissmedic_Nr": 0,
-    "Swissmedic_Nm": "",
-    "Abgabekategorie": ""
+    "Abgabekategorie": "E"
   },
   {
     "Prd_Nr": 1623359,
@@ -82,12 +94,6 @@ export const medicaments = [
     "Swissmedic_Nr": 67680,
     "Swissmedic_Nm": "",
     "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1640043,
-    "Swissmedic_Nr": 69904,
-    "Swissmedic_Nm": "",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 19728,
@@ -386,7 +392,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1330870,
     "Swissmedic_Nr": 65823,
-    "Swissmedic_Nm": "Acarizax, Lyophilisat zum Einnehmen",
+    "Swissmedic_Nm": "Acarizax, Lyophilisat zur sublingualen Anwendung",
     "Abgabekategorie": "A"
   },
   {
@@ -465,12 +471,6 @@ export const medicaments = [
     "Prd_Nr": 1435648,
     "Swissmedic_Nr": 52132,
     "Swissmedic_Nm": "Acetylcystein Zentiva 600 mg, Brausetabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1381848,
-    "Swissmedic_Nr": 66960,
-    "Swissmedic_Nm": "Acetylfelan 600, Brausetabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -574,6 +574,12 @@ export const medicaments = [
     "Swissmedic_Nr": 30097,
     "Swissmedic_Nm": "Acne Lotion Widmer, Lösung",
     "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1463072,
+    "Swissmedic_Nr": 59812,
+    "Swissmedic_Nm": "Aconitum/Arnica/Betula comp., Tropfen zum Einnehmen",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1324809,
@@ -1242,6 +1248,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1644263,
+    "Swissmedic_Nr": 70126,
+    "Swissmedic_Nm": "Afqlir 40 mg/ml, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1376320,
     "Swissmedic_Nr": 66030,
     "Swissmedic_Nm": "Afstyla 1000 IE, Lyophilisat und Lösungsmittel zur Herstellung einer Injektionslösung",
@@ -1264,6 +1276,12 @@ export const medicaments = [
     "Swissmedic_Nr": 59888,
     "Swissmedic_Nm": "Agaricus comp./Phosphorus Ampullen (s.c.)",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1487035,
+    "Swissmedic_Nr": 59886,
+    "Swissmedic_Nm": "Agaricus comp./Phosphorus, Tropfen zum Einnehmen",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 83936,
@@ -1692,12 +1710,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1476703,
-    "Swissmedic_Nr": 65916,
-    "Swissmedic_Nm": "Algifor Dolo forte 200 mg / 5 ml, Suspension",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1500790,
     "Swissmedic_Nr": 65916,
     "Swissmedic_Nm": "Algifor Dolo forte 200 mg / 5 ml, Suspension",
@@ -2106,6 +2118,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1628760,
+    "Swissmedic_Nr": 69268,
+    "Swissmedic_Nm": "Allerino, spray pour pulvérisation buccale",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1628761,
     "Swissmedic_Nr": 69987,
     "Swissmedic_Nm": "Allerxtin Sandoz 20 mg, Tabletten",
@@ -2227,6 +2245,12 @@ export const medicaments = [
   },
   {
     "Prd_Nr": 1178831,
+    "Swissmedic_Nr": 49147,
+    "Swissmedic_Nm": "Alpinamed Ruscovarin Venen Gel",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1620228,
     "Swissmedic_Nr": 49147,
     "Swissmedic_Nm": "Alpinamed Ruscovarin Venen Gel",
     "Abgabekategorie": "D"
@@ -2436,6 +2460,18 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1652416,
+    "Swissmedic_Nr": 69398,
+    "Swissmedic_Nm": "Alyftrek 10 mg/ 50 mg/ 125 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1652415,
+    "Swissmedic_Nr": 69398,
+    "Swissmedic_Nm": "Alyftrek 4 mg/ 20 mg/ 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1154530,
     "Swissmedic_Nr": 59441,
     "Swissmedic_Nm": "Amanita muscaria D6, Injektionslösung",
@@ -2490,12 +2526,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1509984,
-    "Swissmedic_Nr": 68935,
-    "Swissmedic_Nm": "Amavita Flumol Grippe, Pulver zur Herstellung einer Lösung zum Einnehmen",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1539507,
     "Swissmedic_Nr": 69181,
     "Swissmedic_Nm": "Amavita Flurbiprofen 8.75 mg, Lutschtabletten",
@@ -2546,7 +2576,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1454754,
     "Swissmedic_Nr": 68071,
-    "Swissmedic_Nm": "Amavita Xylo Plus, Nasenspray",
+    "Swissmedic_Nm": "Amavita Xylo Plus Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -2608,12 +2638,6 @@ export const medicaments = [
     "Swissmedic_Nr": 65693,
     "Swissmedic_Nm": "Ameluz 78 mg/g, Gel",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 100067,
-    "Swissmedic_Nr": 62520,
-    "Swissmedic_Nm": "Amethyst spag. Lüthi Urtinktur, Tropfen",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1612839,
@@ -3228,15 +3252,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1324,
-    "Swissmedic_Nr": 34662,
-    "Swissmedic_Nm": "Ancopir, Dragées",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1323,
-    "Swissmedic_Nr": 28486,
-    "Swissmedic_Nm": "Ancopir, Injektionslösung",
+    "Prd_Nr": 1350008,
+    "Swissmedic_Nr": 66355,
+    "Swissmedic_Nm": "Ancesol 10 mg/ml ad us. vet., Injektionslösung für Rinder",
     "Abgabekategorie": "B"
   },
   {
@@ -3351,12 +3369,6 @@ export const medicaments = [
     "Prd_Nr": 1488369,
     "Swissmedic_Nr": 68357,
     "Swissmedic_Nm": "Anidulafungin Accord 100 mg, Pulver für ein Konzentrat zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1462781,
-    "Swissmedic_Nr": 67756,
-    "Swissmedic_Nm": "Anidulafungin Labatec 100 mg, Poudre pour solution à diluer pour perfusion",
     "Abgabekategorie": "A"
   },
   {
@@ -3744,6 +3756,18 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1647423,
+    "Swissmedic_Nr": 69498,
+    "Swissmedic_Nm": "Apremilast-Mepha 10 mg, 20 mg, 30 mg Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647424,
+    "Swissmedic_Nr": 69498,
+    "Swissmedic_Nm": "Apremilast-Mepha 30 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1356821,
     "Swissmedic_Nr": 63029,
     "Swissmedic_Nm": "Aprokam 50mg, Pulver zur Herstellung einer Injektionslösung",
@@ -4104,6 +4128,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1382473,
+    "Swissmedic_Nr": 59744,
+    "Swissmedic_Nm": "Argentum nitricum D4, Augentropfen",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1115931,
     "Swissmedic_Nr": 59745,
     "Swissmedic_Nm": "Argentum nitricum D6, Injektionslösung (s.c.)",
@@ -4304,31 +4334,31 @@ export const medicaments = [
   {
     "Prd_Nr": 1015516,
     "Swissmedic_Nr": 55937,
-    "Swissmedic_Nm": "Arixtra 1.5 mg/0.3 ml, Injektionslösung",
+    "Swissmedic_Nm": "Arixtra 1.5 mg/0.3 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1036336,
     "Swissmedic_Nr": 55937,
-    "Swissmedic_Nm": "Arixtra 10 mg/0.8 ml, Injektionslösung",
+    "Swissmedic_Nm": "Arixtra 10 mg/0.8 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 109693,
     "Swissmedic_Nr": 55937,
-    "Swissmedic_Nm": "Arixtra 2.5 mg/0.5 ml, Injektionslösung",
+    "Swissmedic_Nm": "Arixtra 2.5 mg/0.5 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1036334,
     "Swissmedic_Nr": 55937,
-    "Swissmedic_Nm": "Arixtra 5.0 mg/0.4 ml, Injektionslösung",
+    "Swissmedic_Nm": "Arixtra 5.0 mg/0.4 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1036335,
     "Swissmedic_Nr": 55937,
-    "Swissmedic_Nm": "Arixtra 7.5 mg/0.6 ml, Injektionslösung",
+    "Swissmedic_Nm": "Arixtra 7.5 mg/0.6 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
@@ -4382,7 +4412,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1241378,
     "Swissmedic_Nr": 47334,
-    "Swissmedic_Nm": "Arkocaps Passiflore/Passionsblume, 300 mg, capsules",
+    "Swissmedic_Nm": "Arkocaps Passiflore 300 mg, gélule",
     "Abgabekategorie": "D"
   },
   {
@@ -4408,6 +4438,12 @@ export const medicaments = [
     "Swissmedic_Nr": 59800,
     "Swissmedic_Nm": "Arnica / Levisticum D6 comp., Ampullen",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645542,
+    "Swissmedic_Nr": 70149,
+    "Swissmedic_Nm": "Arnica comp. / Formica N, Crème",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1115942,
@@ -4737,6 +4773,12 @@ export const medicaments = [
     "Prd_Nr": 1358542,
     "Swissmedic_Nr": 66360,
     "Swissmedic_Nm": "ASS Cardio axapharm 100 mg, magensaftresistente Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1638161,
+    "Swissmedic_Nr": 69724,
+    "Swissmedic_Nm": "ASS Cardio Sandoz 100 mg, magensaftresistente Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -5076,21 +5118,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1181233,
-    "Swissmedic_Nr": 61285,
-    "Swissmedic_Nm": "Atorvastatin Sandoz 10 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1450560,
     "Swissmedic_Nr": 61285,
     "Swissmedic_Nm": "Atorvastatin Sandoz 10 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1181234,
-    "Swissmedic_Nr": 61285,
-    "Swissmedic_Nm": "Atorvastatin Sandoz 20 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -5190,12 +5220,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1272604,
-    "Swissmedic_Nr": 61322,
-    "Swissmedic_Nm": "Atorvastatin-Mepha 10 mg, Lactab",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1623982,
     "Swissmedic_Nr": 69314,
     "Swissmedic_Nm": "Atorvastatin-Mepha 20 mg, Filmtabletten",
@@ -5214,21 +5238,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1272606,
-    "Swissmedic_Nr": 61322,
-    "Swissmedic_Nm": "Atorvastatin-Mepha 40 mg, Lactab",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1623984,
     "Swissmedic_Nr": 69314,
     "Swissmedic_Nm": "Atorvastatin-Mepha 80 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1272607,
-    "Swissmedic_Nr": 61322,
-    "Swissmedic_Nm": "Atorvastatin-Mepha 80 mg, Lactab",
     "Abgabekategorie": "B"
   },
   {
@@ -5594,7 +5606,7 @@ export const medicaments = [
   {
     "Prd_Nr": 118753,
     "Swissmedic_Nr": 56106,
-    "Swissmedic_Nm": "Avodart, Weichgelatinekapseln",
+    "Swissmedic_Nm": "Avodart, Weichkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -5607,6 +5619,12 @@ export const medicaments = [
     "Prd_Nr": 1019824,
     "Swissmedic_Nr": 56735,
     "Swissmedic_Nm": "Avonex, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1621322,
+    "Swissmedic_Nr": 69243,
+    "Swissmedic_Nm": "Axhidrox 2,2 mg/Hub, Creme",
     "Abgabekategorie": "B"
   },
   {
@@ -5829,6 +5847,12 @@ export const medicaments = [
     "Prd_Nr": 1119172,
     "Swissmedic_Nr": 59179,
     "Swissmedic_Nm": "Azarga, Augentropfensuspension",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1654489,
+    "Swissmedic_Nr": 69878,
+    "Swissmedic_Nm": "Azelastin Fluticason Sandoz Nasenspray, Suspension",
     "Abgabekategorie": "B"
   },
   {
@@ -6194,7 +6218,7 @@ export const medicaments = [
   {
     "Prd_Nr": 95224,
     "Swissmedic_Nr": 55786,
-    "Swissmedic_Nm": "Baldriparan für die Nacht, Dragées",
+    "Swissmedic_Nm": "Baldriparan für die Nacht, überzogene Tabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -6304,18 +6328,6 @@ export const medicaments = [
     "Swissmedic_Nr": 66719,
     "Swissmedic_Nm": "Bedranol 80 mg, comprimés pelliculés",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 3242,
-    "Swissmedic_Nr": 36327,
-    "Swissmedic_Nm": "Begrocit, Brausetabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 96830,
-    "Swissmedic_Nr": 55278,
-    "Swissmedic_Nm": "Bekunis Dragées Bisacodyl",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 112252,
@@ -6656,7 +6668,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1437302,
     "Swissmedic_Nr": 67686,
-    "Swissmedic_Nm": "BETADINA, desinfizierende Lösung",
+    "Swissmedic_Nm": "BETADINA desinfizierende Lösung, Lösung zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
   },
   {
@@ -6892,6 +6904,12 @@ export const medicaments = [
     "Swissmedic_Nr": 69039,
     "Swissmedic_Nm": "Beyfortus 50 mg/0.5 ml, solution injectable en seringue préremplie",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1650745,
+    "Swissmedic_Nr": 70089,
+    "Swissmedic_Nm": "BEYONTTRA, Filmtabletten",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 79029,
@@ -7212,12 +7230,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1426237,
-    "Swissmedic_Nr": 67690,
-    "Swissmedic_Nm": "Bisacofelan, Dragées",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1008182,
     "Swissmedic_Nr": 55690,
     "Swissmedic_Nm": "Bisolvon ad us. vet., Pulver",
@@ -7245,6 +7257,12 @@ export const medicaments = [
     "Prd_Nr": 1474977,
     "Swissmedic_Nr": 68163,
     "Swissmedic_Nm": "Bisolvon Kids sirop contre la toux, sirop",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1648183,
+    "Swissmedic_Nr": 69779,
+    "Swissmedic_Nm": "Bisolvon Pentoxyverin 2.13 mg/ml, Sirup",
     "Abgabekategorie": "D"
   },
   {
@@ -7488,12 +7506,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1005296,
-    "Swissmedic_Nr": 681,
-    "Swissmedic_Nm": "Boostrix Polio, Injektionssuspension",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1610807,
     "Swissmedic_Nr": 681,
     "Swissmedic_Nm": "Boostrix Polio, Injektionssuspension",
@@ -7564,6 +7576,18 @@ export const medicaments = [
     "Swissmedic_Nr": 68344,
     "Swissmedic_Nm": "Bortezomib Zentiva 3.5 mg, Lyophilisat zur Herstellung einer Injektionslösung",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1653589,
+    "Swissmedic_Nr": 69790,
+    "Swissmedic_Nm": "Bosentan Spirig HC 125 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1653588,
+    "Swissmedic_Nr": 69790,
+    "Swissmedic_Nm": "Bosentan Spirig HC 62.5 mg, Filmtabletten",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1355259,
@@ -8028,6 +8052,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1323711,
+    "Swissmedic_Nr": 59952,
+    "Swissmedic_Nm": "Bryophyllum TM (=33%), Tropfen zum Einnehmen",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 13716,
     "Swissmedic_Nr": 680,
     "Swissmedic_Nm": "Buccalin, compresse",
@@ -8304,6 +8334,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1643916,
+    "Swissmedic_Nr": 47133,
+    "Swissmedic_Nm": "Burgerstein Zink 15 mg, Filmtabletten",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 21935,
     "Swissmedic_Nr": 47133,
     "Swissmedic_Nm": "Burgerstein Zinkglukonat 30 mg, Tabletten",
@@ -8331,12 +8367,6 @@ export const medicaments = [
     "Prd_Nr": 1080106,
     "Swissmedic_Nr": 56802,
     "Swissmedic_Nm": "Buscopan, Dragées",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 13765,
-    "Swissmedic_Nr": 17354,
-    "Swissmedic_Nm": "Buscopan, Suppositorien",
     "Abgabekategorie": "D"
   },
   {
@@ -8652,12 +8682,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 14008,
-    "Swissmedic_Nr": 32209,
-    "Swissmedic_Nm": "Callimon, Brausetabletten",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1222183,
     "Swissmedic_Nr": 62038,
     "Swissmedic_Nm": "Calmedoron, Globuli",
@@ -8674,6 +8698,18 @@ export const medicaments = [
     "Swissmedic_Nr": 40018,
     "Swissmedic_Nm": "Calmerphan-L, Sirup",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1628764,
+    "Swissmedic_Nr": 69270,
+    "Swissmedic_Nm": "Calmolla, spray pour pulvérisation buccale",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1628765,
+    "Swissmedic_Nr": 69274,
+    "Swissmedic_Nm": "Calmozen, spray pour pulvérisation buccale",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1283910,
@@ -8754,18 +8790,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 111122,
-    "Swissmedic_Nr": 55584,
-    "Swissmedic_Nm": "Cancidas 50 mg, Pulver zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 111124,
-    "Swissmedic_Nr": 55584,
-    "Swissmedic_Nm": "Cancidas 70 mg, Pulver zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1544980,
     "Swissmedic_Nr": 68860,
     "Swissmedic_Nm": "Candesartan Amlodipin Sandoz 16 mg/10 mg, Hartkapseln",
@@ -8787,6 +8811,30 @@ export const medicaments = [
     "Prd_Nr": 1544977,
     "Swissmedic_Nr": 68860,
     "Swissmedic_Nm": "Candesartan Amlodipin Sandoz 8 mg/5 mg , Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644654,
+    "Swissmedic_Nr": 62569,
+    "Swissmedic_Nm": "CANDESARTAN CHEPLAPHARM 16 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644655,
+    "Swissmedic_Nr": 62569,
+    "Swissmedic_Nm": "CANDESARTAN CHEPLAPHARM 32 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644652,
+    "Swissmedic_Nr": 62569,
+    "Swissmedic_Nm": "CANDESARTAN CHEPLAPHARM 4 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644653,
+    "Swissmedic_Nr": 62569,
+    "Swissmedic_Nm": "CANDESARTAN CHEPLAPHARM 8 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -8829,6 +8877,30 @@ export const medicaments = [
     "Prd_Nr": 1436657,
     "Swissmedic_Nr": 62321,
     "Swissmedic_Nm": "Candesartan HCT Zentiva 8/12.5 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644657,
+    "Swissmedic_Nr": 62570,
+    "Swissmedic_Nm": "CANDESARTAN PLUS CHEPLAPHARM 16/12.5 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644658,
+    "Swissmedic_Nr": 62570,
+    "Swissmedic_Nm": "CANDESARTAN PLUS CHEPLAPHARM 32/12.5 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644659,
+    "Swissmedic_Nr": 62570,
+    "Swissmedic_Nm": "CANDESARTAN PLUS CHEPLAPHARM 32/25 mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1644656,
+    "Swissmedic_Nr": 62570,
+    "Swissmedic_Nm": "CANDESARTAN PLUS CHEPLAPHARM 8/12.5 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -9120,6 +9192,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1650726,
+    "Swissmedic_Nr": 69781,
+    "Swissmedic_Nm": "Capvaxive, Injektionslösung in Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1450987,
     "Swissmedic_Nr": 67376,
     "Swissmedic_Nm": "Carbaglu 200 mg, Tabletten zur Herstellung einer Suspension zum Einnehmen",
@@ -9312,12 +9390,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 14358,
-    "Swissmedic_Nr": 45590,
-    "Swissmedic_Nm": "Carbostesin 0,5 % hyperbar, Injektionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 14352,
     "Swissmedic_Nr": 36988,
     "Swissmedic_Nm": "Carbostesin 0,5 %, Injektionslösung",
@@ -9327,6 +9399,12 @@ export const medicaments = [
     "Prd_Nr": 1557010,
     "Swissmedic_Nr": 36988,
     "Swissmedic_Nm": "Carbostesin 0,5 %, Injektionslösung",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 14358,
+    "Swissmedic_Nr": 45590,
+    "Swissmedic_Nm": "Carbostesin 5 mg/ml hyperbar, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -9624,6 +9702,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1512826,
+    "Swissmedic_Nr": 67956,
+    "Swissmedic_Nm": "Carvykti",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1624527,
     "Swissmedic_Nr": 68978,
     "Swissmedic_Nm": "Casgevy 4-13 x 10e6 cells/ml, Infusionsdispersion",
@@ -9651,6 +9735,18 @@ export const medicaments = [
     "Prd_Nr": 1505098,
     "Swissmedic_Nr": 68433,
     "Swissmedic_Nm": "Caspofungin Labatec 70 mg, Poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1627482,
+    "Swissmedic_Nr": 69453,
+    "Swissmedic_Nm": "Caspofungin Leman 50 mg, poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1627483,
+    "Swissmedic_Nr": 69453,
+    "Swissmedic_Nm": "Caspofungin Leman 70 mg, poudre pour solution à diluer pour perfusion",
     "Abgabekategorie": "A"
   },
   {
@@ -9744,24 +9840,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 40898,
-    "Swissmedic_Nr": 52179,
-    "Swissmedic_Nm": "Ceclor Retard 375 mg, Filmtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 40899,
-    "Swissmedic_Nr": 52179,
-    "Swissmedic_Nm": "Ceclor Retard 500 mg, Filmtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 40900,
-    "Swissmedic_Nr": 52179,
-    "Swissmedic_Nm": "Ceclor Retard 750 mg, Filmtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1062643,
     "Swissmedic_Nr": 45352,
     "Swissmedic_Nm": "Cedur retard, Retardtabletten",
@@ -9848,13 +9926,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1123663,
     "Swissmedic_Nr": 58694,
-    "Swissmedic_Nm": "Cefuroxim Axapharm 250 mg, Filmtabletten",
+    "Swissmedic_Nm": "Cefuroxim axapharm 250 mg, Filmtabletten",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1123665,
     "Swissmedic_Nr": 58694,
-    "Swissmedic_Nm": "Cefuroxim Axapharm 500 mg, Filmtabletten",
+    "Swissmedic_Nm": "Cefuroxim axapharm 500 mg, Filmtabletten",
     "Abgabekategorie": "A"
   },
   {
@@ -9951,18 +10029,6 @@ export const medicaments = [
     "Prd_Nr": 1488176,
     "Swissmedic_Nr": 68029,
     "Swissmedic_Nm": "Celecoxib axapharm 200 mg, Hartkapseln",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1268606,
-    "Swissmedic_Nr": 63184,
-    "Swissmedic_Nm": "Celecoxib Helvepharm 100 mg, Kapseln",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1268607,
-    "Swissmedic_Nr": 63184,
-    "Swissmedic_Nm": "Celecoxib Helvepharm 200 mg, Kapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -10254,12 +10320,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1369778,
-    "Swissmedic_Nr": 66851,
-    "Swissmedic_Nm": "Cetifelan 10mg, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1220133,
     "Swissmedic_Nr": 62568,
     "Swissmedic_Nm": "Cetirizin Spirig HC, Filmtabletten",
@@ -10330,6 +10390,18 @@ export const medicaments = [
     "Swissmedic_Nr": 59802,
     "Swissmedic_Nm": "Chamomilla/Malachit comp., Injektionslösung (s.c.)",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1458202,
+    "Swissmedic_Nr": 60029,
+    "Swissmedic_Nm": "Chelidonium comp., Tropfen zum Einnehmen",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1395398,
+    "Swissmedic_Nr": 59848,
+    "Swissmedic_Nm": "Chelidonium Rh D4, Augentropfen",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1187096,
@@ -10902,12 +10974,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 79683,
-    "Swissmedic_Nr": 47998,
-    "Swissmedic_Nm": "Cisplatin-Teva, 0.5 mg/ml, Konzentrat zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1211439,
     "Swissmedic_Nr": 55935,
     "Swissmedic_Nm": "Citalopram Sandoz 20, Filmtabletten",
@@ -11382,18 +11448,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1384600,
-    "Swissmedic_Nr": 66937,
-    "Swissmedic_Nm": "Clozapin-Mepha 200 mg, Tabletten",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1384598,
-    "Swissmedic_Nr": 66937,
-    "Swissmedic_Nm": "Clozapin-Mepha 25 mg, Tabletten",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1373457,
     "Swissmedic_Nr": 66680,
     "Swissmedic_Nm": "Co-Amoxicillin Axapharm 1000 mg (875/125 mg), Filmtabletten",
@@ -11840,13 +11894,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1396077,
     "Swissmedic_Nr": 62153,
-    "Swissmedic_Nm": "ColiFin PARI 1 Mio. U.I., poudre pour solution pour inhalation par nébuliseur",
+    "Swissmedic_Nm": "ColiFin PARI 1 Mio. U.I., Pulver zur Herstellung einer Lösung für einen Vernebler",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1396078,
     "Swissmedic_Nr": 65338,
-    "Swissmedic_Nm": "ColiFin PARI 2 Mio. U.I., poudre pour solution pour inhalation par nébuliseur",
+    "Swissmedic_Nm": "ColiFin PARI 2 Mio. U.I., Pulver zur Herstellung einer Lösung für einen Vernebler",
     "Abgabekategorie": "A"
   },
   {
@@ -11954,7 +12008,7 @@ export const medicaments = [
   {
     "Prd_Nr": 16926,
     "Swissmedic_Nr": 45214,
-    "Swissmedic_Nm": "Colpermin, Kapseln",
+    "Swissmedic_Nm": "Colpermin, Magensaftresistente Hartkapsel",
     "Abgabekategorie": "D"
   },
   {
@@ -12004,18 +12058,6 @@ export const medicaments = [
     "Swissmedic_Nr": 49978,
     "Swissmedic_Nm": "Combudoron, Spray zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1617721,
-    "Swissmedic_Nr": 69913,
-    "Swissmedic_Nm": "Comirnaty JN.1 0.042 mg, Injektionsdispersion in einer Fertigspritze",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1617719,
-    "Swissmedic_Nr": 69912,
-    "Swissmedic_Nm": "Comirnaty JN.1 10 μg, Injektionsdispersion",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1632176,
@@ -12288,12 +12330,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1408560,
-    "Swissmedic_Nr": 67322,
-    "Swissmedic_Nm": "Coop Vitality Diclofenac-N 25, Kapseln",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1622151,
     "Swissmedic_Nr": 65484,
     "Swissmedic_Nm": "Coop Vitality Erkältungscreme, Creme",
@@ -12303,12 +12339,6 @@ export const medicaments = [
     "Prd_Nr": 1607820,
     "Swissmedic_Nr": 69658,
     "Swissmedic_Nm": "Coop Vitality Fexofenadin 120 mg, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1510010,
-    "Swissmedic_Nr": 68942,
-    "Swissmedic_Nm": "Coop Vitality Flumol Grippe, Pulver zur Herstellung einer Lösung zum Einnehmen",
     "Abgabekategorie": "D"
   },
   {
@@ -12356,7 +12386,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1454792,
     "Swissmedic_Nr": 68077,
-    "Swissmedic_Nm": "Coop Vitality Xylo Plus, Nasenspray",
+    "Swissmedic_Nm": "Coop Vitality Xylo Plus Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -12388,6 +12418,12 @@ export const medicaments = [
     "Swissmedic_Nr": 60277,
     "Swissmedic_Nm": "Cor/Crataegus comp., Solutio ad injectionem",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 98742,
+    "Swissmedic_Nr": 66385,
+    "Swissmedic_Nm": "Corallium album spag. Lüthi Urtinktur, Tropfen zum Einnehmen",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1076591,
@@ -12447,6 +12483,12 @@ export const medicaments = [
     "Prd_Nr": 1238003,
     "Swissmedic_Nr": 60338,
     "Swissmedic_Nm": "Corpus vitreum/Hornerz comp., Solutio ad injectionem",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1434252,
+    "Swissmedic_Nr": 59783,
+    "Swissmedic_Nm": "Corpus vitreum-Stannum D4, Augentropfen",
     "Abgabekategorie": "B"
   },
   {
@@ -13046,7 +13088,7 @@ export const medicaments = [
   {
     "Prd_Nr": 57279,
     "Swissmedic_Nr": 51886,
-    "Swissmedic_Nm": "Curosurf 120 mg, Suspension zur Instillation",
+    "Swissmedic_Nm": "Curosurf 120 mg, suspension pour instillation",
     "Abgabekategorie": "A"
   },
   {
@@ -13188,34 +13230,10 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1031289,
-    "Swissmedic_Nr": 56983,
-    "Swissmedic_Nm": "Cymbalta 30 mg, gélules gastrorésistantes",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1031290,
-    "Swissmedic_Nr": 56983,
-    "Swissmedic_Nm": "Cymbalta 60 mg, gélules gastrorésistantes",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 17758,
     "Swissmedic_Nr": 49188,
     "Swissmedic_Nm": "Cymevene, Pulver für ein Konzentrat zur Herstellung einer Infusionslösung",
     "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1022656,
-    "Swissmedic_Nr": 57225,
-    "Swissmedic_Nm": "Cypestra-35, Dragées",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1219743,
-    "Swissmedic_Nr": 62428,
-    "Swissmedic_Nm": "Cyproderm, Dragées",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1309966,
@@ -13332,12 +13350,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1552047,
-    "Swissmedic_Nr": 46206,
-    "Swissmedic_Nm": "Dafalgan 500 mg, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1645769,
     "Swissmedic_Nr": 69266,
     "Swissmedic_Nm": "Dafalgan 500 mg, Tabletten",
@@ -13383,6 +13395,12 @@ export const medicaments = [
     "Prd_Nr": 1615996,
     "Swissmedic_Nr": 69265,
     "Swissmedic_Nm": "Dafalgan DOLO 500 mg, Brausetabletten",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1640043,
+    "Swissmedic_Nr": 69904,
+    "Swissmedic_Nm": "Dafalgan Dolo Junior, Sirup",
     "Abgabekategorie": "D"
   },
   {
@@ -13551,6 +13569,24 @@ export const medicaments = [
     "Prd_Nr": 35178,
     "Swissmedic_Nr": 52119,
     "Swissmedic_Nm": "Dalacin V 2%, Vaginalcreme",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1652413,
+    "Swissmedic_Nr": 69956,
+    "Swissmedic_Nm": "Dalingo 165 mg, Retardtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1652414,
+    "Swissmedic_Nr": 69956,
+    "Swissmedic_Nm": "Dalingo 330 mg, Retardtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1652412,
+    "Swissmedic_Nr": 69956,
+    "Swissmedic_Nm": "Dalingo 82.5 mg, Retardtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -13904,19 +13940,19 @@ export const medicaments = [
   {
     "Prd_Nr": 1452938,
     "Swissmedic_Nr": 67678,
-    "Swissmedic_Nm": "Deferasirox-Mepha 180 mg, Lactab",
+    "Swissmedic_Nm": "Deferasirox-Mepha 180 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1452939,
     "Swissmedic_Nr": 67678,
-    "Swissmedic_Nm": "Deferasirox-Mepha 360 mg, Lactab",
+    "Swissmedic_Nm": "Deferasirox-Mepha 360 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1452937,
     "Swissmedic_Nr": 67678,
-    "Swissmedic_Nm": "Deferasirox-Mepha 90 mg, Lactab",
+    "Swissmedic_Nm": "Deferasirox-Mepha 90 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -13978,6 +14014,12 @@ export const medicaments = [
     "Swissmedic_Nr": 31546,
     "Swissmedic_Nm": "Denosol Erkältungsbad, Badezusatz",
     "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1653882,
+    "Swissmedic_Nr": 70066,
+    "Swissmedic_Nm": "Denosumab-Mepha osteo 60 mg/ml, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 34684,
@@ -14162,7 +14204,7 @@ export const medicaments = [
   {
     "Prd_Nr": 18367,
     "Swissmedic_Nr": 29668,
-    "Swissmedic_Nm": "Desferal, Injektionspräparat",
+    "Swissmedic_Nm": "Desferal , Pulver zur Herstellung einer Injektions-/Infusionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -14508,12 +14550,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1141411,
-    "Swissmedic_Nr": 60374,
-    "Swissmedic_Nm": "Diclofenac-Mepha 75, Injektionslösung i.m.",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1236397,
     "Swissmedic_Nr": 60024,
     "Swissmedic_Nm": "Dicloren Gel, Emulsions-Gel",
@@ -14604,6 +14640,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1628769,
+    "Swissmedic_Nr": 69273,
+    "Swissmedic_Nm": "Digestola, spray pour pulvérisation buccale",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1067023,
     "Swissmedic_Nr": 59301,
     "Swissmedic_Nm": "DigiFab, Lyophilisat",
@@ -14670,6 +14712,18 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1624296,
+    "Swissmedic_Nr": 69167,
+    "Swissmedic_Nm": "Dimethylfumarat Spirig HC 120 mg, magensaftresistente Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1624297,
+    "Swissmedic_Nr": 69167,
+    "Swissmedic_Nm": "Dimethylfumarat Spirig HC 240 mg, magensaftresistente Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1557864,
     "Swissmedic_Nr": 69411,
     "Swissmedic_Nm": "Dimethylfumarat Viatris 120 mg, magensaftresistente Hartkapseln",
@@ -14697,6 +14751,12 @@ export const medicaments = [
     "Prd_Nr": 1624302,
     "Swissmedic_Nr": 69449,
     "Swissmedic_Nm": "Dimetindene Leman 1 mg/g, gel",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1643802,
+    "Swissmedic_Nr": 69452,
+    "Swissmedic_Nm": "Dimetindene Leman 1 mg/ml, solution buvable en gouttes",
     "Abgabekategorie": "D"
   },
   {
@@ -14835,6 +14895,12 @@ export const medicaments = [
     "Prd_Nr": 1123978,
     "Swissmedic_Nr": 62611,
     "Swissmedic_Nm": "Disci/Viscum comp. cum Argento, Suppositorien",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1602116,
+    "Swissmedic_Nr": 60451,
+    "Swissmedic_Nm": "Disci/Viscum comp. cum Stanno, Creme",
     "Abgabekategorie": "D"
   },
   {
@@ -15396,6 +15462,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 19774,
+    "Swissmedic_Nr": 42688,
+    "Swissmedic_Nm": "Doxylag 100, capsules",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 26685,
     "Swissmedic_Nr": 50748,
     "Swissmedic_Nm": "Doxysol 100, Tabletten",
@@ -15798,12 +15870,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1436475,
-    "Swissmedic_Nr": 62414,
-    "Swissmedic_Nm": "Dretine 28, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1436476,
     "Swissmedic_Nr": 62386,
     "Swissmedic_Nm": "Dretinelle 21, Filmtabletten",
@@ -15840,6 +15906,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1634109,
+    "Swissmedic_Nr": 69462,
+    "Swissmedic_Nm": "Droperidol Aguettant 1.25 mg/ml, solution injectable",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1039906,
     "Swissmedic_Nr": 56550,
     "Swissmedic_Nm": "Droperidol Sintetica 1 mg/2 ml, soluzione iniettabile",
@@ -15850,12 +15922,6 @@ export const medicaments = [
     "Swissmedic_Nr": 58790,
     "Swissmedic_Nm": "Drosera compositum, Injektionslösung (s.c., i.c., i.m.)",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1170745,
-    "Swissmedic_Nr": 54852,
-    "Swissmedic_Nm": "Drosetux, sirop",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 19799,
@@ -15878,7 +15944,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1328669,
     "Swissmedic_Nr": 65701,
-    "Swissmedic_Nm": "Drossadin Spray 0.2%, Lösung",
+    "Swissmedic_Nm": "Drossadin Spray 0.2%, Spray zur Anwendung in der Mundhöhle",
     "Abgabekategorie": "D"
   },
   {
@@ -15921,6 +15987,12 @@ export const medicaments = [
     "Prd_Nr": 1118091,
     "Swissmedic_Nr": 59780,
     "Swissmedic_Nm": "Dulcamara / Lysimachia, Creme",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1195144,
+    "Swissmedic_Nr": 67356,
+    "Swissmedic_Nm": "Dulcamara/ Lysimachia, Tropfen zum Einnehmen",
     "Abgabekategorie": "D"
   },
   {
@@ -16052,7 +16124,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1144728,
     "Swissmedic_Nr": 60095,
-    "Swissmedic_Nm": "Duodart, Kapseln",
+    "Swissmedic_Nm": "Duodart, Hartkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -16142,7 +16214,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1367717,
     "Swissmedic_Nr": 66071,
-    "Swissmedic_Nm": "Dutasterid Spirig HC 0.5mg, Weichgelatinekapseln",
+    "Swissmedic_Nm": "Dutasterid Spirig HC 0.5mg, Weichkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -16155,12 +16227,6 @@ export const medicaments = [
     "Prd_Nr": 1461205,
     "Swissmedic_Nr": 67959,
     "Swissmedic_Nm": "Dutasterid Tamsulosin Zentiva 0.5 mg/ 0.4 mg, Kapseln",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1480478,
-    "Swissmedic_Nr": 68212,
-    "Swissmedic_Nm": "Dutasterid-Tamsulosin Xiromed 0,5 mg/0,4 mg, Hartkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -16554,6 +16620,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1641967,
+    "Swissmedic_Nr": 69863,
+    "Swissmedic_Nm": "Efluelda TIV 0.5 mL, suspension injectable en seringue pré-remplie",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1534720,
     "Swissmedic_Nr": 36464,
     "Swissmedic_Nm": "Efudix, Crème",
@@ -16580,7 +16652,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1236151,
     "Swissmedic_Nr": 62590,
-    "Swissmedic_Nm": "Eklira Genuair, Pulver zum Inhalieren",
+    "Swissmedic_Nm": "Eklira Genuair, Pulver zur Inhalation",
     "Abgabekategorie": "B"
   },
   {
@@ -16605,6 +16677,18 @@ export const medicaments = [
     "Prd_Nr": 1331686,
     "Swissmedic_Nr": 65924,
     "Swissmedic_Nm": "Eletriptan Axapharm 80 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1627668,
+    "Swissmedic_Nr": 70060,
+    "Swissmedic_Nm": "Eletriptan Spirig HC 40 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1627669,
+    "Swissmedic_Nr": 70060,
+    "Swissmedic_Nm": "Eletriptan Spirig HC 80 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -16690,12 +16774,6 @@ export const medicaments = [
     "Swissmedic_Nr": 56960,
     "Swissmedic_Nm": "Elleacnelle, dragées",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1270816,
-    "Swissmedic_Nr": 46429,
-    "Swissmedic_Nm": "Elmetacin, Lösung",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1437861,
@@ -16788,24 +16866,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1044558,
-    "Swissmedic_Nr": 57207,
-    "Swissmedic_Nm": "Eloxatine 100 mg/20 ml, concentré pour perfusion",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1124190,
-    "Swissmedic_Nr": 57207,
-    "Swissmedic_Nm": "Eloxatine 200 mg/40 ml, concentré pour perfusion",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1044557,
-    "Swissmedic_Nr": 57207,
-    "Swissmedic_Nm": "Eloxatine 50 mg/10 ml, concentré pour perfusion",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1548536,
     "Swissmedic_Nr": 68646,
     "Swissmedic_Nm": "Elrexfio 44 mg/1.1 ml, Injektionslösung",
@@ -16815,6 +16875,114 @@ export const medicaments = [
     "Prd_Nr": 1558561,
     "Swissmedic_Nr": 68646,
     "Swissmedic_Nm": "Elrexfio 76 mg/1.9 ml, Injektionslösung",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1634927,
+    "Swissmedic_Nr": 69990,
+    "Swissmedic_Nm": "Eltrombopag Accord 12.5 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1634928,
+    "Swissmedic_Nr": 69990,
+    "Swissmedic_Nm": "Eltrombopag Accord 25 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1634929,
+    "Swissmedic_Nr": 69990,
+    "Swissmedic_Nm": "Eltrombopag Accord 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1634930,
+    "Swissmedic_Nr": 69990,
+    "Swissmedic_Nm": "Eltrombopag Accord 75 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1624304,
+    "Swissmedic_Nr": 69450,
+    "Swissmedic_Nm": "Eltrombopag NOBEL 12.5 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1624305,
+    "Swissmedic_Nr": 69450,
+    "Swissmedic_Nm": "Eltrombopag NOBEL 25 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1624306,
+    "Swissmedic_Nr": 69450,
+    "Swissmedic_Nm": "Eltrombopag NOBEL 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1624307,
+    "Swissmedic_Nr": 69450,
+    "Swissmedic_Nm": "Eltrombopag NOBEL 75 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1653265,
+    "Swissmedic_Nr": 69991,
+    "Swissmedic_Nm": "Eltrombopag Spirig HC 25 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1653266,
+    "Swissmedic_Nr": 69991,
+    "Swissmedic_Nm": "Eltrombopag Spirig HC 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1653267,
+    "Swissmedic_Nr": 69991,
+    "Swissmedic_Nm": "Eltrombopag Spirig HC 75 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1649431,
+    "Swissmedic_Nr": 69916,
+    "Swissmedic_Nm": "Eltrombopag Zentiva 12,5 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1649432,
+    "Swissmedic_Nr": 69916,
+    "Swissmedic_Nm": "Eltrombopag Zentiva 25 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1649433,
+    "Swissmedic_Nr": 69916,
+    "Swissmedic_Nm": "Eltrombopag Zentiva 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1649434,
+    "Swissmedic_Nr": 69916,
+    "Swissmedic_Nm": "Eltrombopag Zentiva 75 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1647453,
+    "Swissmedic_Nr": 69843,
+    "Swissmedic_Nm": "Eltrombopag-Mepha 25 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1647454,
+    "Swissmedic_Nr": 69843,
+    "Swissmedic_Nm": "Eltrombopag-Mepha 50 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1647455,
+    "Swissmedic_Nr": 69843,
+    "Swissmedic_Nm": "Eltrombopag-Mepha 75 mg, Filmtabletten",
     "Abgabekategorie": "A"
   },
   {
@@ -17028,12 +17196,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1436651,
-    "Swissmedic_Nr": 56499,
-    "Swissmedic_Nm": "Enalapril HCT Zentiva, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1220137,
     "Swissmedic_Nr": 62149,
     "Swissmedic_Nm": "Enalapril Spirig HC 10 mg, Tabletten",
@@ -17166,15 +17328,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 109516,
+    "Prd_Nr": 1610808,
     "Swissmedic_Nr": 551,
     "Swissmedic_Nm": "Engerix-B 10, Injektionssuspension",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 107397,
-    "Swissmedic_Nr": 534,
-    "Swissmedic_Nm": "Engerix-B 20, Injektionssuspension",
     "Abgabekategorie": "B"
   },
   {
@@ -17790,21 +17946,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1365976,
-    "Swissmedic_Nr": 65995,
-    "Swissmedic_Nm": "Escitalopram Sandoz 10 mg, Schmelztabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1237657,
     "Swissmedic_Nr": 62641,
     "Swissmedic_Nm": "Escitalopram Sandoz 20 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1365977,
-    "Swissmedic_Nr": 65995,
-    "Swissmedic_Nm": "Escitalopram Sandoz 20 mg, Schmelztabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -18324,6 +18468,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1655843,
+    "Swissmedic_Nr": 70140,
+    "Swissmedic_Nm": "Evfraxy 60 mg/ml, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1233221,
     "Swissmedic_Nr": 62155,
     "Swissmedic_Nm": "Eviplera, Filmtabletten",
@@ -18360,9 +18510,9 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1180882,
+    "Prd_Nr": 1635693,
     "Swissmedic_Nr": 49620,
-    "Swissmedic_Nm": "Excipial U Lipolotio ohne Parfum, Emulsion",
+    "Swissmedic_Nm": "Excipial U Lipolotio Sensitive, Emulsion zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
   },
   {
@@ -18762,6 +18912,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1355383,
+    "Swissmedic_Nr": 66070,
+    "Swissmedic_Nm": "Ezetimib-Mepha 10mg, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1363104,
     "Swissmedic_Nr": 65892,
     "Swissmedic_Nm": "Ezetimib-Mepha Teva 10 mg, Tabletten",
@@ -18990,12 +19146,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1428686,
-    "Swissmedic_Nr": 67700,
-    "Swissmedic_Nm": "Felan Bronchialpastillen",
-    "Abgabekategorie": "E"
-  },
-  {
     "Prd_Nr": 1102300,
     "Swissmedic_Nr": 56170,
     "Swissmedic_Nm": "Felodipin  Sandoz eco 10 mg, Retardtabletten",
@@ -19170,12 +19320,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1259847,
-    "Swissmedic_Nr": 53987,
-    "Swissmedic_Nm": "Fentanyl Sintetica 0.02 mg/1 ml, soluzione iniettabile",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1259846,
     "Swissmedic_Nr": 53987,
     "Swissmedic_Nm": "Fentanyl Sintetica 0.05 mg/1 ml, soluzione iniettabile",
@@ -19332,12 +19476,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 24529,
-    "Swissmedic_Nr": 36185,
-    "Swissmedic_Nm": "Fero-Folic-500, compresse a rilascio prolungato",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 118094,
     "Swissmedic_Nr": 55679,
     "Swissmedic_Nm": "Ferriprox, Filmtabletten",
@@ -19485,12 +19623,6 @@ export const medicaments = [
     "Prd_Nr": 1341238,
     "Swissmedic_Nr": 66342,
     "Swissmedic_Nm": "Fexo Pollen Sandoz, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1607822,
-    "Swissmedic_Nr": 69659,
-    "Swissmedic_Nm": "Fexofelan 120 mg, Filmtabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -19826,7 +19958,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1493856,
     "Swissmedic_Nr": 67296,
-    "Swissmedic_Nm": "Flam-X Dolo forte 2 % Gel",
+    "Swissmedic_Nm": "Flam-X Dolo forte 2 %, Gel",
     "Abgabekategorie": "D"
   },
   {
@@ -19846,30 +19978,6 @@ export const medicaments = [
     "Swissmedic_Nr": 57347,
     "Swissmedic_Nm": "Flectoparin Tissugel, cerotto medicato",
     "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1442573,
-    "Swissmedic_Nr": 63258,
-    "Swissmedic_Nm": "Flector 25 mg, soluzione iniettabile (siringa preriempita)",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1294817,
-    "Swissmedic_Nr": 63258,
-    "Swissmedic_Nm": "Flector 25 mg, soluzione iniettabile s.c., i.m. (siringa preriempita)",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1442574,
-    "Swissmedic_Nr": 63258,
-    "Swissmedic_Nm": "Flector 50 mg, soluzione iniettabile (siringa preriempita)",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1294818,
-    "Swissmedic_Nr": 63258,
-    "Swissmedic_Nm": "Flector 50 mg, soluzione iniettabile s.c., i.m. (siringa preriempita)",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1483047,
@@ -20048,19 +20156,19 @@ export const medicaments = [
   {
     "Prd_Nr": 1076757,
     "Swissmedic_Nr": 58454,
-    "Swissmedic_Nm": "Fluconazol Axapharm 150 mg, Kapseln",
+    "Swissmedic_Nm": "Fluconazol axapharm 150 mg, Kapseln",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1076758,
     "Swissmedic_Nr": 58454,
-    "Swissmedic_Nm": "Fluconazol Axapharm 200 mg, Kapseln",
+    "Swissmedic_Nm": "Fluconazol axapharm 200 mg, Kapseln",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1076756,
     "Swissmedic_Nr": 58454,
-    "Swissmedic_Nm": "Fluconazol Axapharm 50 mg, Kapseln",
+    "Swissmedic_Nm": "Fluconazol axapharm 50 mg, Kapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -20178,12 +20286,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1018672,
-    "Swissmedic_Nr": 57337,
-    "Swissmedic_Nm": "Fluimucil 200 tosse grassa, compresse effervescenti",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1443799,
     "Swissmedic_Nr": 57336,
     "Swissmedic_Nm": "Fluimucil 200 tosse grassa, granulato",
@@ -20253,12 +20355,6 @@ export const medicaments = [
     "Prd_Nr": 1047560,
     "Swissmedic_Nr": 57256,
     "Swissmedic_Nm": "Fluimucil Grippe Day & Night, compresse effervescenti",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1007862,
-    "Swissmedic_Nr": 55604,
-    "Swissmedic_Nm": "Fluimucil tosse grassa, compresse linguali",
     "Abgabekategorie": "D"
   },
   {
@@ -20434,12 +20530,6 @@ export const medicaments = [
     "Swissmedic_Nr": 54049,
     "Swissmedic_Nm": "Fluoxetin-Mepha, Hartkapseln",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1539955,
-    "Swissmedic_Nr": 69186,
-    "Swissmedic_Nm": "Flurbifelan Dolo 8.75 mg, Lutschtabletten",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1622452,
@@ -20846,19 +20936,19 @@ export const medicaments = [
   {
     "Prd_Nr": 59887,
     "Swissmedic_Nr": 54499,
-    "Swissmedic_Nm": "Fraxiforte 0,6 mL, Injektionslösung",
+    "Swissmedic_Nm": "Fraxiforte 0.6 mL, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 70280,
     "Swissmedic_Nr": 54499,
-    "Swissmedic_Nm": "Fraxiforte 0,8 mL, Injektionslösung",
+    "Swissmedic_Nm": "Fraxiforte 0.8 mL, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 70281,
     "Swissmedic_Nr": 54499,
-    "Swissmedic_Nm": "Fraxiforte 1 mL, Injektionslösung",
+    "Swissmedic_Nm": "Fraxiforte 1 mL, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
@@ -20901,6 +20991,12 @@ export const medicaments = [
     "Prd_Nr": 43009,
     "Swissmedic_Nr": 36308,
     "Swissmedic_Nm": "Freka-Clyss, Klistier",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1628805,
+    "Swissmedic_Nr": 69269,
+    "Swissmedic_Nm": "Frissela, spray pour pulvérisation buccale",
     "Abgabekategorie": "D"
   },
   {
@@ -21296,43 +21392,43 @@ export const medicaments = [
   {
     "Prd_Nr": 121134,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1627998,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1627999,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1628000,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1628001,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1628002,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1628003,
     "Swissmedic_Nr": 54423,
-    "Swissmedic_Nm": "Gadovist 1,0, Injektionslösung",
+    "Swissmedic_Nm": "Gadovist 1,0 mmol/ml, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -21648,6 +21744,18 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1403073,
+    "Swissmedic_Nr": 33380,
+    "Swissmedic_Nm": "Gentamicin 20 mg/2mL. AApot, Injektionslösung (i.m., i.v.)",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1403072,
+    "Swissmedic_Nr": 33380,
+    "Swissmedic_Nm": "Gentamicin 80 AApot, Injektionslösung (i.m., i.v.)",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1254743,
     "Swissmedic_Nr": 63056,
     "Swissmedic_Nm": "Gentiana/Zingiber comp., Extractum aquosum",
@@ -21903,12 +22011,6 @@ export const medicaments = [
     "Prd_Nr": 83253,
     "Swissmedic_Nr": 29551,
     "Swissmedic_Nm": "GlucoSaline 1 : 1 B. Braun, Infusionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1219229,
-    "Swissmedic_Nr": 29551,
-    "Swissmedic_Nm": "GlucoSaline 2 : 1 B. Braun, Infusionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -22406,7 +22508,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1073033,
     "Swissmedic_Nr": 57850,
-    "Swissmedic_Nm": "Grazax, Lyophilisat zum Einnehmen",
+    "Swissmedic_Nm": "Grazax, Lyophilisat zur sublingualen Anwendung",
     "Abgabekategorie": "A"
   },
   {
@@ -22419,42 +22521,6 @@ export const medicaments = [
     "Prd_Nr": 1621,
     "Swissmedic_Nr": 41442,
     "Swissmedic_Nm": "Gripp-Heel, Tabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1632,
-    "Swissmedic_Nr": 47702,
-    "Swissmedic_Nm": "Grofenac Retard, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1629,
-    "Swissmedic_Nr": 47701,
-    "Swissmedic_Nm": "Grofenac, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1628,
-    "Swissmedic_Nr": 47835,
-    "Swissmedic_Nm": "Grofenac, Injektionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1630,
-    "Swissmedic_Nr": 47703,
-    "Swissmedic_Nm": "Grofenac, Suppositorien",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 38381,
-    "Swissmedic_Nr": 48606,
-    "Swissmedic_Nm": "Gromazol, Crème",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 38382,
-    "Swissmedic_Nr": 48607,
-    "Swissmedic_Nm": "Gromazol, Pumpspray",
     "Abgabekategorie": "D"
   },
   {
@@ -22638,16 +22704,10 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 2033,
-    "Swissmedic_Nr": 49533,
-    "Swissmedic_Nm": "Halset, Lutschtabletten",
+    "Prd_Nr": 1645613,
+    "Swissmedic_Nr": 70172,
+    "Swissmedic_Nm": "Hamamelis comp., Crème",
     "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 27109,
-    "Swissmedic_Nr": 60053,
-    "Swissmedic_Nm": "Hamamelis destillata / Stibium metallicum praeperatum, Salbe",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 2054,
@@ -23100,12 +23160,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1118243,
-    "Swissmedic_Nr": 46240,
-    "Swissmedic_Nm": "Heparin Bichsel 1000 I.E./ml, Injektionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1475083,
     "Swissmedic_Nr": 46240,
     "Swissmedic_Nm": "Heparin Bichsel 417 I.E./ml, Infusionslösung",
@@ -23504,7 +23558,7 @@ export const medicaments = [
   {
     "Prd_Nr": 3325,
     "Swissmedic_Nr": 25229,
-    "Swissmedic_Nm": "Humatin, Kapseln",
+    "Swissmedic_Nm": "Humatin, Hartkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -23750,7 +23804,7 @@ export const medicaments = [
   {
     "Prd_Nr": 37580,
     "Swissmedic_Nr": 52342,
-    "Swissmedic_Nm": "Hytrin BPH 1 mg, Tabletten, Hytrin BPH 2 mg, Tabletten",
+    "Swissmedic_Nm": "Hytrin BPH 1 mg und 2 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -23834,7 +23888,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1255012,
     "Swissmedic_Nr": 62719,
-    "Swissmedic_Nm": "Ibandronat-Mepha Osteo i.v. 3 mg/ 3 ml, Fertigspritzen",
+    "Swissmedic_Nm": "Ibandronat-Mepha Osteo i.v. 3 mg/ 3 ml, Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "B"
   },
   {
@@ -23904,9 +23958,9 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1381875,
-    "Swissmedic_Nr": 66888,
-    "Swissmedic_Nm": "Ibufelan 400 mg, Filmtabletten",
+    "Prd_Nr": 1541702,
+    "Swissmedic_Nr": 68167,
+    "Swissmedic_Nm": "Ibu-Fairmed 400 mg, Weichkapseln",
     "Abgabekategorie": "D"
   },
   {
@@ -24174,6 +24228,18 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1642059,
+    "Swissmedic_Nr": 69955,
+    "Swissmedic_Nm": "Imatinib Spirig HC 100 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1642060,
+    "Swissmedic_Nr": 69955,
+    "Swissmedic_Nm": "Imatinib Spirig HC 400 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1311205,
     "Swissmedic_Nr": 65353,
     "Swissmedic_Nm": "Imatinib Zentiva 100mg, Filmtabletten",
@@ -24232,6 +24298,12 @@ export const medicaments = [
     "Swissmedic_Nr": 67109,
     "Swissmedic_Nm": "Imbruvica 560 mg, Filmtabletten",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645615,
+    "Swissmedic_Nr": 69694,
+    "Swissmedic_Nm": "IMCIVREE 10 mg/ml, Injektionslösung",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1385122,
@@ -24594,12 +24666,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 91474,
-    "Swissmedic_Nr": 640,
-    "Swissmedic_Nm": "Infanrix hexa, Injektionssuspension",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1610814,
     "Swissmedic_Nr": 640,
     "Swissmedic_Nm": "Infanrix hexa, Injektionssuspension",
@@ -24654,12 +24720,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 3582,
-    "Swissmedic_Nr": 46444,
-    "Swissmedic_Nm": "Infludoron, Globuli",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 18674,
     "Swissmedic_Nr": 59682,
     "Swissmedic_Nm": "Influenzinum (Influenzinum-Nosode) C15, Globules",
@@ -24675,6 +24735,12 @@ export const medicaments = [
     "Prd_Nr": 1046274,
     "Swissmedic_Nr": 59682,
     "Swissmedic_Nm": "Influenzinum (Influenzinum-Nosode) C30, Granules",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1638271,
+    "Swissmedic_Nr": 59682,
+    "Swissmedic_Nm": "Influenzinum (Influenzinum-Nosode) C6, Globules",
     "Abgabekategorie": "D"
   },
   {
@@ -24800,13 +24866,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1012038,
     "Swissmedic_Nr": 56809,
-    "Swissmedic_Nm": "INOmax 400 ppm, Inhalationsgas",
+    "Swissmedic_Nm": "INOmax 400 ppm, Gas zur medizinischen Anwendung, druckverdichtet",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1277481,
     "Swissmedic_Nr": 56809,
-    "Swissmedic_Nm": "INOmax 800 ppm, Inhalationsgas",
+    "Swissmedic_Nm": "INOmax 800 ppm, Gas zur medizinischen Anwendung, druckverdichtet",
     "Abgabekategorie": "A"
   },
   {
@@ -26166,18 +26232,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 3838,
-    "Swissmedic_Nr": 38470,
-    "Swissmedic_Nm": "Isoket 5 mg, Sublingualtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 3841,
-    "Swissmedic_Nr": 35797,
-    "Swissmedic_Nm": "Isoket retard 20 mg, Retardtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 3845,
     "Swissmedic_Nr": 45979,
     "Swissmedic_Nm": "Isoket retard, Retardkapseln",
@@ -26314,12 +26368,6 @@ export const medicaments = [
     "Swissmedic_Nr": 18383,
     "Swissmedic_Nm": "Itinerol B6, suppositoires pour enfants",
     "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 78987,
-    "Swissmedic_Nr": 55250,
-    "Swissmedic_Nm": "Itires, Tropfen zum Einnehmen",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1634513,
@@ -26712,6 +26760,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1634951,
+    "Swissmedic_Nr": 69950,
+    "Swissmedic_Nm": "Jubbonti 60 mg/ml, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1443572,
     "Swissmedic_Nr": 67466,
     "Swissmedic_Nm": "Juliette, Filmtabletten",
@@ -26780,7 +26834,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1086471,
     "Swissmedic_Nr": 57799,
-    "Swissmedic_Nm": "Kalinox 170 bar, Inhalationsgas",
+    "Swissmedic_Nm": "Kalinox 170 bar, Gas zur medizinischen Anwendung, druckverdichtet",
     "Abgabekategorie": "B"
   },
   {
@@ -27048,6 +27102,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1649398,
+    "Swissmedic_Nr": 69616,
+    "Swissmedic_Nm": "Kelsee Dienogest 2 mg/ 0.02 mg Ethinylestradiol, Retardtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 4414,
     "Swissmedic_Nr": 22562,
     "Swissmedic_Nm": "Kemadrin, Tabletten",
@@ -27063,12 +27123,6 @@ export const medicaments = [
     "Prd_Nr": 4421,
     "Swissmedic_Nr": 26177,
     "Swissmedic_Nm": "Kenacort-A 10 10 mg/ml, Injektionssuspension",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1091454,
-    "Swissmedic_Nr": 26177,
-    "Swissmedic_Nm": "Kenacort-A 10 50 mg/5 ml, Injektionssuspension",
     "Abgabekategorie": "B"
   },
   {
@@ -27342,6 +27396,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1607805,
+    "Swissmedic_Nr": 69003,
+    "Swissmedic_Nm": "Ketazed 0.25 mg/ml, Collyre en solution",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 93135,
     "Swissmedic_Nr": 54752,
     "Swissmedic_Nm": "Ketesse 25, Filmtabletten",
@@ -27374,25 +27434,25 @@ export const medicaments = [
   {
     "Prd_Nr": 1383750,
     "Swissmedic_Nr": 66424,
-    "Swissmedic_Nm": "Kevzara 150 mg/1.14 ml, solution pour injection en seringue pré-remplie",
+    "Swissmedic_Nm": "Kevzara 150 mg/1.14 ml, solution pour injection en seringue préremplie",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1383749,
     "Swissmedic_Nr": 66425,
-    "Swissmedic_Nm": "Kevzara 150 mg/1.14 ml, solution pour injection en stylo pré-rempli",
+    "Swissmedic_Nm": "Kevzara 150 mg/1.14 ml, solution pour injection en stylo prérempli",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1383752,
     "Swissmedic_Nr": 66424,
-    "Swissmedic_Nm": "Kevzara 200 mg/1.14 ml, solution pour injection en seringue pré-remplie",
+    "Swissmedic_Nm": "Kevzara 200 mg/1.14 ml, solution pour injection en seringue préremplie",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1383751,
     "Swissmedic_Nr": 66425,
-    "Swissmedic_Nm": "Kevzara 200 mg/1.14 ml, solution pour injection en stylo pré-rempli",
+    "Swissmedic_Nm": "Kevzara 200 mg/1.14 ml, solution pour injection en stylo prérempli",
     "Abgabekategorie": "B"
   },
   {
@@ -27406,6 +27466,12 @@ export const medicaments = [
     "Swissmedic_Nr": 68846,
     "Swissmedic_Nm": "Kimmtrak 100 mcg / 0.5 ml, Konzentrat zur Herstellung einer Infusionslösung",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1653604,
+    "Swissmedic_Nr": 69205,
+    "Swissmedic_Nm": "Kinpeygo 4 mg, Hartkapseln mit veränderter Wirkstofffreisetzung",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1036500,
@@ -27644,13 +27710,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1392138,
     "Swissmedic_Nr": 46928,
-    "Swissmedic_Nm": "Kybernin P 1000, Injektionslösung",
+    "Swissmedic_Nm": "Kybernin P 1000, Pulver und Lösungsmittel zur Herstellung einer Injektions-/Infusionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1391950,
     "Swissmedic_Nr": 46928,
-    "Swissmedic_Nm": "Kybernin P 500, Injektionslösung",
+    "Swissmedic_Nm": "Kybernin P 500, Pulver und Lösungsmittel zur Herstellung einer Injektions-/Infusionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -27849,6 +27915,12 @@ export const medicaments = [
     "Prd_Nr": 1443630,
     "Swissmedic_Nr": 66841,
     "Swissmedic_Nm": "Lactococcus lactis comp. D13, Spray zur Anwendung auf der Haut",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1406471,
+    "Swissmedic_Nr": 67090,
+    "Swissmedic_Nm": "Lactococcus lactis comp. D9, Spray zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
   },
   {
@@ -28094,13 +28166,25 @@ export const medicaments = [
   {
     "Prd_Nr": 1088108,
     "Swissmedic_Nr": 58131,
-    "Swissmedic_Nm": "Lansoprazol Sandoz 15, Kapseln",
+    "Swissmedic_Nm": "Lansoprazol Sandoz 15 mg, magensaftresistente Hartkapseln",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1088109,
     "Swissmedic_Nr": 58131,
-    "Swissmedic_Nm": "Lansoprazol Sandoz 30, Kapseln",
+    "Swissmedic_Nm": "Lansoprazol Sandoz 30 mg, magensaftresistente Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645669,
+    "Swissmedic_Nr": 70352,
+    "Swissmedic_Nm": "Lansoprazol Spirig HC 15 mg, Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645670,
+    "Swissmedic_Nr": 70352,
+    "Swissmedic_Nm": "Lansoprazol Spirig HC 30 mg, Hartkapseln",
     "Abgabekategorie": "B"
   },
   {
@@ -29196,6 +29280,24 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1624318,
+    "Swissmedic_Nr": 69225,
+    "Swissmedic_Nm": "Levetiracetam-Neuraxpharm 1000 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1624316,
+    "Swissmedic_Nr": 69225,
+    "Swissmedic_Nm": "Levetiracetam-Neuraxpharm 250 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1624317,
+    "Swissmedic_Nr": 69225,
+    "Swissmedic_Nm": "Levetiracetam-Neuraxpharm 500 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1124441,
     "Swissmedic_Nr": 60317,
     "Swissmedic_Nm": "Levico comp., Solutio ad injectionem",
@@ -29523,6 +29625,12 @@ export const medicaments = [
     "Prd_Nr": 1504087,
     "Swissmedic_Nr": 68275,
     "Swissmedic_Nm": "Lina Gynial 0,120 mg / 0,015 mg pro 24 Stunden, Vaginales Wirkstofffreisetzungssystem",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1650118,
+    "Swissmedic_Nr": 69560,
+    "Swissmedic_Nm": "Lina Gynial, Vaginalring",
     "Abgabekategorie": "B"
   },
   {
@@ -29892,9 +30000,27 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1645794,
+    "Swissmedic_Nr": 70275,
+    "Swissmedic_Nm": "LIVSANE Junior Schnupfen Xylo 0.05 %, Nasenspray, Lösung",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1633045,
     "Swissmedic_Nr": 69978,
     "Swissmedic_Nm": "LIVSANE lbu-L Forte 400, Filmtabletten",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1645795,
+    "Swissmedic_Nr": 70275,
+    "Swissmedic_Nm": "LIVSANE Schnupfen Xylo 0.1 %, Nasenspray, Lösung",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1645796,
+    "Swissmedic_Nr": 70276,
+    "Swissmedic_Nm": "LIVSANE Xylo PLUS, Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -30171,6 +30297,18 @@ export const medicaments = [
     "Prd_Nr": 1128416,
     "Swissmedic_Nr": 58293,
     "Swissmedic_Nm": "Losartan Sandoz 50 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1648470,
+    "Swissmedic_Nr": 69744,
+    "Swissmedic_Nm": "Losartan Spirig HC 100 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1648469,
+    "Swissmedic_Nr": 69744,
+    "Swissmedic_Nm": "Losartan Spirig HC 50 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -30534,6 +30672,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1656069,
+    "Swissmedic_Nr": 70063,
+    "Swissmedic_Nm": "Lyvdelzi 10 mg, Hartkapseln",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1098021,
     "Swissmedic_Nr": 54378,
     "Swissmedic_Nm": "MabThera 100 mg/10 ml, Konzentrat zur Herstellung einer Infusionslösung",
@@ -30638,19 +30782,19 @@ export const medicaments = [
   {
     "Prd_Nr": 6957,
     "Swissmedic_Nr": 27481,
-    "Swissmedic_Nm": "Magnesia San Pellegrino, poudre effervescente avec arôme",
+    "Swissmedic_Nm": "Magnesia San Pellegrino, Brausepulver mit Aroma",
     "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 6959,
     "Swissmedic_Nr": 27481,
-    "Swissmedic_Nm": "Magnesia San Pellegrino, poudre effervescente sans arôme",
+    "Swissmedic_Nm": "Magnesia San Pellegrino, Brausepulver ohne Aroma",
     "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 6956,
     "Swissmedic_Nr": 10574,
-    "Swissmedic_Nm": "Magnesia San Pellegrino, poudre sans arôme",
+    "Swissmedic_Nm": "Magnesia San Pellegrino, Pulver zur Herstellung einer Suspension zum Einnehmen",
     "Abgabekategorie": "D"
   },
   {
@@ -30906,12 +31050,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1222143,
-    "Swissmedic_Nr": 42414,
-    "Swissmedic_Nm": "Marament N, Emulsion",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 7157,
     "Swissmedic_Nr": 19395,
     "Swissmedic_Nm": "Marcoumar, Tabletten",
@@ -31044,15 +31182,15 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1199010,
+    "Prd_Nr": 1651629,
     "Swissmedic_Nr": 62301,
-    "Swissmedic_Nm": "Mebu-cherry, Lutschtabletten",
+    "Swissmedic_Nm": "Mebucaïne Plus Cherry, Lutschtabletten",
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1199011,
+    "Prd_Nr": 1651630,
     "Swissmedic_Nr": 62302,
-    "Swissmedic_Nm": "Mebu-lemon, Lutschtabletten",
+    "Swissmedic_Nm": "Mebucaïne Plus Lemon, Lutschtabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -31202,7 +31340,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1186470,
     "Swissmedic_Nr": 50068,
-    "Swissmedic_Nm": "Melaleuka-Pur, Flüssigkeit",
+    "Swissmedic_Nm": "Melaleuka, Flüssigkeit zur Herstellung eines Dampfes zur Inhalation / einer Gurgellösung",
     "Abgabekategorie": "D"
   },
   {
@@ -32256,21 +32394,9 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1466256,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 10 mg/0.2 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1621968,
     "Swissmedic_Nr": 65672,
     "Swissmedic_Nm": "Metoject Autoinjektor 10 mg/0.2 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1466257,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 12.5 mg/0.25 ml, Injektionslösung im Fertigpen",
     "Abgabekategorie": "A"
   },
   {
@@ -32280,21 +32406,9 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1466258,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 15 mg/0.3 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1621970,
     "Swissmedic_Nr": 65672,
     "Swissmedic_Nm": "Metoject Autoinjektor 15 mg/0.3 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1466259,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 17.5 mg/0.35 ml, Injektionslösung im Fertigpen",
     "Abgabekategorie": "A"
   },
   {
@@ -32304,21 +32418,9 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1466260,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 20 mg/0.4 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1621972,
     "Swissmedic_Nr": 65672,
     "Swissmedic_Nm": "Metoject Autoinjektor 20 mg/0.4 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1466261,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 22.5 mg/0.45 ml, Injektionslösung im Fertigpen",
     "Abgabekategorie": "A"
   },
   {
@@ -32328,21 +32430,9 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1466262,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 25 mg/0.5 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1621974,
     "Swissmedic_Nr": 65672,
     "Swissmedic_Nm": "Metoject Autoinjektor 25 mg/0.5 ml, Injektionslösung im Fertigpen",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1466255,
-    "Swissmedic_Nr": 65672,
-    "Swissmedic_Nm": "Metoject Autoinjektor 7.5 mg/0.15 ml, Injektionslösung im Fertigpen",
     "Abgabekategorie": "A"
   },
   {
@@ -32492,7 +32582,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1288220,
     "Swissmedic_Nr": 62276,
-    "Swissmedic_Nm": "Metronidazole Zentiva, Ovula",
+    "Swissmedic_Nm": "Metronidazole Zentiva, Vaginalovula",
     "Abgabekategorie": "B"
   },
   {
@@ -32796,6 +32886,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1314144,
+    "Swissmedic_Nr": 42736,
+    "Swissmedic_Nm": "Minalgin ad us. vet., Injektionslösung",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 10653,
     "Swissmedic_Nr": 14746,
     "Swissmedic_Nm": "Minalgin, Injektionslösung i.m., i.v.",
@@ -32853,18 +32949,6 @@ export const medicaments = [
     "Prd_Nr": 10665,
     "Swissmedic_Nr": 43585,
     "Swissmedic_Nm": "Minirin, Injektionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 42587,
-    "Swissmedic_Nr": 51920,
-    "Swissmedic_Nm": "Minitran 10, transdermales Pflaster",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 42586,
-    "Swissmedic_Nr": 51920,
-    "Swissmedic_Nm": "Minitran 5, transdermales Pflaster",
     "Abgabekategorie": "B"
   },
   {
@@ -32970,18 +33054,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1186552,
-    "Swissmedic_Nr": 62388,
-    "Swissmedic_Nm": "Mirtazapin Sandoz 30, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1186553,
-    "Swissmedic_Nr": 62388,
-    "Swissmedic_Nm": "Mirtazapin Sandoz 45, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1286157,
     "Swissmedic_Nr": 61435,
     "Swissmedic_Nm": "Mirtazapin Sandoz eco 15 mg, Schmelztabletten",
@@ -33003,6 +33075,24 @@ export const medicaments = [
     "Prd_Nr": 1634114,
     "Swissmedic_Nr": 69475,
     "Swissmedic_Nm": "Mirtazapin Sandoz eco 45 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647471,
+    "Swissmedic_Nr": 69879,
+    "Swissmedic_Nm": "Mirtazapin Spirig HC 15 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647472,
+    "Swissmedic_Nr": 69879,
+    "Swissmedic_Nm": "Mirtazapin Spirig HC 30 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647473,
+    "Swissmedic_Nr": 69879,
+    "Swissmedic_Nm": "Mirtazapin Spirig HC 45 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -33033,6 +33123,18 @@ export const medicaments = [
     "Prd_Nr": 1179445,
     "Swissmedic_Nr": 61342,
     "Swissmedic_Nm": "Mirtazapin-Mepha 45 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637465,
+    "Swissmedic_Nr": 61460,
+    "Swissmedic_Nm": "Mirtazapin-Mepha Teva 15 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637466,
+    "Swissmedic_Nr": 61460,
+    "Swissmedic_Nm": "Mirtazapin-Mepha Teva 30 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -33122,7 +33224,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1446158,
     "Swissmedic_Nr": 67641,
-    "Swissmedic_Nm": "Mometason Spirig HC 0.05 mg/Sprühstoss, Dosier Nasenspray",
+    "Swissmedic_Nm": "Mometason Spirig HC Nasenspray, Suspension",
     "Abgabekategorie": "B"
   },
   {
@@ -33444,6 +33546,42 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1645800,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 10 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645801,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 12.5 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645802,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 15 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645797,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 2.5 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645798,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 5 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645799,
+    "Swissmedic_Nr": 69696,
+    "Swissmedic_Nm": "Mounjaro KwikPen 7.5 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1302715,
     "Swissmedic_Nr": 65205,
     "Swissmedic_Nm": "Moventig 12.5 mg, Filmtabletten",
@@ -33644,7 +33782,7 @@ export const medicaments = [
   {
     "Prd_Nr": 26447,
     "Swissmedic_Nr": 50964,
-    "Swissmedic_Nm": "Mucofluid 200, Tabletten",
+    "Swissmedic_Nm": "Mucofluid 200, Tablette zur Herstellung einer Lösung zum Einnehmen",
     "Abgabekategorie": "D"
   },
   {
@@ -33780,6 +33918,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1006387,
+    "Swissmedic_Nr": 55781,
+    "Swissmedic_Nm": "Multibic Kaliumfrei, Hämofiltrationslösung",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 11118,
     "Swissmedic_Nr": 42675,
     "Swissmedic_Nm": "Multilind, Heilpaste",
@@ -33840,6 +33984,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1405143,
+    "Swissmedic_Nr": 67091,
+    "Swissmedic_Nm": "Mycobacterium bovis comp. D9, Spray zur Anwendung auf der Haut",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 91054,
     "Swissmedic_Nr": 59140,
     "Swissmedic_Nm": "Mycobacterium phlei D6, Tropfen zum Einnehmen und Einreiben",
@@ -33870,12 +34020,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1153086,
-    "Swissmedic_Nr": 59959,
-    "Swissmedic_Nm": "Mycoster, Crème",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1539422,
     "Swissmedic_Nr": 59959,
     "Swissmedic_Nm": "Mycoster, Crème",
@@ -33896,7 +34040,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1449849,
     "Swissmedic_Nr": 66151,
-    "Swissmedic_Nm": "Mydrane, Injektionslösung zur intrakameralen Injektion",
+    "Swissmedic_Nm": "Mydrane, solution injectable",
     "Abgabekategorie": "A"
   },
   {
@@ -34238,7 +34382,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1266455,
     "Swissmedic_Nr": 29555,
-    "Swissmedic_Nm": "NaCl 10 % B. Braun, Zusatzampullen zu Infusionslösungen",
+    "Swissmedic_Nm": "NaCl 10 % B. Braun, Konzentrat zur Herstellung einer Infusionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -34388,7 +34532,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1030119,
     "Swissmedic_Nr": 55737,
-    "Swissmedic_Nm": "Nasobol Inhalo, comprimés effervescents",
+    "Swissmedic_Nm": "Nasobol Inhalo, Brausetabletten zur Herstellung eines Dampfs zur Inhalation",
     "Abgabekategorie": "D"
   },
   {
@@ -34423,12 +34567,6 @@ export const medicaments = [
   },
   {
     "Prd_Nr": 31816,
-    "Swissmedic_Nr": 35709,
-    "Swissmedic_Nm": "Natrium bicarbonat 8,4 % B. Braun, Infusionslösung, Zusatzampullen",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 31818,
     "Swissmedic_Nr": 35709,
     "Swissmedic_Nm": "Natrium bicarbonat 8,4 % B. Braun, Infusionslösung, Zusatzampullen",
     "Abgabekategorie": "B"
@@ -34531,12 +34669,6 @@ export const medicaments = [
   },
   {
     "Prd_Nr": 1374689,
-    "Swissmedic_Nr": 29800,
-    "Swissmedic_Nm": "Natrium chloratum Bichsel 0,9 %, Infusionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1374691,
     "Swissmedic_Nr": 29800,
     "Swissmedic_Nm": "Natrium chloratum Bichsel 0,9 %, Infusionslösung",
     "Abgabekategorie": "B"
@@ -34860,8 +34992,8 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1443501,
-    "Swissmedic_Nr": 67413,
+    "Prd_Nr": 1654861,
+    "Swissmedic_Nr": 69767,
     "Swissmedic_Nm": "neotylol Grippe, Pulver zur Herstellung einer Lösung zum Einnehmen",
     "Abgabekategorie": "D"
   },
@@ -35178,18 +35310,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 12167,
-    "Swissmedic_Nr": 40580,
-    "Swissmedic_Nm": "Nicorette 2 mg, wirkstoffhaltiges Kaugummi mit Original-Aroma",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 12168,
-    "Swissmedic_Nr": 40580,
-    "Swissmedic_Nm": "Nicorette 4 mg, wirkstoffhaltiges Kaugummi mit Original-Aroma",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1069866,
     "Swissmedic_Nr": 40580,
     "Swissmedic_Nm": "Nicorette Freshfruit 2 mg, wirkstoffhaltiges Kaugummi",
@@ -35235,6 +35355,18 @@ export const medicaments = [
     "Prd_Nr": 1395456,
     "Swissmedic_Nr": 62566,
     "Swissmedic_Nm": "Nicorette Mint, Spray zur Anwendung in der Mundhöhle",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 12167,
+    "Swissmedic_Nr": 40580,
+    "Swissmedic_Nm": "Nicorette Original-Aroma 2 mg, wirkstoffhaltiges Kaugummi",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 12168,
+    "Swissmedic_Nr": 40580,
+    "Swissmedic_Nm": "Nicorette Original-Aroma 4 mg, wirkstoffhaltiges Kaugummi",
     "Abgabekategorie": "D"
   },
   {
@@ -35358,6 +35490,24 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1647475,
+    "Swissmedic_Nr": 70178,
+    "Swissmedic_Nm": "Nilotinib Accord 150 mg, Hartkapseln",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1647476,
+    "Swissmedic_Nr": 70178,
+    "Swissmedic_Nm": "Nilotinib Accord 200 mg, Hartkapseln",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1647474,
+    "Swissmedic_Nr": 70178,
+    "Swissmedic_Nm": "Nilotinib Accord 50 mg, Hartkapseln",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1168373,
     "Swissmedic_Nr": 53677,
     "Swissmedic_Nm": "Nimbex 20mg/10ml, Injektionslösung",
@@ -35398,6 +35548,54 @@ export const medicaments = [
     "Swissmedic_Nr": 65959,
     "Swissmedic_Nm": "Ninlaro 4.0 mg, Hartkapseln",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1648083,
+    "Swissmedic_Nr": 70120,
+    "Swissmedic_Nm": "Nintedanib Sandoz 100 mg, Weichkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1648084,
+    "Swissmedic_Nr": 70120,
+    "Swissmedic_Nm": "Nintedanib Sandoz 150 mg, Weichkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1651439,
+    "Swissmedic_Nr": 69531,
+    "Swissmedic_Nm": "Nintedanib Spirig HC 100 mg, Weichkapsel",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1651440,
+    "Swissmedic_Nr": 69531,
+    "Swissmedic_Nm": "Nintedanib Spirig HC 150 mg, Weichkapsel",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1649454,
+    "Swissmedic_Nr": 70124,
+    "Swissmedic_Nm": "Nintedanib Zentiva 100 mg, Weichkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1649455,
+    "Swissmedic_Nr": 70124,
+    "Swissmedic_Nm": "Nintedanib Zentiva 150 mg, Weichkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1649456,
+    "Swissmedic_Nr": 69747,
+    "Swissmedic_Nm": "Nintedanib-Mepha 100 mg, Weichkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1649457,
+    "Swissmedic_Nr": 69747,
+    "Swissmedic_Nm": "Nintedanib-Mepha 150 mg, Weichkapseln",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1426613,
@@ -35832,6 +36030,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1314145,
+    "Swissmedic_Nr": 59479,
+    "Swissmedic_Nm": "Novaderma ad us. vet., Paste zur Anwendung auf der Haut für Rinder, Pferde und Schafe",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 12511,
     "Swissmedic_Nr": 16950,
     "Swissmedic_Nm": "Novalgin, Injektionslösung i.m., i.v.",
@@ -35912,19 +36116,19 @@ export const medicaments = [
   {
     "Prd_Nr": 1118342,
     "Swissmedic_Nr": 58693,
-    "Swissmedic_Nm": "NovoSeven 1 mg, raumtemperaturstabiles Injektionspräparat",
+    "Swissmedic_Nm": "NovoSeven 1 mg, Pulver und Lösungsmittel zur Herstellung einer Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1118343,
     "Swissmedic_Nr": 58693,
-    "Swissmedic_Nm": "NovoSeven 2 mg, raumtemperaturstabiles Injektionspräparat",
+    "Swissmedic_Nm": "NovoSeven 2 mg, Pulver und Lösungsmittel zur Herstellung einer Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1118344,
     "Swissmedic_Nr": 58693,
-    "Swissmedic_Nm": "NovoSeven 5 mg, raumtemperaturstabiles Injektionspräparat",
+    "Swissmedic_Nm": "NovoSeven 5 mg, Pulver und Lösungsmittel zur Herstellung einer Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -36576,12 +36780,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1141723,
-    "Swissmedic_Nr": 59332,
-    "Swissmedic_Nm": "Olanzapin-Mepha 2.5, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1141713,
     "Swissmedic_Nr": 59333,
     "Swissmedic_Nm": "Olanzapin-Mepha 20 oro, Schmelztabletten",
@@ -36615,6 +36813,30 @@ export const medicaments = [
     "Prd_Nr": 1141719,
     "Swissmedic_Nr": 59332,
     "Swissmedic_Nm": "Olanzapin-Mepha 7.5, Tabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1544811,
+    "Swissmedic_Nr": 58623,
+    "Swissmedic_Nm": "Olanzapin-Mepha Teva 10 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1544808,
+    "Swissmedic_Nr": 58623,
+    "Swissmedic_Nm": "Olanzapin-Mepha Teva 2.5 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1544809,
+    "Swissmedic_Nr": 58623,
+    "Swissmedic_Nm": "Olanzapin-Mepha Teva 5 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1544992,
+    "Swissmedic_Nr": 58624,
+    "Swissmedic_Nm": "Olanzapin-Mepha Teva oro 10 mg, Schmelztabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -37308,6 +37530,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1644780,
+    "Swissmedic_Nr": 68952,
+    "Swissmedic_Nm": "Omvoh 100 mg + 200 mg, solution injectable en stylo prérempli",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1601489,
     "Swissmedic_Nr": 68952,
     "Swissmedic_Nm": "Omvoh 100 mg, solution injectable en stylo prérempli",
@@ -37340,7 +37568,7 @@ export const medicaments = [
   {
     "Prd_Nr": 12836,
     "Swissmedic_Nr": 52563,
-    "Swissmedic_Nm": "OncoTICE, Lyophilisat",
+    "Swissmedic_Nm": "OncoTICE, Pulver zur Herstellung einer Suspension zur intravesikalen Anwendung",
     "Abgabekategorie": "A"
   },
   {
@@ -37524,6 +37752,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 28318,
+    "Swissmedic_Nr": 59577,
+    "Swissmedic_Nm": "Onopordon comp. Rh, Tablette",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1424120,
     "Swissmedic_Nr": 67304,
     "Swissmedic_Nm": "Onpattro 2 mg/ml, Konzentrat zur Herstellung einer Infusionslösung",
@@ -37611,6 +37845,12 @@ export const medicaments = [
     "Prd_Nr": 1622318,
     "Swissmedic_Nr": 67806,
     "Swissmedic_Nm": "Opfolda 65 mg, Hartkapseln",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1621491,
+    "Swissmedic_Nr": 69583,
+    "Swissmedic_Nm": "Ophtesic 20 mg/g, gel ophtalmique en récipient unidose",
     "Abgabekategorie": "B"
   },
   {
@@ -37728,7 +37968,7 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1634854,
+    "Prd_Nr": 1649359,
     "Swissmedic_Nr": 69443,
     "Swissmedic_Nm": "Opzelura 15 mg/g, crème",
     "Abgabekategorie": "B"
@@ -37932,6 +38172,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1649459,
+    "Swissmedic_Nr": 70196,
+    "Swissmedic_Nm": "Osenvelt 120 mg/1.7 ml (70 mg/ml), solution injectable",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 13016,
     "Swissmedic_Nr": 37523,
     "Swissmedic_Nm": "Ospen 1000, Filmtabletten",
@@ -37959,6 +38205,12 @@ export const medicaments = [
     "Prd_Nr": 1472848,
     "Swissmedic_Nr": 37057,
     "Swissmedic_Nm": "Ospen 750, Sirup",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1648755,
+    "Swissmedic_Nr": 69828,
+    "Swissmedic_Nm": "Ospolot 20 mg/ml, Suspension zum Einnehmen",
     "Abgabekategorie": "B"
   },
   {
@@ -38004,12 +38256,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 24730,
-    "Swissmedic_Nr": 50846,
-    "Swissmedic_Nm": "Otidolo, Ohrentropfen",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1008834,
     "Swissmedic_Nr": 34735,
     "Swissmedic_Nm": "Otipax, liquido",
@@ -38052,6 +38298,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1640761,
+    "Swissmedic_Nr": 58857,
+    "Swissmedic_Nm": "Otrivin Schnupfen 0.1 %, Nasenspray, Lösung",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1640763,
     "Swissmedic_Nr": 44939,
     "Swissmedic_Nm": "Otrivin Schnupfen Classic 0.05 %, Nasenspray, Lösung",
@@ -38061,6 +38313,12 @@ export const medicaments = [
     "Prd_Nr": 1640765,
     "Swissmedic_Nr": 44939,
     "Swissmedic_Nm": "Otrivin Schnupfen Classic 0.1 %, Nasenspray, Lösung",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1640767,
+    "Swissmedic_Nr": 24926,
+    "Swissmedic_Nm": "Otrivin Schnupfen Classic 0.1 %, Nasentropfen, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -38078,19 +38336,19 @@ export const medicaments = [
   {
     "Prd_Nr": 1394346,
     "Swissmedic_Nr": 66255,
-    "Swissmedic_Nm": "Ovaleap 300 IU/0.5 ml , Injektionslösung",
+    "Swissmedic_Nm": "Ovaleap 300 IU/0.5 ml, solution injectable",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1394347,
     "Swissmedic_Nr": 66255,
-    "Swissmedic_Nm": "Ovaleap 450 IU/0.75 ml , Injektionslösung",
+    "Swissmedic_Nm": "Ovaleap 450 IU/0.75 ml, solution injectable",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1394348,
     "Swissmedic_Nr": 66255,
-    "Swissmedic_Nm": "Ovaleap 900 IU/1.5 ml , Injektionslösung",
+    "Swissmedic_Nm": "Ovaleap 900 IU/1.5 ml, solution injectable",
     "Abgabekategorie": "A"
   },
   {
@@ -39020,13 +39278,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1152331,
     "Swissmedic_Nr": 59384,
-    "Swissmedic_Nm": "Pantoprazol Axapharm 20 mg, magensaftresistente Tabletten",
+    "Swissmedic_Nm": "Pantoprazol axapharm 20 mg, magensaftresistente Tabletten",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1152332,
     "Swissmedic_Nr": 59384,
-    "Swissmedic_Nm": "Pantoprazol Axapharm 40 mg, magensaftresistente Tabletten",
+    "Swissmedic_Nm": "Pantoprazol axapharm 40 mg, magensaftresistente Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -39172,12 +39430,6 @@ export const medicaments = [
     "Swissmedic_Nr": 55551,
     "Swissmedic_Nm": "Pantozol i.v., Lyophilisat",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1373513,
-    "Swissmedic_Nr": 66856,
-    "Swissmedic_Nm": "Paracetafelan 500 mg, Tabletten",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1406560,
@@ -39420,9 +39672,45 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1645561,
+    "Swissmedic_Nr": 69832,
+    "Swissmedic_Nm": "Pavblu 40 mg/ml, Injektionslösung",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645562,
+    "Swissmedic_Nr": 69763,
+    "Swissmedic_Nm": "Pavblu 40 mg/ml, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1491262,
     "Swissmedic_Nr": 68793,
     "Swissmedic_Nm": "Paxlovid, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645563,
+    "Swissmedic_Nr": 69994,
+    "Swissmedic_Nm": "Pazopanib Sandoz 200 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645564,
+    "Swissmedic_Nr": 69994,
+    "Swissmedic_Nm": "Pazopanib Sandoz 400 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1559673,
+    "Swissmedic_Nr": 69276,
+    "Swissmedic_Nm": "Pazopanib Spirig HC 200 mg, Filmtabletten",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1559674,
+    "Swissmedic_Nr": 69276,
+    "Swissmedic_Nm": "Pazopanib Spirig HC 400 mg, Filmtabletten",
     "Abgabekategorie": "A"
   },
   {
@@ -39682,6 +39970,12 @@ export const medicaments = [
     "Swissmedic_Nr": 56271,
     "Swissmedic_Nm": "Penicillin \"Grünenthal\" 10 Mega, Pulver zur Herstellung einer Injektions-/Infusionslösung",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1314146,
+    "Swissmedic_Nr": 45483,
+    "Swissmedic_Nm": "Penicillin Natrium Streuli ad us. vet., Pulver zur Herstellung einer sterilen Lösung",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1415761,
@@ -40536,6 +40830,42 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1637511,
+    "Swissmedic_Nr": 69574,
+    "Swissmedic_Nm": "Pirfenidon Sandoz 267 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637512,
+    "Swissmedic_Nr": 69574,
+    "Swissmedic_Nm": "Pirfenidon Sandoz 801 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1651534,
+    "Swissmedic_Nr": 69567,
+    "Swissmedic_Nm": "Pirfenidon Spirig HC 267 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1651535,
+    "Swissmedic_Nr": 69567,
+    "Swissmedic_Nm": "Pirfenidon Spirig HC 801 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1632614,
+    "Swissmedic_Nr": 69563,
+    "Swissmedic_Nm": "Pirfenidon-Mepha 267 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1632615,
+    "Swissmedic_Nr": 69563,
+    "Swissmedic_Nm": "Pirfenidon-Mepha 801 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 14894,
     "Swissmedic_Nr": 36038,
     "Swissmedic_Nm": "Pirom, balsamo",
@@ -41016,6 +41346,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1557474,
+    "Swissmedic_Nr": 68271,
+    "Swissmedic_Nm": "Posaconazol Viatris 40 mg/ml, Suspension zum Einnehmen",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1432864,
     "Swissmedic_Nr": 67185,
     "Swissmedic_Nm": "Posaconazol Zentiva 100 mg, magensaftresistente Tablette",
@@ -41060,13 +41396,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1320816,
     "Swissmedic_Nr": 65882,
-    "Swissmedic_Nm": "Praluent 150mg, solution pour injection dans un stylo pré-rempli",
+    "Swissmedic_Nm": "Praluent 150 mg, solution injectable en stylo prérempli",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1320815,
     "Swissmedic_Nr": 65882,
-    "Swissmedic_Nm": "Praluent 75mg, solution pour injection dans un stylo pré-rempli",
+    "Swissmedic_Nm": "Praluent 75 mg, solution injectable en stylo prérempli",
     "Abgabekategorie": "B"
   },
   {
@@ -41259,18 +41595,6 @@ export const medicaments = [
     "Prd_Nr": 1423096,
     "Swissmedic_Nr": 67416,
     "Swissmedic_Nm": "Prasugrel-Mepha 5 mg, Lactab",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1285993,
-    "Swissmedic_Nr": 65237,
-    "Swissmedic_Nm": "Pravastatin Axapharm 20 mg, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1285994,
-    "Swissmedic_Nr": 65237,
-    "Swissmedic_Nm": "Pravastatin Axapharm 40 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -41982,6 +42306,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1649460,
+    "Swissmedic_Nr": 69921,
+    "Swissmedic_Nm": "Prilid Leman patch, emplâtre médicamenteux",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1521448,
     "Swissmedic_Nr": 68720,
     "Swissmedic_Nm": "Prilid Leman, crème",
@@ -42408,6 +42738,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 92364,
+    "Swissmedic_Nr": 59054,
+    "Swissmedic_Nm": "Propionibacterium acnes D6, Tropfen zum Einnehmen und Einreiben",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1250341,
     "Swissmedic_Nr": 62874,
     "Swissmedic_Nm": "Propofol MCT Fresenius 10 mg/ml Fertigspritze, Emulsion zur Injektion/Infusion in einer Fertigspritze",
@@ -42492,24 +42828,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1440427,
-    "Swissmedic_Nr": 47025,
-    "Swissmedic_Nm": "Propranolol Zentiva 10 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1440428,
-    "Swissmedic_Nr": 47025,
-    "Swissmedic_Nm": "Propranolol Zentiva 40 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1440429,
-    "Swissmedic_Nr": 47025,
-    "Swissmedic_Nm": "Propranolol Zentiva 80 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 126766,
     "Swissmedic_Nr": 56300,
     "Swissmedic_Nm": "Propycil 50, Tabletten",
@@ -42584,7 +42902,7 @@ export const medicaments = [
   {
     "Prd_Nr": 41763,
     "Swissmedic_Nr": 53075,
-    "Swissmedic_Nm": "Prosta-Urgenin, Kapseln",
+    "Swissmedic_Nm": "Prosta-Urgenin, capsules molles",
     "Abgabekategorie": "D"
   },
   {
@@ -42753,12 +43071,6 @@ export const medicaments = [
     "Prd_Nr": 30044,
     "Swissmedic_Nr": 50758,
     "Swissmedic_Nm": "Pulmicort Respules 0,5 mg/mL, Suspension",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 42869,
-    "Swissmedic_Nr": 49926,
-    "Swissmedic_Nm": "Pulmofor retard, capsules",
     "Abgabekategorie": "B"
   },
   {
@@ -43512,6 +43824,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1614497,
+    "Swissmedic_Nr": 68063,
+    "Swissmedic_Nm": "Raxone, comprimé pelliculé",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1456320,
     "Swissmedic_Nr": 67614,
     "Swissmedic_Nm": "Rayaldee 30 µg, Weichkapseln retardiert",
@@ -43656,15 +43974,15 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1007677,
+    "Prd_Nr": 1024975,
     "Swissmedic_Nr": 54152,
-    "Swissmedic_Nm": "Redormin 500, Filmtabletten",
+    "Swissmedic_Nm": "Redormin 250, Filmtabletten",
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1024975,
+    "Prd_Nr": 1007677,
     "Swissmedic_Nr": 54152,
-    "Swissmedic_Nm": "Redormin, Filmtabletten",
+    "Swissmedic_Nm": "Redormin 500, Filmtabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -44016,6 +44334,24 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1645566,
+    "Swissmedic_Nr": 69918,
+    "Swissmedic_Nm": "Remifentanil Leman IV 1 mg, poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645567,
+    "Swissmedic_Nr": 69918,
+    "Swissmedic_Nm": "Remifentanil Leman IV 2 mg, poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645568,
+    "Swissmedic_Nr": 69918,
+    "Swissmedic_Nm": "Remifentanil Leman IV 5 mg, poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1018817,
     "Swissmedic_Nr": 56754,
     "Swissmedic_Nm": "Reminyl PR 16 mg, Kapseln",
@@ -44156,7 +44492,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1006660,
     "Swissmedic_Nr": 55774,
-    "Swissmedic_Nm": "Replagal Durchstechflasche à 3.5 mL, Infusionskonzentrat",
+    "Swissmedic_Nm": "Replagal, Konzentrat zur Herstellung einer Infusionslösung",
     "Abgabekategorie": "A"
   },
   {
@@ -44424,12 +44760,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1424447,
-    "Swissmedic_Nr": 42203,
-    "Swissmedic_Nm": "Rheumalix, Gel",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1473914,
     "Swissmedic_Nr": 42203,
     "Swissmedic_Nm": "Rheumalix, Gel",
@@ -44578,6 +44908,12 @@ export const medicaments = [
     "Swissmedic_Nr": 47063,
     "Swissmedic_Nm": "Rifater, comprimés enrobés",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1314148,
+    "Swissmedic_Nr": 58748,
+    "Swissmedic_Nm": "Rifen 10% ad us. vet., Injektionslösung für Rinder, Pferde und Schweine",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 30241,
@@ -44924,19 +45260,19 @@ export const medicaments = [
   {
     "Prd_Nr": 46873,
     "Swissmedic_Nr": 53349,
-    "Swissmedic_Nm": "Rinosedin 0,05 %, Nasentropfen",
+    "Swissmedic_Nm": "Rinosedin 0,05 %, Nasentropfen, Lösung",
     "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 46871,
     "Swissmedic_Nr": 53348,
-    "Swissmedic_Nm": "Rinosedin 0,1 %, Nasenspray",
+    "Swissmedic_Nm": "Rinosedin 0,1 %, Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 46872,
     "Swissmedic_Nr": 53349,
-    "Swissmedic_Nm": "Rinosedin 0,1 %, Nasentropfen",
+    "Swissmedic_Nm": "Rinosedin 0,1 %, Nasentropfen, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -45636,6 +45972,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1616227,
+    "Swissmedic_Nr": 69473,
+    "Swissmedic_Nm": "Rocuronium Aguettant 10 mg/ml, solution injectable en seringue préremplie",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1625213,
     "Swissmedic_Nr": 60566,
     "Swissmedic_Nm": "Rocuronium Fresenius 100 mg / 10 ml, Injektionslösung",
@@ -45838,6 +46180,12 @@ export const medicaments = [
     "Swissmedic_Nr": 60488,
     "Swissmedic_Nm": "Ropivacain Sintetica 7.5 mg/ml, soluzione iniettabile",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1602117,
+    "Swissmedic_Nr": 60336,
+    "Swissmedic_Nm": "Rosae aetheroleum/Silicea colloidalis comp., Creme",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 8387,
@@ -46095,6 +46443,18 @@ export const medicaments = [
     "Prd_Nr": 1489185,
     "Swissmedic_Nr": 68380,
     "Swissmedic_Nm": "Rybrevant 350 mg/7 ml, Konzentrat zur Herstellung einer Infusionslösung",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1652962,
+    "Swissmedic_Nr": 69839,
+    "Swissmedic_Nm": "Rybrevant SC 1600 mg/10 ml, Injektionslösung",
+    "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1652963,
+    "Swissmedic_Nr": 69839,
+    "Swissmedic_Nm": "Rybrevant SC 2240 mg/14 ml, Injektionslösung",
     "Abgabekategorie": "A"
   },
   {
@@ -46500,18 +46860,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 91137,
-    "Swissmedic_Nr": 53555,
-    "Swissmedic_Nm": "Sanukehl Brucel D6, homöopathische Injektionslösung",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 91140,
-    "Swissmedic_Nr": 53556,
-    "Swissmedic_Nm": "Sanukehl Brucel D6, homöopathische Tropfen",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 91144,
     "Swissmedic_Nr": 53006,
     "Swissmedic_Nm": "Sanukehl Cand D5, Injektionslösung (s.c.)",
@@ -46749,12 +47097,6 @@ export const medicaments = [
     "Prd_Nr": 1632596,
     "Swissmedic_Nr": 24137,
     "Swissmedic_Nm": "Scheriproct, Rektalsalbe",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 12509,
-    "Swissmedic_Nr": 24137,
-    "Swissmedic_Nm": "Scheriproct, Salbe",
     "Abgabekategorie": "B"
   },
   {
@@ -47094,12 +47436,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 97715,
-    "Swissmedic_Nr": 54767,
-    "Swissmedic_Nm": "Seractil 200 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 97717,
     "Swissmedic_Nr": 54767,
     "Swissmedic_Nm": "Seractil 300 mg, Filmtabletten",
@@ -47301,6 +47637,18 @@ export const medicaments = [
     "Prd_Nr": 1543042,
     "Swissmedic_Nr": 61284,
     "Swissmedic_Nm": "Sertralin Viatris, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1631384,
+    "Swissmedic_Nr": 69307,
+    "Swissmedic_Nm": "Sertralin Zentiva 100 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1631383,
+    "Swissmedic_Nr": 69307,
+    "Swissmedic_Nm": "Sertralin Zentiva 50 mg, Filmtabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -47542,18 +47890,6 @@ export const medicaments = [
     "Swissmedic_Nr": 41672,
     "Swissmedic_Nm": "Sidroga Holunderblüten, geschnittene Droge",
     "Abgabekategorie": "E"
-  },
-  {
-    "Prd_Nr": 1369755,
-    "Swissmedic_Nr": 65497,
-    "Swissmedic_Nm": "Sidroga Instant Blasen - & Nierentee, Teeaufgusspulver",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1369756,
-    "Swissmedic_Nr": 65311,
-    "Swissmedic_Nm": "Sidroga Instant Husten - & Bronchialtee, Teeaufgusspulver",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 14695,
@@ -47914,12 +48250,6 @@ export const medicaments = [
     "Swissmedic_Nr": 60333,
     "Swissmedic_Nm": "Silicea colloidalis comp., Gelatum",
     "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 88259,
-    "Swissmedic_Nr": 52619,
-    "Swissmedic_Nm": "Silkis, Salbe",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1335517,
@@ -48534,6 +48864,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1471888,
+    "Swissmedic_Nr": 56527,
+    "Swissmedic_Nm": "Simvastatin Zentiva 80 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1244771,
     "Swissmedic_Nr": 62612,
     "Swissmedic_Nm": "Simvastatin-Mepha 20 mg, Filmtabletten",
@@ -48633,12 +48969,6 @@ export const medicaments = [
     "Prd_Nr": 14968,
     "Swissmedic_Nr": 44691,
     "Swissmedic_Nm": "Sirdalud 4 mg, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 14970,
-    "Swissmedic_Nr": 48979,
-    "Swissmedic_Nm": "Sirdalud MR 6 mg, Hartkapseln, retardiert",
     "Abgabekategorie": "B"
   },
   {
@@ -49088,7 +49418,7 @@ export const medicaments = [
   {
     "Prd_Nr": 15199,
     "Swissmedic_Nr": 26146,
-    "Swissmedic_Nm": "Solarcaine, lotion",
+    "Swissmedic_Nm": "Solarcaine lotion, emulsion cutanée",
     "Abgabekategorie": "D"
   },
   {
@@ -49442,19 +49772,19 @@ export const medicaments = [
   {
     "Prd_Nr": 1421436,
     "Swissmedic_Nr": 56148,
-    "Swissmedic_Nm": "Somatuline Autogel 120 mg, Injektionslösung",
+    "Swissmedic_Nm": "Somatuline Autogel 120 mg, Depot-Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1421434,
     "Swissmedic_Nr": 56148,
-    "Swissmedic_Nm": "Somatuline Autogel 60 mg, Injektionslösung",
+    "Swissmedic_Nm": "Somatuline Autogel 60 mg, Depot-Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1421435,
     "Swissmedic_Nr": 56148,
-    "Swissmedic_Nm": "Somatuline Autogel 90 mg, Injektionslösung",
+    "Swissmedic_Nm": "Somatuline Autogel 90 mg, Depot-Injektionslösung in einer Fertigspritze",
     "Abgabekategorie": "A"
   },
   {
@@ -49692,12 +50022,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1604406,
-    "Swissmedic_Nr": 69788,
-    "Swissmedic_Nm": "Spikevax JN.1 (mRNA-1273.167), 0.10mg/ml, Dispersion zur Injektion",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1633760,
     "Swissmedic_Nr": 70205,
     "Swissmedic_Nm": "Spikevax LP.8.1",
@@ -49890,12 +50214,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 27114,
-    "Swissmedic_Nr": 59831,
-    "Swissmedic_Nm": "Stannum metallicum 0,4 %, Salbe",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 27115,
     "Swissmedic_Nr": 59831,
     "Swissmedic_Nm": "Stannum metallicum 5 %, Crème",
@@ -49918,6 +50236,18 @@ export const medicaments = [
     "Swissmedic_Nr": 62617,
     "Swissmedic_Nm": "Staphylococcus aureus comp. D9, Nasenspray",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1352388,
+    "Swissmedic_Nr": 66320,
+    "Swissmedic_Nm": "Staphylococcus aureus comp. D9, Nasenspray",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1352389,
+    "Swissmedic_Nr": 66319,
+    "Swissmedic_Nm": "Staphylococcus aureus comp. D9, Spray zur Anwendung auf der Haut",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1008586,
@@ -50040,6 +50370,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1649500,
+    "Swissmedic_Nr": 70199,
+    "Swissmedic_Nm": "Stoboclo 60 mg, solution injectable en seringue préremplie",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 81685,
     "Swissmedic_Nr": 56731,
     "Swissmedic_Nm": "Stodal, sirop",
@@ -50103,6 +50439,12 @@ export const medicaments = [
     "Prd_Nr": 1138621,
     "Swissmedic_Nr": 58440,
     "Swissmedic_Nm": "Strepsils Honig & Zitrone, Lutschtabletten",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1406472,
+    "Swissmedic_Nr": 67092,
+    "Swissmedic_Nm": "Streptococcus pyogenes comp. D9, Spray zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
   },
   {
@@ -50176,24 +50518,6 @@ export const medicaments = [
     "Swissmedic_Nr": 38477,
     "Swissmedic_Nm": "Structum 500, Kapseln",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 73609,
-    "Swissmedic_Nr": 54732,
-    "Swissmedic_Nm": "Subutex 0,4 mg, Sublingualtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 73611,
-    "Swissmedic_Nr": 54732,
-    "Swissmedic_Nm": "Subutex 2 mg, Sublingualtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 73612,
-    "Swissmedic_Nr": 54732,
-    "Swissmedic_Nm": "Subutex 8 mg, Sublingualtabletten",
-    "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1517402,
@@ -50424,12 +50748,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1409349,
-    "Swissmedic_Nr": 67365,
-    "Swissmedic_Nm": "SUN STORE Diclofenac 25, Kapseln",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1417821,
     "Swissmedic_Nr": 67560,
     "Swissmedic_Nm": "SUN STORE Diclofenac Gel, Emulsions-Gel",
@@ -50439,12 +50757,6 @@ export const medicaments = [
     "Prd_Nr": 1607813,
     "Swissmedic_Nr": 69660,
     "Swissmedic_Nm": "SUN STORE Fexofenadin 120 mg, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1510030,
-    "Swissmedic_Nr": 68941,
-    "Swissmedic_Nm": "SUN STORE Flumol Grippe, Pulver zur Herstellung einer Lösung zum Einnehmen",
     "Abgabekategorie": "D"
   },
   {
@@ -50498,7 +50810,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1454805,
     "Swissmedic_Nr": 68076,
-    "Swissmedic_Nm": "Sun Store Xylo Plus, Nasenspray",
+    "Swissmedic_Nm": "Sun Store Xylo Plus Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -50598,18 +50910,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1323646,
-    "Swissmedic_Nr": 57288,
-    "Swissmedic_Nm": "Supradyn Vital 50+, Brausetabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1556750,
-    "Swissmedic_Nr": 54749,
-    "Swissmedic_Nm": "Supradyn Vital 50+, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 40683,
     "Swissmedic_Nr": 52611,
     "Swissmedic_Nm": "Suprane, Inhalationsanästhetikum",
@@ -50677,6 +50977,12 @@ export const medicaments = [
   },
   {
     "Prd_Nr": 1026276,
+    "Swissmedic_Nr": 56943,
+    "Swissmedic_Nm": "Swidro Rusco Salben-Gel, Gel",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1629391,
     "Swissmedic_Nr": 56943,
     "Swissmedic_Nm": "Swidro Rusco Salben-Gel, Gel",
     "Abgabekategorie": "D"
@@ -50814,6 +51120,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1632668,
+    "Swissmedic_Nr": 69887,
+    "Swissmedic_Nm": "Synerga 750 mg, Lösung zum Einnehmen",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1632920,
     "Swissmedic_Nr": 22114,
     "Swissmedic_Nm": "Syntocinon 5 I.E., Konzentrat zur Herstellung einer Injektions- / Infusionslösung",
@@ -50869,6 +51181,12 @@ export const medicaments = [
   },
   {
     "Prd_Nr": 1010908,
+    "Swissmedic_Nr": 670,
+    "Swissmedic_Nm": "TachoSil, Schwamm",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1321149,
     "Swissmedic_Nr": 670,
     "Swissmedic_Nm": "TachoSil, Schwamm",
     "Abgabekategorie": "B"
@@ -51626,19 +51944,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1544572,
     "Swissmedic_Nr": 61283,
-    "Swissmedic_Nm": "Telfastin 120, überzogene Tabletten",
+    "Swissmedic_Nm": "Telfastin 120, Filmtabletten",
     "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1544573,
     "Swissmedic_Nr": 61283,
-    "Swissmedic_Nm": "Telfastin 180, überzogene Tabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 1158260,
-    "Swissmedic_Nr": 61283,
-    "Swissmedic_Nm": "Telfastin Allergo 120, überzogene Tabletten",
+    "Swissmedic_Nm": "Telfastin 180, Filmtabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -51692,13 +52004,13 @@ export const medicaments = [
   {
     "Prd_Nr": 1313595,
     "Swissmedic_Nr": 62921,
-    "Swissmedic_Nm": "Telmisartan-Mepha 40mg, Tabletten",
+    "Swissmedic_Nm": "Telmisartan-Mepha 40 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1313596,
     "Swissmedic_Nr": 62921,
-    "Swissmedic_Nm": "Telmisartan-Mepha 80mg, Tabletten",
+    "Swissmedic_Nm": "Telmisartan-Mepha 80 mg, Tabletten",
     "Abgabekategorie": "B"
   },
   {
@@ -51966,6 +52278,12 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
+    "Prd_Nr": 1641450,
+    "Swissmedic_Nr": 69795,
+    "Swissmedic_Nm": "Tepezza 500 mg, Pulver für ein Konzentrat zur Herstellung einer Infusionslösung",
+    "Abgabekategorie": "A"
+  },
+  {
     "Prd_Nr": 1561674,
     "Swissmedic_Nr": 69161,
     "Swissmedic_Nm": "Tepkinly 4 mg/0.8 ml, Konzentrat zur Herstellung einer Injektionslösung",
@@ -51994,18 +52312,6 @@ export const medicaments = [
     "Swissmedic_Nr": 58452,
     "Swissmedic_Nm": "Terbinafin Axapharm 250 mg, Tabletten",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1437841,
-    "Swissmedic_Nr": 57509,
-    "Swissmedic_Nm": "Terbinafin Zentiva 250 mg, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1437839,
-    "Swissmedic_Nr": 57513,
-    "Swissmedic_Nm": "Terbinafin Zentiva, Creme",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1022076,
@@ -52068,9 +52374,15 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1648547,
+    "Swissmedic_Nr": 70122,
+    "Swissmedic_Nm": "Teriflunomid-Mepha Teva 14 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1373460,
     "Swissmedic_Nr": 66102,
-    "Swissmedic_Nm": "Teriparatid-Mepha, Injektionslösung",
+    "Swissmedic_Nm": "Teriparatid-Mepha, Injektionslösung im Fertigpen",
     "Abgabekategorie": "B"
   },
   {
@@ -52173,6 +52485,12 @@ export const medicaments = [
     "Prd_Nr": 1500596,
     "Swissmedic_Nr": 68454,
     "Swissmedic_Nm": "Tezspire, Injektionslösung in einer Fertigspritze",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1314149,
+    "Swissmedic_Nr": 62925,
+    "Swissmedic_Nm": "Theranekron D6 ad us. vet., Injektionslösung für Rinder, Pferde Schafe, Ziegen, Schweine, Hunde und Katzen",
     "Abgabekategorie": "B"
   },
   {
@@ -52302,12 +52620,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1272991,
-    "Swissmedic_Nr": 65033,
-    "Swissmedic_Nm": "Tibolon Sandoz 2,5 mg, Tabletten",
-    "Abgabekategorie": "B"
-  },
-  {
     "Prd_Nr": 1472766,
     "Swissmedic_Nr": 68090,
     "Swissmedic_Nm": "Tibolon Spirig HC 2.5 mg, Tabletten",
@@ -52384,6 +52696,12 @@ export const medicaments = [
     "Swissmedic_Nr": 68827,
     "Swissmedic_Nm": "Ticagrelor-Mepha 90 mg, Filmtabletten",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637328,
+    "Swissmedic_Nr": 69507,
+    "Swissmedic_Nm": "Tigecyclin Leman 50 mg , Poudre pour solution à diluer pour perfusion",
+    "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 21371,
@@ -52466,7 +52784,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1258260,
     "Swissmedic_Nr": 45723,
-    "Swissmedic_Nm": "Timonil, Sirup",
+    "Swissmedic_Nm": "Timonil, Suspension zum Einnehmen",
     "Abgabekategorie": "B"
   },
   {
@@ -52660,6 +52978,30 @@ export const medicaments = [
     "Swissmedic_Nr": 58711,
     "Swissmedic_Nm": "Toctino 30mg, Weichkapseln",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1645533,
+    "Swissmedic_Nr": 69213,
+    "Swissmedic_Nm": "Tofacitinib Devatis 10 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1645532,
+    "Swissmedic_Nr": 69213,
+    "Swissmedic_Nm": "Tofacitinib Devatis 5 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637330,
+    "Swissmedic_Nr": 69483,
+    "Swissmedic_Nm": "Tofacitinib Sandoz 10 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1637329,
+    "Swissmedic_Nr": 69483,
+    "Swissmedic_Nm": "Tofacitinib Sandoz 5 mg, Filmtabletten",
+    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1474132,
@@ -53310,6 +53652,12 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1645534,
+    "Swissmedic_Nr": 70009,
+    "Swissmedic_Nm": "Tranexamic OrPha 500 mg, Filmtabletten",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1541203,
     "Swissmedic_Nr": 69007,
     "Swissmedic_Nm": "Tranexamic OrPha 500 mg/5 ml, Injektionslösung",
@@ -53529,6 +53877,12 @@ export const medicaments = [
     "Prd_Nr": 1395357,
     "Swissmedic_Nr": 66808,
     "Swissmedic_Nm": "Trelegy Ellipta, Einzeldosiertes Pulver zur Inhalation",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1653530,
+    "Swissmedic_Nr": 67490,
+    "Swissmedic_Nm": "Tremfya 100 mg/1 ml, Injektionslösung im Fertigpen",
     "Abgabekategorie": "B"
   },
   {
@@ -54144,12 +54498,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1289037,
-    "Swissmedic_Nr": 62965,
-    "Swissmedic_Nm": "Tybost 150 mg, Filmtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1080989,
     "Swissmedic_Nr": 57431,
     "Swissmedic_Nm": "Tygacil 50 mg, Pulver für ein Konzentrat zur Herstellung einer Infusionslösung",
@@ -54302,13 +54650,13 @@ export const medicaments = [
   {
     "Prd_Nr": 30518,
     "Swissmedic_Nr": 40188,
-    "Swissmedic_Nm": "Ultracain D-S forte, solution injectable",
+    "Swissmedic_Nm": "Ultracain D-S forte, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 23118,
     "Swissmedic_Nr": 40188,
-    "Swissmedic_Nm": "Ultracain D-S, solution injectable",
+    "Swissmedic_Nm": "Ultracain D-S, Injektionslösung",
     "Abgabekategorie": "B"
   },
   {
@@ -55176,6 +55524,24 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
+    "Prd_Nr": 1647484,
+    "Swissmedic_Nr": 70067,
+    "Swissmedic_Nm": "Varénicline-DALITA 0.5 mg + 1 mg, comprimés pelliculés",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647481,
+    "Swissmedic_Nr": 70067,
+    "Swissmedic_Nm": "Varénicline-DALITA 0.5 mg, comprimés pelliculés",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1647482,
+    "Swissmedic_Nr": 70067,
+    "Swissmedic_Nm": "Varénicline-DALITA 1 mg, comprimés pelliculés",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1403944,
     "Swissmedic_Nr": 585,
     "Swissmedic_Nm": "Varilrix, Pulver und Lösungsmittel zur Herstellung einer Injektionslösung",
@@ -55263,6 +55629,12 @@ export const medicaments = [
     "Prd_Nr": 1512637,
     "Swissmedic_Nr": 66940,
     "Swissmedic_Nm": "Vaxelis 0.5 ml, Injektionssuspension",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1643844,
+    "Swissmedic_Nr": 70051,
+    "Swissmedic_Nm": "Vaxigrip, suspension injectable",
     "Abgabekategorie": "B"
   },
   {
@@ -55650,6 +56022,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1643518,
+    "Swissmedic_Nr": 57690,
+    "Swissmedic_Nm": "Veractiv Vitamin D3 Wild Huile, solution buvable huileuse",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1474638,
     "Swissmedic_Nr": 67975,
     "Swissmedic_Nm": "VeraSeal 10 ml, Lösung für Gewebekleber",
@@ -55846,6 +56224,12 @@ export const medicaments = [
     "Swissmedic_Nr": 67358,
     "Swissmedic_Nm": "Vetmedin Chew 5 mg ad us. vet., Kautabletten",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1655818,
+    "Swissmedic_Nr": 70142,
+    "Swissmedic_Nm": "Vevzuo 120 mg/1.7 ml (70 mg/ml), Injektionslösung",
+    "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1401018,
@@ -56208,12 +56592,6 @@ export const medicaments = [
     "Abgabekategorie": "A"
   },
   {
-    "Prd_Nr": 1614500,
-    "Swissmedic_Nr": 69485,
-    "Swissmedic_Nm": "Viread, Filmtabletten",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1470908,
     "Swissmedic_Nr": 67710,
     "Swissmedic_Nm": "Virgan 1.5 mg/g, Augengel",
@@ -56224,6 +56602,12 @@ export const medicaments = [
     "Swissmedic_Nr": 67772,
     "Swissmedic_Nm": "Virupos 30 mg/g, Augensalbe",
     "Abgabekategorie": "A"
+  },
+  {
+    "Prd_Nr": 1344059,
+    "Swissmedic_Nr": 66312,
+    "Swissmedic_Nm": "Virus influencae A comp. D13,  Nasenspray",
+    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1325244,
@@ -56238,6 +56622,18 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1352391,
+    "Swissmedic_Nr": 66311,
+    "Swissmedic_Nm": "Virus influencae A comp. D13, Spray zur Anwendung auf der Haut",
+    "Abgabekategorie": "D"
+  },
+  {
+    "Prd_Nr": 1352392,
+    "Swissmedic_Nr": 66313,
+    "Swissmedic_Nm": "Virus influencae A comp. D13, Spray zur Anwendung in der Mundhöhle und im Rachenraum",
+    "Abgabekategorie": "D"
+  },
+  {
     "Prd_Nr": 1325247,
     "Swissmedic_Nr": 62618,
     "Swissmedic_Nm": "Virus influencae A comp. D9, Mund- und Rachenspray",
@@ -56247,6 +56643,12 @@ export const medicaments = [
     "Prd_Nr": 1325246,
     "Swissmedic_Nr": 62619,
     "Swissmedic_Nm": "Virus influencae A comp. D9, Nasenspray",
+    "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1352390,
+    "Swissmedic_Nr": 66311,
+    "Swissmedic_Nm": "Virus influencae A comp. D9, Spray zur Anwendung auf der Haut",
     "Abgabekategorie": "B"
   },
   {
@@ -56484,6 +56886,12 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
+    "Prd_Nr": 1314150,
+    "Swissmedic_Nr": 42733,
+    "Swissmedic_Nm": "Vitamin D3 L ad us. vet., Injektionslösung für Rinder",
+    "Abgabekategorie": "B"
+  },
+  {
     "Prd_Nr": 1497987,
     "Swissmedic_Nr": 68434,
     "Swissmedic_Nm": "Vitamin D3 Sandoz eco 1000 I.E., Weichkapseln",
@@ -56547,12 +56955,6 @@ export const medicaments = [
     "Prd_Nr": 1154424,
     "Swissmedic_Nr": 59165,
     "Swissmedic_Nm": "Vitango, Filmtabletten",
-    "Abgabekategorie": "D"
-  },
-  {
-    "Prd_Nr": 23503,
-    "Swissmedic_Nr": 32692,
-    "Swissmedic_Nm": "Vitarnin, Brausetabletten",
     "Abgabekategorie": "D"
   },
   {
@@ -57234,12 +57636,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 22498,
-    "Swissmedic_Nr": 28143,
-    "Swissmedic_Nm": "Weleda Arnica-Essenz, Flüssigkeit zur Anwendung auf der Haut",
-    "Abgabekategorie": "D"
-  },
-  {
     "Prd_Nr": 1249824,
     "Swissmedic_Nr": 62667,
     "Swissmedic_Nm": "Weleda Arnica-Gel, Gel, anthroposophisches Arzneimittel",
@@ -57386,7 +57782,7 @@ export const medicaments = [
   {
     "Prd_Nr": 23188,
     "Swissmedic_Nr": 16598,
-    "Swissmedic_Nm": "W-Tropfen",
+    "Swissmedic_Nm": "W-Tropfen, Lösung zur Anwendung auf der Haut",
     "Abgabekategorie": "D"
   },
   {
@@ -57400,6 +57796,12 @@ export const medicaments = [
     "Swissmedic_Nr": 68917,
     "Swissmedic_Nm": "Wynzora 50 μg/g + 0.5 mg/g, Crème",
     "Abgabekategorie": "B"
+  },
+  {
+    "Prd_Nr": 1635000,
+    "Swissmedic_Nr": 69944,
+    "Swissmedic_Nm": "Wyost 120 mg/ 1.7 ml, Injektionslösung",
+    "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1309293,
@@ -57762,12 +58164,6 @@ export const medicaments = [
     "Abgabekategorie": "B"
   },
   {
-    "Prd_Nr": 1490427,
-    "Swissmedic_Nr": 68471,
-    "Swissmedic_Nm": "Xevudy, Konzentrat zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 1195139,
     "Swissmedic_Nr": 61865,
     "Swissmedic_Nm": "XGEVA 120 mg, Injektionslösung",
@@ -57986,7 +58382,7 @@ export const medicaments = [
   {
     "Prd_Nr": 1449103,
     "Swissmedic_Nr": 67973,
-    "Swissmedic_Nm": "Xylo Dexpanthenol Spirig HC, Dosierspray",
+    "Swissmedic_Nm": "Xylo Dexpanthenol Spirig HC Nasenspray, Lösung",
     "Abgabekategorie": "D"
   },
   {
@@ -57998,7 +58394,7 @@ export const medicaments = [
   {
     "Prd_Nr": 22021,
     "Swissmedic_Nr": 52094,
-    "Swissmedic_Nm": "Xylocain 20 mg/g, gel",
+    "Swissmedic_Nm": "Xylocain 20 mg/g, Gel zur Anwendung in der Harnröhre",
     "Abgabekategorie": "B"
   },
   {
@@ -58006,12 +58402,6 @@ export const medicaments = [
     "Swissmedic_Nr": 52097,
     "Swissmedic_Nm": "Xylocain, Spray",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1506049,
-    "Swissmedic_Nr": 68892,
-    "Swissmedic_Nm": "Xylofelan Plus, Nasenspray Lösung",
-    "Abgabekategorie": "D"
   },
   {
     "Prd_Nr": 1025024,
@@ -58216,18 +58606,6 @@ export const medicaments = [
     "Swissmedic_Nr": 59192,
     "Swissmedic_Nm": "Zanipress 10 mg/20 mg, Filmtabletten",
     "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 1615287,
-    "Swissmedic_Nr": 69405,
-    "Swissmedic_Nm": "Zarzio 30 MU/0,5 ml, Injektionslösung in einer Fertigspritze",
-    "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 1615288,
-    "Swissmedic_Nr": 69405,
-    "Swissmedic_Nm": "Zarzio 30 MU/0,5 ml, Injektionslösung in einer Fertigspritze",
-    "Abgabekategorie": "A"
   },
   {
     "Prd_Nr": 1143076,
@@ -58650,12 +59028,6 @@ export const medicaments = [
     "Abgabekategorie": "D"
   },
   {
-    "Prd_Nr": 1370479,
-    "Swissmedic_Nr": 66344,
-    "Swissmedic_Nm": "Zinplava, Konzentrat zur Herstellung einer Infusionslösung",
-    "Abgabekategorie": "A"
-  },
-  {
     "Prd_Nr": 21941,
     "Swissmedic_Nr": 45015,
     "Swissmedic_Nm": "Zintona, Kapseln",
@@ -58708,18 +59080,6 @@ export const medicaments = [
     "Swissmedic_Nr": 51352,
     "Swissmedic_Nm": "Zithromax, Pulver zur Herstellung einer Suspension zum Einnehmen",
     "Abgabekategorie": "A"
-  },
-  {
-    "Prd_Nr": 21950,
-    "Swissmedic_Nr": 49742,
-    "Swissmedic_Nm": "Zocor 20 mg, Filmtabletten",
-    "Abgabekategorie": "B"
-  },
-  {
-    "Prd_Nr": 21949,
-    "Swissmedic_Nr": 49742,
-    "Swissmedic_Nm": "Zocor 40 mg, Filmtabletten",
-    "Abgabekategorie": "B"
   },
   {
     "Prd_Nr": 1212341,
@@ -59153,4 +59513,4 @@ export const medicaments = [
     "Swissmedic_Nm": "Zyvoxid 600 mg, Filmtabletten",
     "Abgabekategorie": "A"
   }
-];
+]

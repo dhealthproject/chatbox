@@ -1,6 +1,6 @@
 import { tool } from "ai"
 import { z } from 'zod'
-import { medicaments } from "./Medicaments"
+import medicaments from "./medicaments.json"
 import QRCode from 'qrcode'
 
 export type Chmed16a1QrToolResult =
