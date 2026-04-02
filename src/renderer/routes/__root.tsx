@@ -49,6 +49,9 @@ import {
 import { QueryClientProvider } from '@tanstack/react-query'
 import storage, { StorageKey } from '@/storage'
 import queryClient from '@/stores/queryClient'
+import { AIDH_API_URL } from '@/variables'
+import axios from 'axios'
+import { useProviderSettings } from '@/hooks/useSettings'
 
 function Root() {
   const location = useLocation()
@@ -59,6 +62,7 @@ function Root() {
 
   const setOpenAboutDialog = useSetAtom(atoms.openAboutDialogAtom)
   const setRemoteConfig = useSetAtom(atoms.remoteConfigAtom)
+  const { setProviderSettings } = useProviderSettings('aidh')
 
   useEffect(() => {
     if (initialized.current) {
@@ -67,6 +71,13 @@ function Root() {
     // 通过定时器延迟启动，防止处理状态底层存储的异步加载前错误的初始数据
     const tid = setTimeout(() => {
       ;(async () => {
+        const queryParams = new URLSearchParams((location as any).search)
+        const promoCode = queryParams.get('promoCode')
+        if (promoCode) {
+          const apiKey = await redeemPromoCode(promoCode || '')
+          setProviderSettings({ apiKey })
+        }
+
         const remoteConfig = await remote
           .getRemoteConfig('setting_chatboxai_first')
           .catch(() => ({ setting_chatboxai_first: false }) as RemoteConfig)
@@ -206,6 +217,15 @@ function Root() {
       <Toasts /> {/* mui */}
     </Box>
   )
+}
+
+async function redeemPromoCode(promoCode: string) {
+  const redemptionUrl = `${AIDH_API_URL}/promotional-codes/redeem`;
+  const resp = await axios.post(
+    redemptionUrl,
+    { code: promoCode },
+  );
+  return resp.data.apiKey;
 }
 
 const creteMantineTheme = (scale = 1) =>
