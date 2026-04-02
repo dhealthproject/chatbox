@@ -71,7 +71,7 @@ function Root() {
     // 通过定时器延迟启动，防止处理状态底层存储的异步加载前错误的初始数据
     const tid = setTimeout(() => {
       ;(async () => {
-        const queryParams = new URLSearchParams((location as any).search)
+        const queryParams = new URLSearchParams(location.searchStr)
         const promoCode = queryParams.get('promoCode')
         if (promoCode) {
           const apiKey = await redeemPromoCode(promoCode || '')
