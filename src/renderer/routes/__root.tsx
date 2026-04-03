@@ -52,6 +52,8 @@ import queryClient from '@/stores/queryClient'
 import { AIDH_API_URL } from '@/variables'
 import axios from 'axios'
 import { useProviderSettings } from '@/hooks/useSettings'
+import { createSession } from '@/stores/sessionStorageMutations'
+import * as sessionActions from '@/stores/sessionActions'
 
 function Root() {
   const location = useLocation()
@@ -76,6 +78,10 @@ function Root() {
         if (promoCode) {
           const apiKey = await redeemPromoCode(promoCode || '')
           setProviderSettings({ apiKey })
+          if (promoCode === 'AIDH-April2026') {
+            const session = await createFollowUpSession()
+            sessionActions.switchCurrentSession(session.id)
+          }
         }
 
         const remoteConfig = await remote
@@ -219,13 +225,43 @@ function Root() {
   )
 }
 
-async function redeemPromoCode(promoCode: string) {
-  const redemptionUrl = `${AIDH_API_URL}/promotional-codes/redeem`;
+const redeemPromoCode = async(promoCode: string): Promise<string> => {
+  const redemptionUrl = `${AIDH_API_URL}/promotional-codes/redeem`
   const resp = await axios.post(
     redemptionUrl,
     { code: promoCode },
   );
-  return resp.data.apiKey;
+  return resp.data.apiKey
+}
+
+const createFollowUpSession = async () => {
+  return await createSession({
+    name: 'Follow-up Care Assistant',
+    type: 'chat',
+    messages: [
+      {
+        id: 'aidh-intro',
+        role: 'assistant',
+        model: 'gva/claude-sonnet-4-6',
+        tokensUsed: 0,
+        contentParts: [
+          {
+            type: 'text',
+            text: 'Hello, this is your follow-up care assistant after today’s appointment.\n'
+              + 'You were diagnosed with asthma. Please take your asthma medication exactly as prescribed.\n'
+              + '\nOver the next few days, please watch for:\n'
+              + '- Wheezing, cough, shortness of breath, or chest tightness\n'
+              + '- Symptoms waking you at night\n'
+              + '- Breathing problems limiting daily activities\n'
+              + '- How often you need your relief inhaler\n'
+              + '- Side effects such as sore throat, hoarse voice, shaking, fast heartbeat, headache, dizziness, or tiredness\n'
+              + '\nPlease get urgent medical help if your breathing gets much worse, you are too short of breath to speak comfortably, or your inhaler is not helping enough.\n'
+              + `\nI’ll check in again in 3 days. Meanwhile, you can ask me any questions if you like!`
+          },
+        ],
+      },
+    ],
+  })
 }
 
 const creteMantineTheme = (scale = 1) =>
