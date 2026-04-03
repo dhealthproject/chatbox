@@ -646,6 +646,10 @@ async function migrate_12_to_13(dataStore: MigrateStore) {
         apiKey: AIDH_API_KEY,
       },
     },
+    defaultChatModel: {
+      provider: ModelProviderEnum.AIDH,
+      model: 'gva/claude-sonnet-4-6',
+    }
   } as Settings
   await dataStore.setData(StorageKey.Settings, updatedSettings)
   log.info('migrate_12_to_13, done')
