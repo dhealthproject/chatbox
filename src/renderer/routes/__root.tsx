@@ -64,7 +64,8 @@ function Root() {
 
   const setOpenAboutDialog = useSetAtom(atoms.openAboutDialogAtom)
   const setRemoteConfig = useSetAtom(atoms.remoteConfigAtom)
-  const { setProviderSettings } = useProviderSettings('aidh')
+  const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
+  const apiKey = providerSettings?.apiKey
 
   useEffect(() => {
     if (initialized.current) {
@@ -73,16 +74,9 @@ function Root() {
     // 通过定时器延迟启动，防止处理状态底层存储的异步加载前错误的初始数据
     const tid = setTimeout(() => {
       ;(async () => {
-        const queryParams = new URLSearchParams(location.searchStr)
-        const promoCode = queryParams.get('promoCode')
-        if (promoCode) {
-          const apiKey = await redeemPromoCode(promoCode || '')
-          setProviderSettings({ apiKey })
-          if (promoCode === 'AIDH-April2026') {
-            const session = await createFollowUpSession()
-            sessionActions.switchCurrentSession(session.id)
-          }
-        }
+        await initialCheck(location.searchStr, apiKey, setProviderSettings).catch(
+          (err) => console.error('Failed to initialize promo code session:', err)
+        )
 
         const remoteConfig = await remote
           .getRemoteConfig('setting_chatboxai_first')
@@ -131,7 +125,7 @@ function Root() {
     }, 2000)
 
     return () => clearTimeout(tid)
-  }, [navigate, setOpenAboutDialog, setRemoteConfig, location.pathname])
+  }, [navigate, setOpenAboutDialog, setRemoteConfig, location.pathname, location.searchStr, apiKey])
 
   const [showSidebar] = useAtom(atoms.showSidebarAtom)
   const sidebarWidth = useSidebarWidth()
@@ -225,18 +219,77 @@ function Root() {
   )
 }
 
+const initialCheck = async(
+  searchStr: string,
+  apiKey: string | undefined,
+  setProviderSettings: (s: { apiKey: string }) => void,
+) => {
+  try {
+    const promoCode = new URLSearchParams(searchStr).get('promoCode')
+
+    if (!apiKey && !promoCode) return;
+
+    if (promoCode) {
+      const existingDetails = apiKey ? await getApiKeyDetails(apiKey) : null
+      if (!existingDetails || existingDetails.promoCode !== promoCode) {
+        apiKey = await redeemPromoCode(promoCode)
+        setProviderSettings({ apiKey })
+      }
+    }
+
+    if (!apiKey) return;
+
+    const apiKeyDetails = await getApiKeyDetails(apiKey);
+    const messages = apiKeyDetails.messages ?? []
+    if (!messages.length) return
+
+    const sessions = await Promise.all(
+      messages.map((m: any) => createFollowUpSession(m.title, m.content))
+    )
+
+    await informMessageDeliveries(apiKey, messages.map((m: any) => m.id))
+
+    const lastSessionId = sessions.at(-1)?.id;
+    if (lastSessionId) sessionActions.switchCurrentSession(lastSessionId)
+
+  } catch (err) {
+    console.error('Failed to initialize promo code session:', err)
+  }
+}
+
+const getApiKeyDetails = async(apiKey: string) => {
+  const keyQueryUrl = `${AIDH_API_URL}/apikeys`
+  const resp = await axios.get(
+    keyQueryUrl,
+    {
+      headers: { Authorization: `Bearer ${apiKey}` }
+    },
+  )
+  return resp.data
+}
+
+const informMessageDeliveries = async(apiKey: string, messageIds: string[]) => {
+  const keyQueryUrl = `${AIDH_API_URL}/message-deliveries`
+  const resp = await axios.post(
+    keyQueryUrl,
+    messageIds,
+    { headers: { Authorization: `Bearer ${apiKey}` } },
+  )
+  return resp.data
+}
+
 const redeemPromoCode = async(promoCode: string): Promise<string> => {
   const redemptionUrl = `${AIDH_API_URL}/promotional-codes/redeem`
   const resp = await axios.post(
     redemptionUrl,
     { code: promoCode },
-  );
+  )
   return resp.data.apiKey
 }
 
-const createFollowUpSession = async () => {
+const createFollowUpSession = async (name: string, message: string) => {
   return await createSession({
-    name: 'Follow-up Care Assistant',
+    name,
     type: 'chat',
     messages: [
       {
@@ -247,16 +300,7 @@ const createFollowUpSession = async () => {
         contentParts: [
           {
             type: 'text',
-            text: 'Hello, this is your follow-up care assistant after today’s appointment.\n'
-              + 'You were diagnosed with asthma. Please take your asthma medication exactly as prescribed.\n'
-              + '\nOver the next few days, please watch for:\n'
-              + '- Wheezing, cough, shortness of breath, or chest tightness\n'
-              + '- Symptoms waking you at night\n'
-              + '- Breathing problems limiting daily activities\n'
-              + '- How often you need your relief inhaler\n'
-              + '- Side effects such as sore throat, hoarse voice, shaking, fast heartbeat, headache, dizziness, or tiredness\n'
-              + '\nPlease get urgent medical help if your breathing gets much worse, you are too short of breath to speak comfortably, or your inhaler is not helping enough.\n'
-              + `\nI’ll check in again in 3 days. Meanwhile, you can ask me any questions if you like!`
+            text: message,
           },
         ],
       },
