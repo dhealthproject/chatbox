@@ -1,7 +1,9 @@
 import { tool } from "ai"
 import { z } from 'zod'
 import axios from "axios";
-import { AIDH_API_KEY, AIDH_API_URL, GOOGLE_OAUTH_CLIENT_ID } from "@/variables";
+import { AIDH_API_URL, GOOGLE_OAUTH_CLIENT_ID } from "@/variables";
+import { getCurrentSessionMergedSettings } from "@/stores/sessionActions";
+import { getProviderSettings } from "src/shared/models";
 
 export type FileContent = {
   type: string;
@@ -269,13 +271,15 @@ export class GDriveTool {
     mime: string | undefined,
     dataBuffer: Uint8Array
   ): Promise<{ content: FileContent[] }> {
+    const settings = getCurrentSessionMergedSettings()
+    const { providerSetting } = getProviderSettings(settings)
     const fileProcessingUrl = `${AIDH_API_URL}/file/process`;
     const resp = await axios.post(
       fileProcessingUrl,
       { mime, dataBuffer: Array.from(dataBuffer) },
       {
         headers: {
-          'Authorization': `Bearer ${AIDH_API_KEY}`,
+          'Authorization': `Bearer ${providerSetting.apiKey}`,
         },
         responseType: 'json',
       }

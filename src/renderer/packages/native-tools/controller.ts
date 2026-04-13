@@ -3,7 +3,7 @@ import { fetchTool } from './fetch'
 import { GDriveTool } from './gdrive/gdrive'
 import { MemoryTool } from './memory'
 import { CHMED16A1Tool } from './chmed16a1/chmed16a1'
-import { generate } from '@/stores/sessionActions'
+import { EmailTool } from './email'
 
 /**
  * Native tools registry and exporter
@@ -67,6 +67,12 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     category: 'research',
     available: true,
   },
+  send_email: {
+    name: 'Send email',
+    description: 'Send an email from given information',
+    category: 'web',
+    available: true,
+  }
 }
 
 /**
@@ -76,6 +82,7 @@ export function getNativeTools(): ToolSet {
   const gdriveInstance = GDriveTool.createInstance()
   const memoryTool = MemoryTool.createInstance()
   const chmed16a1Tool = CHMED16A1Tool.createInstance()
+  const emailTool = EmailTool.createInstance()
   return {
     native_fetch: fetchTool,
     gdrive_reader: gdriveInstance.gdriveTool,
@@ -85,6 +92,7 @@ export function getNativeTools(): ToolSet {
     memory_delete: memoryTool.deleteMemoryTool,
     get_medicament_id: chmed16a1Tool.getMedicamentIdTool,
     generate_chmed16a1_qr_codes: chmed16a1Tool.generateQRCodesTool,
+    send_email: emailTool.sendEmailTool,
   }
 }
 
