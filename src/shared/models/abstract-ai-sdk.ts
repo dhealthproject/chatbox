@@ -37,6 +37,7 @@ interface ToolExecutionResult {
   toolCallId: string
   toolName?: string
   result: unknown
+  thoughtSignature?: string
 }
 
 const GENERATE_CHMED16A1_QR_TOOL = 'generate_chmed16a1_qr_codes'
@@ -54,14 +55,22 @@ interface ToolCallInfo {
   toolCallId: string
   toolName: string
   args: unknown
+  thoughtSignature?: string
 }
 
 type KnownStreamChunk =
   | { type: 'text-delta'; textDelta: string }
   | { type: 'reasoning'; textDelta: string }
   | { type: 'reasoning-signature'; signature: string }
-  | { type: 'tool-call'; toolCallId: string; toolName: string; args: unknown }
-  | { type: 'tool-result'; toolCallId: string; toolName?: string; result: unknown }
+  | {
+      type: 'tool-call-delta'
+      toolCallId: string
+      toolName: string
+      argsTextDelta: string
+      thoughtSignature?: string
+    }
+  | { type: 'tool-call'; toolCallId: string; toolName: string; args: unknown; thoughtSignature?: string }
+  | { type: 'tool-result'; toolCallId: string; toolName?: string; result: unknown; thoughtSignature?: string }
   | { type: 'file'; mimeType: string; base64: string }
   | { type: 'error'; error: unknown }
 
@@ -206,17 +215,8 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
     options: CallChatCompletionOptions
   ): void {
     for (const toolCall of toolCalls) {
-      this.addContentPart(
-        {
-          type: 'tool-call',
-          state: 'call',
-          toolCallId: toolCall.toolCallId,
-          toolName: toolCall.toolName,
-          args: toolCall.args,
-        },
-        contentParts,
-        options
-      )
+      this.addToolCallPart(toolCall, contentParts)
+      options.onResultChange?.({ contentParts })
     }
   }
 
@@ -237,6 +237,9 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
       | undefined
 
     if (toolCallPart) {
+      if (toolResult.thoughtSignature) {
+        toolCallPart.thoughtSignature = toolResult.thoughtSignature
+      }
       if ((toolResult.result as unknown) instanceof Error) {
         console.debug('mcp tool execute error', toolResult.result)
         toolCallPart.state = 'error'
@@ -322,6 +325,8 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
       toolCallId: toolCall.toolCallId,
       toolName: toolCall.toolName,
       args: toolCall.args,
+      // optional thought signature (from provider) to be echoed back on results
+      thoughtSignature: toolCall.thoughtSignature,
     })
   }
 
@@ -350,6 +355,7 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
       'text-delta',
       'reasoning',
       'reasoning-signature',
+      'tool-call-delta',
       'tool-call',
       'tool-result',
       'file',
@@ -386,6 +392,23 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
           contentParts,
           currentReasoningPart
         )
+        break
+      }
+      case 'reasoning-signature': {
+        if (currentReasoningPart) {
+          currentReasoningPart.signature = knownChunk.signature
+        }
+        break
+      }
+      case 'tool-call-delta': {
+        if (knownChunk.thoughtSignature) {
+          const existing = contentParts.find(
+            (p) => p.type === 'tool-call' && p.toolCallId === knownChunk.toolCallId
+          ) as MessageToolCallPart | undefined
+          if (existing) {
+            existing.thoughtSignature = knownChunk.thoughtSignature
+          }
+        }
         break
       }
       case 'tool-call': {
@@ -546,10 +569,40 @@ export default abstract class AbstractAISDKModel implements ModelInterface {
     const contentParts: MessageContentParts = []
     let currentTextPart: MessageTextPart | undefined
     let currentReasoningPart: MessageReasoningPart | undefined
+    const pendingThoughtSignatures = new Map<string, string>()
 
     try {
-      for await (const chunk of result.fullStream) {
-        console.debug('stream chunk', chunk)
+      for await (const rawChunk of result.fullStream) {
+        console.debug('stream chunk', rawChunk)
+        let chunk: StreamChunk = rawChunk as StreamChunk
+        if (chunk.type === 'tool-call-delta' || chunk.type === 'tool-call') {
+          const sig = (chunk as { thoughtSignature?: string }).thoughtSignature
+          const toolCallId = (chunk as { toolCallId?: string }).toolCallId
+          const toolName = (chunk as { toolName?: string }).toolName
+          if (sig && toolCallId) {
+            pendingThoughtSignatures.set(toolCallId, sig)
+          }
+          if (sig && toolName) {
+            pendingThoughtSignatures.set(toolName, sig)
+          }
+        }
+        if (chunk.type === 'tool-call') {
+          const toolCallChunk = chunk as Extract<KnownStreamChunk, { type: 'tool-call' }>
+          const thoughtSignature =
+            toolCallChunk.thoughtSignature ?? pendingThoughtSignatures.get(toolCallChunk.toolCallId)
+          if (thoughtSignature) {
+            chunk = { ...toolCallChunk, thoughtSignature }
+          }
+        }
+        if (chunk.type === 'tool-result') {
+          const toolResultChunk = chunk as Extract<KnownStreamChunk, { type: 'tool-result' }>
+          const thoughtSignature =
+            toolResultChunk.thoughtSignature ??
+            pendingThoughtSignatures.get(toolResultChunk.toolCallId)
+          if (thoughtSignature) {
+            chunk = { ...toolResultChunk, thoughtSignature }
+          }
+        }
         const chunkResult = await this.processStreamChunk(
           chunk,
           contentParts,

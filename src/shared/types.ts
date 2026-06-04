@@ -57,6 +57,8 @@ export type MessageReasoningPart = {
   startTime?: number
   /** Total duration of the thinking process in milliseconds */
   duration?: number
+  /** Gemini thought signature for reasoning parts (optional) */
+  signature?: string
 }
 export type MessageToolCallPart<Args = unknown, Result = unknown> = {
   type: 'tool-call'
@@ -65,6 +67,7 @@ export type MessageToolCallPart<Args = unknown, Result = unknown> = {
   toolName: string
   args: Args
   result?: Result
+  thoughtSignature?: string
 }
 
 export type MessageContentParts = (

@@ -1,7 +1,7 @@
-import type { CoreMessage, FilePart, ImagePart, TextPart } from 'ai'
+import type { CoreMessage, FilePart, ImagePart, TextPart, ToolCallPart, ToolResultPart } from 'ai'
 import dayjs from 'dayjs'
 import { compact } from 'lodash'
-import type { Message, MessageContentParts } from 'src/shared/types'
+import type { Message, MessageContentParts, MessageToolCallPart } from 'src/shared/types'
 import type { ModelDependencies } from 'src/shared/types/adapters'
 import { createModelDependencies } from '@/adapters'
 import { cloneMessage, getMessageText } from '@/utils/message'
@@ -59,6 +59,63 @@ async function convertContentParts<T extends TextPart | ImagePart | FilePart>(
   )
 }
 
+function toToolCallPart(part: MessageToolCallPart): ToolCallPart & { thoughtSignature?: string } {
+  const toolCall: ToolCallPart & { thoughtSignature?: string } = {
+    type: 'tool-call',
+    toolCallId: part.toolCallId,
+    toolName: part.toolName,
+    args: part.args,
+  }
+  if (part.thoughtSignature) {
+    toolCall.thoughtSignature = part.thoughtSignature
+    toolCall.providerOptions = {
+      openaiCompatible: { thoughtSignature: part.thoughtSignature },
+    }
+  }
+  return toolCall
+}
+
+function toToolResultPart(part: MessageToolCallPart): ToolResultPart & { thoughtSignature?: string } {
+  return {
+    type: 'tool-result',
+    toolCallId: part.toolCallId,
+    toolName: part.toolName,
+    result: part.result,
+    isError: part.state === 'error',
+    thoughtSignature: part.thoughtSignature,
+  }
+}
+
+async function convertAssistantMessageToCoreMessages(
+  contentParts: MessageContentParts,
+  dependencies: ModelDependencies
+): Promise<CoreMessage[]> {
+  const coreMessages: CoreMessage[] = []
+  const mediaParts = contentParts.filter((p) => p.type === 'text' || p.type === 'image')
+  const toolParts = contentParts.filter((p) => p.type === 'tool-call') as MessageToolCallPart[]
+  const completedTools = toolParts.filter((p) => p.state === 'result' || p.state === 'error')
+  const pendingCalls = toolParts.filter((p) => p.state === 'call')
+
+  const assistantContent: Array<TextPart | FilePart | ToolCallPart> = [
+    ...(await convertContentParts<TextPart | FilePart>(mediaParts, 'file', dependencies)),
+    ...pendingCalls.map(toToolCallPart),
+    ...completedTools.map(toToolCallPart),
+  ]
+
+  if (assistantContent.length > 0) {
+    coreMessages.push({ role: 'assistant', content: assistantContent })
+  }
+
+  if (completedTools.length > 0) {
+    coreMessages.push({
+      role: 'tool',
+      content: completedTools.map(toToolResultPart),
+    })
+  }
+
+  return coreMessages
+}
+
 async function convertUserContentParts(
   contentParts: MessageContentParts,
   dependencies: ModelDependencies,
@@ -67,52 +124,47 @@ async function convertUserContentParts(
   return convertContentParts<TextPart | ImagePart>(contentParts, 'image', dependencies, options)
 }
 
-async function convertAssistantContentParts(
-  contentParts: MessageContentParts,
-  dependencies: ModelDependencies
-): Promise<Array<TextPart | FilePart>> {
-  return convertContentParts<TextPart | FilePart>(contentParts, 'file', dependencies)
-}
-
 export async function convertToCoreMessages(
   messages: Message[],
   options?: { modelSupportVision: boolean }
 ): Promise<CoreMessage[]> {
   const dependencies = await createModelDependencies()
-  const results = await Promise.all(
-    messages.map(async (m): Promise<CoreMessage | null> => {
-      switch (m.role) {
-        case 'system':
-          return {
-            role: 'system' as const,
-            content: getMessageText(m),
-          }
-        case 'user': {
-          const contentParts = await convertUserContentParts(m.contentParts || [], dependencies, options)
-          return {
-            role: 'user' as const,
-            content: contentParts,
-          }
-        }
-        case 'assistant': {
-          const contentParts = m.contentParts || []
-          return {
-            role: 'assistant' as const,
-            content: await convertAssistantContentParts(contentParts, dependencies),
-          }
-        }
-        case 'tool':
-          return null
-        default: {
-          const _exhaustiveCheck: never = m.role
-          throw new Error(`Unknown role: ${_exhaustiveCheck}`)
-        }
+  const results: CoreMessage[] = []
+
+  for (const m of messages) {
+    switch (m.role) {
+      case 'system':
+        results.push({
+          role: 'system' as const,
+          content: getMessageText(m),
+        })
+        break
+      case 'user': {
+        const contentParts = await convertUserContentParts(m.contentParts || [], dependencies, options)
+        results.push({
+          role: 'user' as const,
+          content: contentParts,
+        })
+        break
       }
-    })
-  )
-  
-  // Filter out null values manually instead of using compact
-  return results.filter((result): result is CoreMessage => result !== null)
+      case 'assistant': {
+        const assistantCoreMessages = await convertAssistantMessageToCoreMessages(
+          m.contentParts || [],
+          dependencies
+        )
+        results.push(...assistantCoreMessages)
+        break
+      }
+      case 'tool':
+        break
+      default: {
+        const _exhaustiveCheck: never = m.role
+        throw new Error(`Unknown role: ${_exhaustiveCheck}`)
+      }
+    }
+  }
+
+  return results
 }
 
 /**
