@@ -1,0 +1,83 @@
+diff --git a/node_modules/ai/dist/index.mjs b/node_modules/ai/dist/index.mjs
+index eb4ddd9..389db63 100644
+--- a/node_modules/ai/dist/index.mjs
++++ b/node_modules/ai/dist/index.mjs
+@@ -1391,12 +1391,21 @@ function convertToLanguageModelMessage(message, downloadedAssets) {
+               };
+             }
+             case "tool-call": {
++              const thoughtSignature = part.thoughtSignature;
++              const openaiCompatibleMetadata = thoughtSignature != null ? {
++                ...providerOptions == null ? void 0 : providerOptions.openaiCompatible,
++                thoughtSignature
++              } : providerOptions == null ? void 0 : providerOptions.openaiCompatible;
+               return {
+                 type: "tool-call",
+                 toolCallId: part.toolCallId,
+                 toolName: part.toolName,
+                 args: part.args,
+-                providerMetadata: providerOptions
++                ...thoughtSignature != null ? { thoughtSignature } : {},
++                providerMetadata: openaiCompatibleMetadata != null ? {
++                  ...providerOptions,
++                  openaiCompatible: openaiCompatibleMetadata
++                } : providerOptions
+               };
+             }
+           }
+@@ -1409,6 +1418,12 @@ function convertToLanguageModelMessage(message, downloadedAssets) {
+         role: "tool",
+         content: message.content.map((part) => {
+           var _a18;
++          const providerOptions = (_a18 = part.providerOptions) != null ? _a18 : part.experimental_providerMetadata;
++          const thoughtSignature = part.thoughtSignature;
++          const openaiCompatibleMetadata = thoughtSignature != null ? {
++            ...providerOptions == null ? void 0 : providerOptions.openaiCompatible,
++            thoughtSignature
++          } : providerOptions == null ? void 0 : providerOptions.openaiCompatible;
+           return {
+             type: "tool-result",
+             toolCallId: part.toolCallId,
+@@ -1416,7 +1431,11 @@ function convertToLanguageModelMessage(message, downloadedAssets) {
+             result: part.result,
+             content: part.experimental_content,
+             isError: part.isError,
+-            providerMetadata: (_a18 = part.providerOptions) != null ? _a18 : part.experimental_providerMetadata
++            ...thoughtSignature != null ? { thoughtSignature } : {},
++            providerMetadata: openaiCompatibleMetadata != null ? {
++              ...providerOptions,
++              openaiCompatible: openaiCompatibleMetadata
++            } : providerOptions
+           };
+         }),
+         providerMetadata: (_f = message.providerOptions) != null ? _f : message.experimental_providerMetadata
+@@ -4069,7 +4088,8 @@ async function doParseToolCall({
+     type: "tool-call",
+     toolCallId: toolCall.toolCallId,
+     toolName,
+-    args: parseResult.value
++    args: parseResult.value,
++    ...toolCall.thoughtSignature != null ? { thoughtSignature: toolCall.thoughtSignature } : {}
+   };
+ }
+ 
+@@ -4139,7 +4159,8 @@ function toResponseMessages({
+           type: "tool-result",
+           toolCallId: toolResult.toolCallId,
+           toolName: toolResult.toolName,
+-          result: toolResult.result
++          result: toolResult.result,
++          ...toolResult.thoughtSignature != null ? { thoughtSignature: toolResult.thoughtSignature } : {}
+         };
+       })
+     });
+@@ -5045,7 +5066,8 @@ function runToolsTransformation({
+               type: "tool-call-delta",
+               toolCallId: chunk.toolCallId,
+               toolName: chunk.toolName,
+-              argsTextDelta: chunk.argsTextDelta
++              argsTextDelta: chunk.argsTextDelta,
++              ...chunk.thoughtSignature != null ? { thoughtSignature: chunk.thoughtSignature } : {}
+             });
+           }
+           break;

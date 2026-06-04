@@ -1,26 +1,31 @@
 diff --git a/node_modules/@ai-sdk/openai-compatible/dist/index.mjs b/node_modules/@ai-sdk/openai-compatible/dist/index.mjs
-index daa5e72..3ed7302 100644
+index daa5e72..558871a 100644
 --- a/node_modules/@ai-sdk/openai-compatible/dist/index.mjs
 +++ b/node_modules/@ai-sdk/openai-compatible/dist/index.mjs
-@@ -366,7 +366,7 @@ var OpenAICompatibleChatLanguageModel = class {
-     }
-   }
-   async doGenerate(options) {
--    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
-+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
-     const { args, warnings } = this.getArgs({ ...options });
-     const body = JSON.stringify(args);
-     const {
-@@ -411,7 +411,7 @@ var OpenAICompatibleChatLanguageModel = class {
-     }
-     return {
-       text: (_e = choice.message.content) != null ? _e : void 0,
--      reasoning: (_f = choice.message.reasoning_content) != null ? _f : void 0,
-+      reasoning: (_f = choice.message.reasoning_content) != null ? _f : (_g = choice.message.reasoning) != null ? _g : void 0,
-       toolCalls: (_g = choice.message.tool_calls) == null ? void 0 : _g.map((toolCall) => {
-         var _a2;
-         return {
-@@ -590,6 +590,11 @@ var OpenAICompatibleChatLanguageModel = class {
+@@ -87,6 +87,7 @@ function convertToOpenAICompatibleChatMessages(prompt) {
+                   name: part.toolName,
+                   arguments: JSON.stringify(part.args)
+                 },
++                ...part.thoughtSignature != null ? { thoughtSignature: part.thoughtSignature } : {},
+                 ...partMetadata
+               });
+               break;
+@@ -108,6 +109,8 @@ function convertToOpenAICompatibleChatMessages(prompt) {
+             role: "tool",
+             tool_call_id: toolResponse.toolCallId,
+             content: JSON.stringify(toolResponse.result),
++            // propagate thoughtSignature when available so tool results can be matched
++            thoughtSignature: toolResponse.thoughtSignature != null ? toolResponse.thoughtSignature : toolResponseMetadata.thoughtSignature,
+             ...toolResponseMetadata
+           });
+         }
+@@ -585,11 +588,17 @@ var OpenAICompatibleChatLanguageModel = class {
+               return;
+             }
+             const delta = choice.delta;
++            // support multiple possible reasoning fields
+             if (delta.reasoning_content != null) {
+               controller.enqueue({
                  type: "reasoning",
                  textDelta: delta.reasoning_content
                });
@@ -32,19 +37,73 @@ index daa5e72..3ed7302 100644
              }
              if (delta.content != null) {
                controller.enqueue({
-@@ -738,6 +743,7 @@ var OpenAICompatibleChatResponseSchema = z2.object({
-         role: z2.literal("assistant").nullish(),
-         content: z2.string().nullish(),
-         reasoning_content: z2.string().nullish(),
-+        reasoning: z2.string().nullish(),
-         tool_calls: z2.array(
-           z2.object({
-             id: z2.string().nullish(),
-@@ -765,6 +771,7 @@ var createOpenAICompatibleChatChunkSchema = (errorSchema) => z2.union([
+@@ -597,6 +606,8 @@ var OpenAICompatibleChatLanguageModel = class {
+                 textDelta: delta.content
+               });
+             }
++            // capture any thought signatures provided by Gemini/OpenAI-compatible provider
++            const thoughtSignatures = delta._thoughtSignatures;
+             if (delta.tool_calls != null) {
+               for (const toolCallDelta of delta.tool_calls) {
+                 const index = toolCallDelta.index;
+@@ -636,7 +647,8 @@ var OpenAICompatibleChatLanguageModel = class {
+                         toolCallType: "function",
+                         toolCallId: toolCall2.id,
+                         toolName: toolCall2.function.name,
+-                        argsTextDelta: toolCall2.function.arguments
++                        argsTextDelta: toolCall2.function.arguments,
++                        thoughtSignature: thoughtSignatures == null ? void 0 : thoughtSignatures[toolCall2.function.name]
+                       });
+                     }
+                     if (isParsableJson(toolCall2.function.arguments)) {
+@@ -645,7 +657,9 @@ var OpenAICompatibleChatLanguageModel = class {
+                         toolCallType: "function",
+                         toolCallId: (_e = toolCall2.id) != null ? _e : generateId(),
+                         toolName: toolCall2.function.name,
+-                        args: toolCall2.function.arguments
++                        args: toolCall2.function.arguments,
++                        // attach thoughtSignature when available for downstream consumers
++                        thoughtSignature: thoughtSignatures == null ? void 0 : thoughtSignatures[toolCall2.function.name]
+                       });
+                       toolCall2.hasFinished = true;
+                     }
+@@ -664,7 +678,8 @@ var OpenAICompatibleChatLanguageModel = class {
+                   toolCallType: "function",
+                   toolCallId: toolCall.id,
+                   toolName: toolCall.function.name,
+-                  argsTextDelta: (_i = toolCallDelta.function.arguments) != null ? _i : ""
++                  argsTextDelta: (_i = toolCallDelta.function.arguments) != null ? _i : "",
++                  thoughtSignature: thoughtSignatures == null ? void 0 : thoughtSignatures[toolCall.function.name]
+                 });
+                 if (((_j = toolCall.function) == null ? void 0 : _j.name) != null && ((_k = toolCall.function) == null ? void 0 : _k.arguments) != null && isParsableJson(toolCall.function.arguments)) {
+                   controller.enqueue({
+@@ -672,7 +687,8 @@ var OpenAICompatibleChatLanguageModel = class {
+                     toolCallType: "function",
+                     toolCallId: (_l = toolCall.id) != null ? _l : generateId(),
+                     toolName: toolCall.function.name,
+-                    args: toolCall.function.arguments
++                    args: toolCall.function.arguments,
++                    thoughtSignature: thoughtSignatures == null ? void 0 : thoughtSignatures[toolCall.function.name]
+                   });
+                   toolCall.hasFinished = true;
+                 }
+@@ -765,6 +781,9 @@ var createOpenAICompatibleChatChunkSchema = (errorSchema) => z2.union([
            role: z2.enum(["assistant"]).nullish(),
            content: z2.string().nullish(),
            reasoning_content: z2.string().nullish(),
 +          reasoning: z2.string().nullish(),
++          // optional map of toolCallId -> thoughtSignature
++          _thoughtSignatures: z2.record(z2.string(), z2.string()).nullish(),
            tool_calls: z2.array(
              z2.object({
                index: z2.number().optional(),
+@@ -773,7 +792,8 @@ var createOpenAICompatibleChatChunkSchema = (errorSchema) => z2.union([
+               function: z2.object({
+                 name: z2.string().nullish(),
+                 arguments: z2.string().nullish()
+-              })
++              }),
++              thoughtSignature: z2.string().nullish()
+             })
+           ).nullish()
+         }).nullish(),
