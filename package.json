@@ -37,7 +37,7 @@
     "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
     "start:server": "node server.js",
     "start:prod": "npm run start:server & npm run start:main",
-    "serve:web": "npx serve ./release/app/dist/renderer",
+    "serve:web": "npx serve -s ./release/app/dist/renderer",
     "test": "jest",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
     "check": "npx tsc --noEmit",

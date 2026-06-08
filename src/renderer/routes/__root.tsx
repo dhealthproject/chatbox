@@ -49,6 +49,7 @@ import {
 import { QueryClientProvider } from '@tanstack/react-query'
 import storage, { StorageKey } from '@/storage'
 import queryClient from '@/stores/queryClient'
+import { fetchAidhApiKeyDetails } from '@/packages/aidh-api'
 import { AIDH_API_URL } from '@/variables'
 import axios from 'axios'
 import { useProviderSettings } from '@/hooks/useSettings'
@@ -257,16 +258,7 @@ const initialCheck = async(
   }
 }
 
-const getApiKeyDetails = async(apiKey: string) => {
-  const keyQueryUrl = `${AIDH_API_URL}/apikeys`
-  const resp = await axios.get(
-    keyQueryUrl,
-    {
-      headers: { Authorization: `Bearer ${apiKey}` }
-    },
-  )
-  return resp.data
-}
+const getApiKeyDetails = fetchAidhApiKeyDetails
 
 const informMessageDeliveries = async(apiKey: string, messageIds: string[]) => {
   const keyQueryUrl = `${AIDH_API_URL}/message-deliveries`

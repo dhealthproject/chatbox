@@ -1,0 +1,12 @@
+node_modules
+release/app/node_modules
+dist
+release/app/dist
+.git
+.github
+*.md
+.DS_Store
+coverage
+.erb/dll
+*.log
+terminals
