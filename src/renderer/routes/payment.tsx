@@ -20,6 +20,7 @@ import {
   IconRefresh,
   IconWallet,
 } from '@tabler/icons-react'
+import { useQueryClient } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -27,7 +28,8 @@ import Page from '@/components/Page'
 import { useAidhApiKeyDetails } from '@/hooks/useAidhApiKeyDetails'
 import { useProviderSettings } from '@/hooks/useSettings'
 import { useIsSmallScreen } from '@/hooks/useScreenChange'
-import { formatAidhExpiryDate } from '@/packages/aidh-api'
+import { formatAidhExpiryDate, generateAidhApiKey } from '@/packages/aidh-api'
+import { add as addToast } from '@/stores/toastActions'
 import { AIDH_API_URL } from '@/variables'
 
 export const Route = createFileRoute('/payment')({
@@ -125,13 +127,30 @@ function ApiKeyExpiryDisplay({ apiKey }: { apiKey: string | undefined }) {
 function PaymentPage() {
   const { t } = useTranslation()
   const isSmallScreen = useIsSmallScreen()
-  const { providerSettings } = useProviderSettings('aidh')
+  const queryClient = useQueryClient()
+  const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
   const apiKey = providerSettings?.apiKey
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('fiat')
   const [solanaToken, setSolanaToken] = useState<SolanaToken>('usdc')
+  const [isCreatingApiKey, setIsCreatingApiKey] = useState(false)
 
   const priceSummary = formatPriceSummary(paymentMethod, solanaToken)
+
+  async function handleCreateApiKey() {
+    setIsCreatingApiKey(true)
+    try {
+      const newApiKey = await generateAidhApiKey()
+      setProviderSettings({ apiKey: newApiKey })
+      await queryClient.invalidateQueries({ queryKey: ['aidh-api-key-details', newApiKey] })
+      addToast(t('API key created successfully'))
+    } catch (err) {
+      console.error('Failed to create API key:', err)
+      addToast(t('Failed to create API key'))
+    } finally {
+      setIsCreatingApiKey(false)
+    }
+  }
 
   async function handlePaymentButton() {
     if (paymentMethod === 'fiat') {
@@ -196,22 +215,34 @@ function PaymentPage() {
 
               {!apiKey && (
                 <Flex
-                  gap="xs"
+                  gap="sm"
                   align="flex-start"
+                  direction={isSmallScreen ? 'column' : 'row'}
+                  justify="space-between"
                   p="sm"
                   className="rounded-md bg-[var(--mantine-color-chatbox-brand-light)]"
                 >
-                  <IconInfoCircle size={18} className="shrink-0 mt-0.5 text-[var(--mantine-color-chatbox-brand)]" />
-                  <Text size="sm" c="chatbox-secondary">
-                    {t('Configure your API key in Settings before topping up.')}{' '}
-                    <Link
-                      to="/settings/provider/$providerId"
-                      params={{ providerId: 'aidh' }}
-                      className="text-[var(--mantine-color-chatbox-brand)]"
-                    >
-                      {t('Go to API settings')}
-                    </Link>
-                  </Text>
+                  <Flex gap="xs" align="flex-start">
+                    <IconInfoCircle size={18} className="shrink-0 mt-0.5 text-[var(--mantine-color-chatbox-brand)]" />
+                    <Text size="sm" c="chatbox-secondary">
+                      {t('You need an API key before topping up. Create one now or configure it in Settings.')}{' '}
+                      <Link
+                        to="/settings/provider/$providerId"
+                        params={{ providerId: 'aidh' }}
+                        className="text-[var(--mantine-color-chatbox-brand)]"
+                      >
+                        {t('Go to API settings')}
+                      </Link>
+                    </Text>
+                  </Flex>
+                  <Button
+                    size="sm"
+                    loading={isCreatingApiKey}
+                    onClick={() => handleCreateApiKey()}
+                    className="shrink-0"
+                  >
+                    {t('Create API Key')}
+                  </Button>
                 </Flex>
               )}
             </Stack>

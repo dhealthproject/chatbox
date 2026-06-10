@@ -29,11 +29,29 @@ const EXPIRY_FIELDS = [
   'tokenExpireTime',
 ] as const
 
+export interface AidhGenerateApiKeyResponse {
+  apiKey: string
+  details: {
+    hash: string
+    expiresAt: string
+    role: string
+    _id: string
+    createdAt: string
+    updatedAt: string
+    __v: number
+  }
+}
+
 export async function fetchAidhApiKeyDetails(apiKey: string): Promise<AidhApiKeyDetails> {
   const { data } = await axios.get<AidhApiKeyDetails>(`${AIDH_API_URL}/apikeys`, {
     headers: { Authorization: `Bearer ${apiKey}` },
   })
   return data
+}
+
+export async function generateAidhApiKey(): Promise<string> {
+  const { data } = await axios.post<AidhGenerateApiKeyResponse>(`${AIDH_API_URL}/apikeys/generate`)
+  return data.apiKey
 }
 
 export function getExpiryFromApiKeyDetails(details: AidhApiKeyDetails | null | undefined): string | null {
