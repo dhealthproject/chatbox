@@ -87,7 +87,7 @@ export default function Sidebar() {
             <Box className={cn('flex justify-between items-center p-0 m-0 mx-2 mb-2')}>
               <Box className="title-bar">
                 <img src={icon} className="w-6 h-6 mr-2 align-middle inline-block" />
-                <span className="text-xl font-semibold align-middle inline-block opacity-75">Chatbox</span>
+                <span className="text-xl font-semibold align-middle inline-block opacity-75">AIDH</span>
               </Box>
               <Box onClick={() => setShowSidebar(!showSidebar)}>
                 <IconButton
