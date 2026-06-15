@@ -427,7 +427,7 @@ function FiatPaymentPanel() {
         <Flex justify="space-between" align="center" p="md" className="rounded-md border border-solid border-[var(--mantine-color-chatbox-border-primary-outline)]">
           <Text fw={600}>{t('Total due')}</Text>
           <Text fw={700} size="xl">
-            ${TOP_UP.fiatUsd.toFixed(2)} USD
+            {TOP_UP.fiatUsd.toFixed(2)} USD
           </Text>
         </Flex>
 

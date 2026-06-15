@@ -654,7 +654,7 @@
   "Pay {{amount}} AIDH on Solana": "Bezahlen Sie {{amount}} AIDH über Solana",
   "Pay {{amount}} USDC on Solana": "Bezahlen Sie {{amount}} USDC über Solana",
   "Payment processing will be available in a future update.": "Die Zahlungsabwicklung wird in einem zukünftigen Update verfügbar sein.",
-  "Card & bank (fiat)": "Karte & Bank",
+  "Card & bank (fiat)": "Karte",
   "Fixed price for 30 days of inference.": "Festpreis für 30 Tage.",
   "Total due": "Gesamtbetrag",
   "Supported (planned)": "Unterstützt",
