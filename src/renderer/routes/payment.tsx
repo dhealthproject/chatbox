@@ -60,7 +60,7 @@ function maskApiKey(apiKey: string | undefined): string {
 
 function formatPriceSummary(method: PaymentMethod, solanaToken: SolanaToken): string {
   if (method === 'fiat') {
-    return `$${TOP_UP.fiatUsd.toFixed(2)} USD`
+    return `${TOP_UP.fiatUsd.toFixed(2)} USD`
   }
   return solanaToken === 'aidh'
     ? `${TOP_UP.solanaAidh.toLocaleString()} AIDH`
@@ -295,7 +295,7 @@ function PaymentPage() {
                 </Badge>
                 <Title order={5}>{t('30 days of AIDH inference')}</Title>
                 <Text size="sm" c="chatbox-secondary">
-                  {t('Inference access to AIDH models for 30 days on this API key.')}
+                  {t('Unlimited inference access to AIDH models for 30 days on this API key.')}
                 </Text>
               </Stack>
             </Flex>

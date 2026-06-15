@@ -508,7 +508,7 @@
   "API key created successfully": "API key created successfully",
   "Failed to create API key": "Failed to create API key",
   "Go to API settings": "Go to API settings",
-  "Only plan available": "Only plan available",
+  "Plan available": "Plan available",
   "30 days of AIDH inference": "30 days of AIDH inference",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "Unlimited inference access to AIDH models for 30 days on this API key.",
   "Payment method": "Payment method",
