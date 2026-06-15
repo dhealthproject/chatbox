@@ -646,7 +646,7 @@
   "30 days of AIDH inference": "30日間のAIDH推論",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "このAPIキーで30日間、AIDHモデルへの無制限の推論アクセスが可能です。",
   "Payment method": "支払い方法",
-  "Card / Fiat": "カード/法定通貨",
+  "Card": "カード",
   "Plan": "プラン",
   "Price": "価格",
   "Pay {{amount}} USD with card": "カードで{{amount}} USDをお支払いください",

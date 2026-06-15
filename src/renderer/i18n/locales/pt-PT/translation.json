@@ -644,7 +644,7 @@
   "30 days of AIDH inference": "30 dias de inferência AIDH",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "Acesso ilimitado à inferência de modelos AIDH durante 30 dias com esta chave API.",
   "Payment method": "Método de pagamento",
-  "Card / Fiat": "Cartão/Moeda Fiduciária",
+  "Card": "Cartão",
   "Plan": "Plano",
   "Price": "Preço",
   "Pay {{amount}} USD with card": "Pagar {{amount}} USD com cartão",

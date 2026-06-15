@@ -645,7 +645,7 @@
   "30 days of AIDH inference": "30 天 AIDH 推理",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "使用此 API 金鑰，可在 30 天內無限次訪問 AIDH 模型進行推理。",
   "Payment method": "付款方式",
-  "Card / Fiat": "銀行卡/法幣",
+  "Card": "銀行卡",
   "Plan": "套餐",
   "Price": "價格",
   "Pay {{amount}} USD with card": "使用銀行卡付款 {{amount}} 美元",

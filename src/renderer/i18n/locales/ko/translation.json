@@ -646,7 +646,7 @@
   "30 days of AIDH inference": "30일 AIDH 추론",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "이 API 키로 30일 동안 AIDH 모델에 대한 무제한 추론 액세스",
   "Payment method": "결제 결제 방식",
-  "Card / Fiat": "카드/법정화폐",
+  "Card": "카드",
   "Plan": "요금제",
   "Price": "가격",
   "Pay {{amount}} USD with card": "카드로 {{amount}} USD 결제",

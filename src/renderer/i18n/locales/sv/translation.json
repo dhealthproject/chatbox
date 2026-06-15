@@ -645,7 +645,7 @@
   "30 days of AIDH inference": "30 dagars AIDH-inferens",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "Obegränsad inferensåtkomst till AIDH-modeller i 30 dagar på denna API-nyckel.",
   "Payment method": "Betalningsmetod",
-  "Card / Fiat": "Kort / Fiat",
+  "Card": "Kort",
   "Plan": "Abonnemang",
   "Price": "Pris",
   "Pay {{amount}} USD with card": "Betala {{amount}} USD med kort",

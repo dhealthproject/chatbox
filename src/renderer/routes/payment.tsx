@@ -313,7 +313,7 @@ function PaymentPage() {
                   label: (
                     <Flex align="center" justify="center" gap="xs" py={4}>
                       <IconCreditCard size={18} />
-                      <span>{t('Card / Fiat')}</span>
+                      <span>{t('Card')}</span>
                     </Flex>
                   ),
                 },
@@ -417,7 +417,7 @@ function FiatPaymentPanel() {
             <IconBrandStripe size={28} stroke={1.25} />
           </Box>
           <Stack gap={2}>
-            <Text fw={600}>{t('Card & bank (fiat)')}</Text>
+            <Text fw={600}>{t('Card')}</Text>
             <Text size="sm" c="chatbox-tertiary">
               {t('Fixed price for 30 days of inference.')}
             </Text>

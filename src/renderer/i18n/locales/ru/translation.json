@@ -646,7 +646,7 @@
   "30 days of AIDH inference": "30 дней вывода AIDH",
   "Unlimited inference access to AIDH models for 30 days on this API key.": "Неограниченный доступ к выводу моделей AIDH в течение 30 дней с использованием этого ключа API.",
   "Payment method": "Способ оплаты",
-  "Card / Fiat": "Карта / Фиат",
+  "Card": "Карта",
   "Plan": "План",
   "Price": "Цена",
   "Pay {{amount}} USD with card": "Оплатить {{amount}} USD картой",
