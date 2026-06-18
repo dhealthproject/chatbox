@@ -47,10 +47,11 @@ import KnowledgeBaseMenu from './knowledge-base/KnowledgeBaseMenu'
 import ModelSelector from './ModelSelectorNew'
 import MCPMenu from './mcp/MCPMenu'
 import { Keys } from './Shortcut'
-import { AIDH_API_KEY, AIDH_API_URL, GOOGLE_API_KEY, GOOGLE_OAUTH_CLIENT_ID } from '@/variables'
+import { AIDH_API_URL, GOOGLE_API_KEY, GOOGLE_OAUTH_CLIENT_ID } from '@/variables'
 import { downloadDriveFile, pickFromGoogleDrive } from '@/packages/google/drivePicker'
 import { FileContent } from '@/packages/native-tools/gdrive/gdrive'
 import axios from 'axios'
+import { useProviderSettings } from '@/hooks/useSettings'
 
 export type InputBoxPayload = {
   input: string
@@ -113,6 +114,9 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
     const currentSessionId = sessionId || 'default'
     const isNewSession = currentSessionId === 'new'
     const { messageInput, setMessageInput, clearDraft } = useMessageInput('', { isNewSession })
+
+    const { providerSettings } = useProviderSettings('aidh')
+    const apiKey = providerSettings?.apiKey
 
     const knowledgeBase = isNewSession ? newSessionState.knowledgeBase : sessionKnowledgeBaseMap[currentSessionId]
     const setKnowledgeBase = useCallback(
@@ -337,7 +341,7 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
         { mime, dataBuffer: Array.from(dataBuffer) },
         {
           headers: {
-            'Authorization': `Bearer ${AIDH_API_KEY}`,
+            'Authorization': `Bearer ${apiKey}`,
           },
           responseType: 'json',
         }

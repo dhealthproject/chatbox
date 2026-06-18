@@ -23,7 +23,6 @@ import * as defaults from '../../shared/defaults'
 import { getLogger } from '../lib/utils'
 import { migrationProcessAtom } from './atoms/utilAtoms'
 import { getSessionMeta } from './sessionStorageMutations'
-import { AIDH_API_KEY } from '@/variables'
 
 const log = getLogger('migration')
 
@@ -641,11 +640,11 @@ async function migrate_12_to_13(dataStore: MigrateStore) {
   const updatedSettings = {
     ...currentSettings,
     mcp: defaultSettings.mcp,
-    providers: {
-      aidh: {
-        apiKey: AIDH_API_KEY,
-      },
-    },
+    // providers: {
+    //   aidh: {
+    //     apiKey: AIDH_API_KEY,
+    //   },
+    // },
     defaultChatModel: {
       provider: ModelProviderEnum.AIDH,
       model: 'gva/claude-sonnet-4-6',
