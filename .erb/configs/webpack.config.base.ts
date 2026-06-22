@@ -2,10 +2,19 @@
  * Base webpack config used across other specific configs
  */
 
+import path from 'path'
 import webpack from 'webpack'
 import TsconfigPathsPlugins from 'tsconfig-paths-webpack-plugin'
 import webpackPaths from './webpack.paths'
 import { dependencies as externals } from '../../release/app/package.json'
+
+// @solana-commerce/kit and @solana-commerce/sdk each bundle their own copy of
+// @solana-commerce/connector, which breaks React context between ConnectorProvider
+// and ArcProvider (including PaymentButton's internal providers).
+const solanaCommerceConnectorPath = path.join(
+  webpackPaths.rootPath,
+  'node_modules/@solana-commerce/kit/node_modules/@solana-commerce/connector'
+)
 
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
@@ -70,6 +79,9 @@ const configuration: webpack.Configuration = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
+    alias: {
+      '@solana-commerce/connector': solanaCommerceConnectorPath,
+    },
     // There is no need to add aliases here, the paths in tsconfig get mirrored
     plugins: [new TsconfigPathsPlugins()],
   },

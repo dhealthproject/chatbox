@@ -22,7 +22,7 @@ import {
 } from '@tabler/icons-react'
 import { useQueryClient } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Page from '@/components/Page'
 import { useAidhApiKeyDetails } from '@/hooks/useAidhApiKeyDetails'
@@ -31,6 +31,7 @@ import { useIsSmallScreen } from '@/hooks/useScreenChange'
 import { formatAidhExpiryDate, generateAidhApiKey } from '@/packages/aidh-api'
 import { add as addToast } from '@/stores/toastActions'
 import { AIDH_API_URL } from '@/variables'
+import { SolanaPaymentButton } from '@/components/solana/SolanaPaymentButton'
 
 export const Route = createFileRoute('/payment')({
   component: PaymentPage,
@@ -64,6 +65,15 @@ function formatPriceSummary(method: PaymentMethod, solanaToken: SolanaToken): st
   return solanaToken === 'aidh'
     ? `${TOP_UP.solanaAidh.toLocaleString()} AIDH`
     : `${TOP_UP.solanaUsdc} USDC`
+}
+
+function getCheckoutButtonLabel(method: PaymentMethod, solanaToken: SolanaToken, t: (key: string, options?: Record<string, unknown>) => string) {
+  if (method === 'fiat') {
+    return t('Pay {{amount}} USD with card', { amount: TOP_UP.fiatUsd })
+  }
+  return solanaToken === 'aidh'
+    ? t('Pay {{amount}} AIDH on Solana', { amount: TOP_UP.solanaAidh.toLocaleString() })
+    : t('Pay {{amount}} USDC on Solana', { amount: TOP_UP.solanaUsdc })
 }
 
 function ApiKeyExpiryDisplay({ apiKey }: { apiKey: string | undefined }) {
@@ -131,6 +141,23 @@ function PaymentPage() {
   const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
   const apiKey = providerSettings?.apiKey
 
+  const [apiKeyHash, setApiKeyHash] = useState('')
+  useEffect(() => {
+    if (!apiKey) {
+      setApiKeyHash('')
+      return
+    }
+    async function computeHash() {
+      const msgBuffer = new TextEncoder().encode(apiKey)
+      const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer)
+      const hashHex = Array.from(new Uint8Array(hashBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('')
+      setApiKeyHash(hashHex)
+    }
+    computeHash()
+  }, [apiKey])
+
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('fiat')
   const [solanaToken, setSolanaToken] = useState<SolanaToken>('usdc')
   const [isCreatingApiKey, setIsCreatingApiKey] = useState(false)
@@ -176,6 +203,8 @@ function PaymentPage() {
       } catch (err) {
         console.error('Fetch failed:', err)
       }
+    } else {
+
     }
   }
 
@@ -322,24 +351,46 @@ function PaymentPage() {
                 </Text>
               </Flex>
               <Divider />
+
+              {paymentMethod === 'fiat' ? (
               <Button
                 size="md"
                 fullWidth
-                // disabled
                 onClick={() => handlePaymentButton()}
-                leftSection={
-                  paymentMethod === 'fiat' ? <IconCreditCard size={18} /> : <IconWallet size={18} />
-                }
+                leftSection={<IconCreditCard size={18} />}
               >
-                {paymentMethod === 'fiat'
-                  ? t('Pay {{amount}} USD with card', { amount: TOP_UP.fiatUsd })
-                  : solanaToken === 'aidh'
-                    ? t('Pay {{amount}} AIDH on Solana', { amount: TOP_UP.solanaAidh.toLocaleString() })
-                    : t('Pay {{amount}} USDC on Solana', { amount: TOP_UP.solanaUsdc })}
+                {getCheckoutButtonLabel('fiat', solanaToken, t)}
               </Button>
-              {/* <Text size="xs" c="chatbox-tertiary" ta="center">
-                {t('Payment processing will be available in a future update.')}
-              </Text> */}
+              ) : (
+              <SolanaPaymentButton
+                config={{
+                  mode: 'tip',
+                  position: 'overlay',
+                  merchant: {
+                    name: '30 days of AIDH inference',
+                    wallet: 'GuD8tLcQwNfvL2YYufQ7Xb8JitsP6Tf6EcWzHHPUvFh7',
+                  },
+                  allowedMints: solanaToken === 'aidh' ? ['AIDH'] : ['USDC'],
+                  network: 'mainnet',
+                  rpcUrl: 'https://mainnet.helius-rpc.com/?api-key=ec6dd3cf-4105-40b9-b642-e634909e2bbd',
+                  enableWalletConnect: true,
+                  paymentMemo: apiKeyHash,
+                  fixedAmounts: {
+                    AIDH: TOP_UP.solanaAidh,
+                    USDC: TOP_UP.solanaUsdc,
+                  },
+                }}
+                onPaymentSuccess={(signature) => {
+                  console.log('Payment confirmed:', signature)
+                }}
+              >
+                <Box w="100%">
+                  <Button size="md" fullWidth leftSection={<IconWallet size={18} />}>
+                    {getCheckoutButtonLabel('solana', solanaToken, t)}
+                  </Button>
+                </Box>
+              </SolanaPaymentButton>
+              )}
             </Stack>
           </Paper>
         </Stack>
@@ -448,21 +499,6 @@ function SolanaPaymentPanel({
             {token === 'aidh' ? `${TOP_UP.solanaAidh.toLocaleString()} AIDH` : `${TOP_UP.solanaUsdc} USDC`}
           </Text>
         </Flex>
-
-        <Stack gap="xs">
-          <Text size="xs" c="chatbox-tertiary" tt="uppercase" fw={600}>
-            {t('Deposit address')}
-          </Text>
-          <Paper
-            p="sm"
-            radius="sm"
-            className="border border-solid border-[var(--mantine-color-chatbox-border-primary-outline)]"
-          >
-            <Text ff="monospace" size="sm" c="chatbox-tertiary">
-              {t('Generated at checkout')}
-            </Text>
-          </Paper>
-        </Stack>
 
         <Flex gap="xs" wrap="wrap">
           <Badge variant="light" color="violet">

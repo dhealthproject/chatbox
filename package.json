@@ -12,7 +12,8 @@
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
-    "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
+    "patch:solana-iframe": "node scripts/patch-solana-iframe-bundle.mjs",
+    "build:renderer": "npm run patch:solana-iframe && cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "build:web": "cross-env CHATBOX_BUILD_PLATFORM=web npm run build:renderer",
     "build:renderer:server": "cross-env NODE_ENV=production PRODUCTION_SERVER=true TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "build:server": "concurrently \"npm run build:main\" \"npm run build:renderer:server\"",
@@ -211,6 +212,8 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@sentry/node": "^9.28.1",
     "@sentry/react": "^7.73.0",
+    "@solana-commerce/kit": "^0.1.1",
+    "@solana-commerce/sdk": "^0.1.0",
     "@tabler/icons-react": "^3.31.0",
     "@tanstack/react-query": "^5.74.4",
     "@tanstack/react-router": "^1.114.23",

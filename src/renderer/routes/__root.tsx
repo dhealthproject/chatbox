@@ -55,6 +55,7 @@ import axios from 'axios'
 import { useProviderSettings } from '@/hooks/useSettings'
 import { createSession } from '@/stores/sessionStorageMutations'
 import * as sessionActions from '@/stores/sessionActions'
+import { SolanaCommerceProvider } from '@/components/SolanaCommerceProvider'
 
 function Root() {
   const location = useLocation()
@@ -677,17 +678,19 @@ export const Route = createRootRoute({
 
     return (
       <QueryClientProvider client={queryClient}>
-        <MantineProvider
-          theme={mantineTheme}
-          defaultColorScheme={_theme === Theme.Dark ? 'dark' : _theme === Theme.Light ? 'light' : 'auto'}
-        >
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <NiceModal.Provider>
-              <Root />
-            </NiceModal.Provider>
-          </ThemeProvider>
-        </MantineProvider>
+        <SolanaCommerceProvider>
+          <MantineProvider
+            theme={mantineTheme}
+            defaultColorScheme={_theme === Theme.Dark ? 'dark' : _theme === Theme.Light ? 'light' : 'auto'}
+          >
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <NiceModal.Provider>
+                <Root />
+              </NiceModal.Provider>
+            </ThemeProvider>
+          </MantineProvider>
+        </SolanaCommerceProvider>
       </QueryClientProvider>
     )
   },
