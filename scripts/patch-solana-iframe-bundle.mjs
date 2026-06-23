@@ -42,7 +42,7 @@ const PATCHES = [
     name: 'cC payment memo with session nonce',
     find: 'function cC(e,t,n,r){let a=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=`tip-${Math.floor(Math.random()*1e6)}`',
     replace:
-      'function cC(e,t,n,r,a,b){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=a?`${b}:${a}`:`tip-${Math.floor(Math.random()*1e6)}`',
+      'function cC(e,t,n,r,a,b){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=b?a?`${b}:${a}`:String(b):a?String(a):`tip-${Math.floor(Math.random()*1e6)}`',
   },
   {
     name: 'cC include decimals in paymentData',
@@ -182,6 +182,30 @@ const PATCHES = [
     find: '\" $\",',
     replace: '\" \",',
   },
+  {
+    name: 'QR delegate polling to parent shell',
+    find: 'let A=I=>{f.current&&clearInterval(f.current);let _=$f({urlOrMoniker:t.rpcUrl||"mainnet"}),C=0,y=60;d("Waiting for payment..."),f.current=setInterval(async()=>{if(C++,C>=y){f.current&&(clearInterval(f.current),f.current=null),l.handleTimeout(),d("Payment timeout - please try again"),c?.(new Error("Payment polling timeout"));return}try{let h=ht(t.merchant.wallet),M=h,k=ka[r];if(k!=="SOL")try{M=await pm(k.mint,h,k.tokenProgram)}catch(Ae){console.warn("Failed to get ATA for",k.symbol,":",Ae),M=h}let U=await _.rpc.getSignaturesForAddress(M,{limit:10,commitment:"confirmed"}).send();for(let Ae of U.values())if((Ae.memo?Ae.memo.replace(/^\\[\\d+\\]\\s+/,"").trim():"")===I){g();return}l.status==="scanning"&&d(`Scan QR code to pay (${C}/${y})`)}catch(h){console.warn("Polling error:",h),d(`Scanning for payment... (${C}/${y})`)}},2e3)}',
+    replace:
+      'let A=I=>{d("Waiting for payment...");try{window.parent.postMessage({type:"qrWatchMemo",memo:I,merchantWallet:t.merchant.wallet,currency:r,rpcUrl:t.rpcUrl||""},"*")}catch(xe){console.warn("Failed to start QR polling",xe)}}',
+  },
+  {
+    name: 'QR delegate polling to parent shell (gg variant)',
+    find: 'let A=I=>{f.current&&clearInterval(f.current);let _=$f({urlOrMoniker:t.rpcUrl||"mainnet"}),C=0,y=60;d("Waiting for payment..."),f.current=setInterval(async()=>{if(C++,C>=y){f.current&&(clearInterval(f.current),f.current=null),l.handleTimeout(),d("Payment timeout - please try again"),c?.(new Error("Payment polling timeout"));return}try{let h=ht(t.merchant.wallet),M=h,k=ka[r];if(k!=="SOL")try{M=await pm(k.mint,h,k.tokenProgram)}catch(Ae){console.warn("Failed to get ATA for",k.symbol,":",Ae),M=h}let gg=async qn=>{let U=await _.rpc.getSignaturesForAddress(qn,{limit:20,commitment:"confirmed"}).send();for(let Ae of U.values()){let mn=Ae.memo?Ae.memo.replace(/^\\[\\d+\\]\\s+/,"").trim():"";if(mn===I)return!0}return!1};if(await gg(h)||M!==h&&await gg(M)){g();return}l.status==="scanning"&&d(`Scan QR code to pay (${C}/${y})`)}catch(h){console.warn("Polling error:",h),d(`Scanning for payment... (${C}/${y})`)}},2e3)}',
+    replace:
+      'let A=I=>{d("Waiting for payment...");try{window.parent.postMessage({type:"qrWatchMemo",memo:I,merchantWallet:t.merchant.wallet,currency:r,rpcUrl:t.rpcUrl||""},"*")}catch(xe){console.warn("Failed to start QR polling",xe)}}',
+  },
+  {
+    name: 'QR polling effect listens for parent confirmation',
+    find: '(0,or.useEffect)(()=>(T&&l.status==="idle"&&(l.setStatus("scanning"),m.start(),setTimeout(()=>{A(T.memo)},2e3)),()=>{f.current&&clearInterval(f.current),m.stop()}),[T,l.status,m,l]);',
+    replace:
+      '(0,or.useEffect)(()=>{if(!T?.memo)return;l.status!=="success"&&l.setStatus("scanning");m.start();A(T.memo);let W=qn=>{if(qn.source!==window.parent)return;let pt=qn.data;if(pt?.type==="qrPaymentFound"&&pt.memo===T.memo)g();pt?.type==="qrPaymentTimeout"&&pt.memo===T.memo&&(l.handleTimeout(),d("Payment timeout - please try again"),c?.(new Error("Payment polling timeout")))};return window.addEventListener("message",W),()=>{window.removeEventListener("message",W),window.parent.postMessage({type:"qrWatchStop"},"*"),m.stop()}},[T?.memo]);',
+  },
+  {
+    name: 'QR onPaymentComplete updates tip modal success state',
+    find: 'onPaymentComplete:f,onPaymentError:C=>{e.debug&&console.error("Payment error:",C)}',
+    replace:
+      'onPaymentComplete:()=>{l(),f()()},onPaymentError:C=>{e.debug&&console.error("Payment error:",C),m()}',
+  },
 ]
 
 function patchBundle(source) {
@@ -207,6 +231,9 @@ function patchBundle(source) {
   }
   if (patched.includes('},var AIDH_LOGO=')) {
     throw new Error('AIDH logo patch produced invalid syntax')
+  }
+  if (!patched.includes('type:"qrWatchMemo"')) {
+    throw new Error('QR parent polling patch verification failed')
   }
   return patched
 }

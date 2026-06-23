@@ -9,6 +9,7 @@ import { IFRAME_BUNDLE } from '../../iframe-app/bundle';
 import { IFRAME_STYLES } from '../../iframe-app/bundle';
 import { fetchSolPrice, getModalBorderRadius, buildPaymentMemo } from '../../utils';
 import { transferWithMemo } from '../../utils/transfer-with-memo';
+import { pollForQrPayment } from '../../utils/qr-payment-poller';
 
 /**
  * Product configuration for cart and buyNow modes
@@ -161,6 +162,8 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const [height, setHeight] = useState<number>(400);
     const [ready, setReady] = useState(false);
+    const hasInitializedIframeRef = useRef(false);
+    const qrPollAbortRef = useRef<AbortController | null>(null);
 
     // Use the standard transfer hooks at component level (not in async functions)
     const { transferSOL, isLoading: transferSOLLoading, error: transferSOLError } = useTransferSOL();
@@ -585,6 +588,51 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
                 case 'payment':
                     onPayment(data.amount, data.currency);
                     break;
+                case 'qrWatchMemo': {
+                    qrPollAbortRef.current?.abort();
+                    const controller = new AbortController();
+                    qrPollAbortRef.current = controller;
+
+                    const expectedMemo = String(data.memo || '');
+                    const merchantWallet = String(data.merchantWallet || config.merchant.wallet);
+                    const currency = String(data.currency || 'USDC');
+                    const rpcUrl = String(data.rpcUrl || config.rpcUrl || 'https://api.mainnet-beta.solana.com');
+
+                    if (!expectedMemo) {
+                        break;
+                    }
+
+                    void (async () => {
+                        const found = await pollForQrPayment({
+                            rpcUrl,
+                            merchantWallet,
+                            currency,
+                            expectedMemo,
+                            signal: controller.signal,
+                        });
+
+                        if (controller.signal.aborted || !iframeRef.current?.contentWindow) {
+                            return;
+                        }
+
+                        if (found) {
+                            iframeRef.current.contentWindow.postMessage(
+                                { type: 'qrPaymentFound', memo: expectedMemo },
+                                '*',
+                            );
+                        } else {
+                            iframeRef.current.contentWindow.postMessage(
+                                { type: 'qrPaymentTimeout', memo: expectedMemo },
+                                '*',
+                            );
+                        }
+                    })();
+                    break;
+                }
+                case 'qrWatchStop':
+                    qrPollAbortRef.current?.abort();
+                    qrPollAbortRef.current = null;
+                    break;
                 case 'walletConnect': {
                     try {
                         // Store payment details from the iframe for later execution
@@ -661,53 +709,59 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
 
         return () => {
             window.removeEventListener('message', onMessage);
+            qrPollAbortRef.current?.abort();
+            qrPollAbortRef.current = null;
         };
-    }, [onPayment, onCancel]);
+    }, [onPayment, onCancel, config.merchant.wallet, config.rpcUrl, config.debug]);
 
-    // Send init message when iframe is ready
+    // Send init message once when iframe is ready (avoid remounting on config tweaks)
     useEffect(() => {
-        if (ready && iframeRef.current?.contentWindow) {
-            const totalAmount = inferTotalAmount(config, paymentConfig);
-            const paymentUrl =
-                config.mode === 'tip' ? '' : `solana:?recipient=${config.merchant.wallet}&amount=${totalAmount}`;
+        if (!ready || !iframeRef.current?.contentWindow || hasInitializedIframeRef.current) {
+            return;
+        }
 
-            if (config.debug) {
-                console.log('[SecureIframeShell] Sending init message', { config, theme });
-            }
+        hasInitializedIframeRef.current = true;
 
-            // Gather wallet list from the existing connector client
-            let initialWallets:
-                | Array<{ name: string; icon?: string; installed: boolean; connectable?: boolean }>
-                | undefined;
-            try {
-                if (connectorClient) {
-                    const snap = (connectorClient as any).getConnectorState();
-                    initialWallets = (snap.wallets || []).map((w: any) => ({
-                        name: w.name,
-                        icon: w.icon,
-                        installed: w.installed,
-                        connectable: w.connectable,
-                    }));
-                } else {
-                    initialWallets = undefined;
-                }
-            } catch {
+        const totalAmount = inferTotalAmount(config, paymentConfig);
+        const paymentUrl =
+            config.mode === 'tip' ? '' : `solana:?recipient=${config.merchant.wallet}&amount=${totalAmount}`;
+
+        if (config.debug) {
+            console.log('[SecureIframeShell] Sending init message', { config, theme });
+        }
+
+        // Gather wallet list from the existing connector client
+        let initialWallets:
+            | Array<{ name: string; icon?: string; installed: boolean; connectable?: boolean }>
+            | undefined;
+        try {
+            if (connectorClient) {
+                const snap = (connectorClient as any).getConnectorState();
+                initialWallets = (snap.wallets || []).map((w: any) => ({
+                    name: w.name,
+                    icon: w.icon,
+                    installed: w.installed,
+                    connectable: w.connectable,
+                }));
+            } else {
                 initialWallets = undefined;
             }
-
-            iframeRef.current.contentWindow.postMessage(
-                {
-                    type: 'init',
-                    config,
-                    theme,
-                    totalAmount,
-                    paymentUrl,
-                    wallets: initialWallets,
-                },
-                '*',
-            );
+        } catch {
+            initialWallets = undefined;
         }
-    }, [ready, config, theme]);
+
+        iframeRef.current.contentWindow.postMessage(
+            {
+                type: 'init',
+                config,
+                theme,
+                totalAmount,
+                paymentUrl,
+                wallets: initialWallets,
+            },
+            '*',
+        );
+    }, [ready, config, theme, paymentConfig, connectorClient, config.debug]);
 
     return (
         <iframe

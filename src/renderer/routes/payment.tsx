@@ -361,13 +361,17 @@ function PaymentPage() {
               >
                 {getCheckoutButtonLabel('fiat', solanaToken, t)}
               </Button>
+              ) : !apiKey || !apiKeyHash ? (
+              <Button size="md" fullWidth disabled leftSection={<IconWallet size={18} />}>
+                {t('Preparing payment...')}
+              </Button>
               ) : (
               <SolanaPaymentButton
                 config={{
                   mode: 'tip',
                   position: 'overlay',
                   merchant: {
-                    name: '30 days of AIDH inference',
+                    name: 'AIDH Payment',
                     wallet: 'GuD8tLcQwNfvL2YYufQ7Xb8JitsP6Tf6EcWzHHPUvFh7',
                   },
                   allowedMints: solanaToken === 'aidh' ? ['AIDH'] : ['USDC'],
