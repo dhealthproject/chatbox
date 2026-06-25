@@ -39,10 +39,10 @@ const PATCHES = [
     replace: `var ka={SOL:"SOL",SOL_DEVNET:"SOL",AIDH:{mint:ht("${AIDH_MINT}"),tokenProgram:Yt,decimals:6,symbol:"AIDH",name:"dHealth Intelligence (AIDH)"},USDC:{mint:ht("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")`,
   },
   {
-    name: 'cC payment memo with session nonce',
+    name: 'cC payment memo',
     find: 'function cC(e,t,n,r){let a=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=`tip-${Math.floor(Math.random()*1e6)}`',
     replace:
-      'function cC(e,t,n,r,a,b){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=b?a?`${b}:${a}`:String(b):a?String(a):`tip-${Math.floor(Math.random()*1e6)}`',
+      'function cC(e,t,n,r,a){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=a?String(a):`tip-${Math.floor(Math.random()*1e6)}`',
   },
   {
     name: 'cC include decimals in paymentData',
@@ -53,7 +53,7 @@ const PATCHES = [
     name: 'cC useMemo deps + return var',
     find: '},[e,t,n,r]),o=(0,Ym.useMemo)(()=>a?async()=>({...await iC(a.paymentData,a.qrOptions),memo:a.reference}):void 0,[a]),{data:i,loading:c,error:s}=Ks(o,!!a);return{paymentRequest:i,loading:c,error:s}}',
     replace:
-      '},[e,t,n,r,a,b]),i=(0,Ym.useMemo)(()=>o?async()=>({...await iC(o.paymentData,o.qrOptions),memo:o.reference}):void 0,[o]),{data:c,loading:s,error:u}=Ks(i,!!o);return{paymentRequest:c,loading:s,error:u}}',
+      '},[e,t,n,r,a]),i=(0,Ym.useMemo)(()=>o?async()=>({...await iC(o.paymentData,o.qrOptions),memo:o.reference}):void 0,[o]),{data:c,loading:s,error:u}=Ks(i,!!o);return{paymentRequest:c,loading:s,error:u}}',
   },
   {
     name: '$v use token decimals in Solana Pay URL',
@@ -62,15 +62,9 @@ const PATCHES = [
       'function $v({recipient:e,amount:t,splToken:n,reference:r,label:a,message:o,memo:i,decimals:d}){let c=e.toString(),s=new URL(Km+c);if(t!==void 0){let u=jv(t,d??eC);s.searchParams.append("amount",u)}',
   },
   {
-    name: 'Ys session nonce state',
-    find: 'Ys=(0,or.memo)(({theme:e,config:t,selectedAmount:n,selectedCurrency:r,customAmount:a,showCustomInput:o,onPaymentComplete:i,onPaymentError:c})=>{let s=o?',
-    replace:
-      'Ys=(0,or.memo)(({theme:e,config:t,selectedAmount:n,selectedCurrency:r,customAmount:a,showCustomInput:o,onPaymentComplete:i,onPaymentError:c})=>{let[R]=(0,or.useState)(()=>`${Date.now()}-${Math.floor(Math.random()*1e6)}`),s=o?',
-  },
-  {
-    name: 'Ys pass paymentMemo and session nonce to cC',
+    name: 'Ys pass paymentMemo to cC',
     find: '{paymentRequest:T,loading:D}=cC(t.merchant.wallet,E,r)',
-    replace: '{paymentRequest:T,loading:D}=cC(t.merchant.wallet,E,r,void 0,t.paymentMemo,R)',
+    replace: '{paymentRequest:T,loading:D}=cC(t.merchant.wallet,E,r,void 0,t.paymentMemo)',
   },
   {
     name: 'initial amount from fixedAmounts',

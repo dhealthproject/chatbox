@@ -10,10 +10,9 @@ import { CURRENCY_DECIMALS } from './constants/tip-modal';
 import { PaymentConfig } from '@solana-commerce/kit';
 import { Currency } from './types';
 
-/** Unique on-chain memo per payment: `{nonce}:{apiKey}` */
-export function buildPaymentMemo(apiKey: string): string {
-    const nonce = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    return `${nonce}:${apiKey.trim()}`;
+/** On-chain memo used to identify the payment (e.g. checkout nonce or API key hash). */
+export function buildPaymentMemo(checkoutNonce: string): string {
+    return checkoutNonce.trim();
 }
 
 // Constants

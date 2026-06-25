@@ -18,6 +18,10 @@ export interface AidhApiKeyDetails {
   [key: string]: unknown
 }
 
+export interface AidhCheckoutNonceDetails {
+  nonce: string;
+}
+
 const EXPIRY_FIELDS = [
   'expiresAt',
   'expiryDate',
@@ -52,6 +56,20 @@ export async function fetchAidhApiKeyDetails(apiKey: string): Promise<AidhApiKey
 export async function generateAidhApiKey(): Promise<string> {
   const { data } = await axios.post<AidhGenerateApiKeyResponse>(`${AIDH_API_URL}/apikeys/generate`)
   return data.apiKey
+}
+
+export async function getCheckoutNonce(apiKey: string): Promise<string> {
+  const { data } = await axios.get<AidhCheckoutNonceDetails>(`${AIDH_API_URL}/checkout/nonce`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  })
+  return data.nonce
+}
+
+export async function getNonceStatus(apiKey: string, nonce: string): Promise<{status: string}> {
+  const { data } = await axios.get<{status: string}>(`${AIDH_API_URL}/checkout/status/${nonce}`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  })
+  return data
 }
 
 export function getExpiryFromApiKeyDetails(details: AidhApiKeyDetails | null | undefined): string | null {

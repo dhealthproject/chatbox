@@ -28,7 +28,7 @@ import Page from '@/components/Page'
 import { useAidhApiKeyDetails } from '@/hooks/useAidhApiKeyDetails'
 import { useProviderSettings } from '@/hooks/useSettings'
 import { useIsSmallScreen } from '@/hooks/useScreenChange'
-import { formatAidhExpiryDate, generateAidhApiKey } from '@/packages/aidh-api'
+import { formatAidhExpiryDate, generateAidhApiKey, getCheckoutNonce } from '@/packages/aidh-api'
 import { add as addToast } from '@/stores/toastActions'
 import { AIDH_API_URL } from '@/variables'
 import { SolanaPaymentButton } from '@/components/solana/SolanaPaymentButton'
@@ -141,21 +141,17 @@ function PaymentPage() {
   const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
   const apiKey = providerSettings?.apiKey
 
-  const [apiKeyHash, setApiKeyHash] = useState('')
+  const [checkoutNonce, setCheckoutNonce] = useState('')
   useEffect(() => {
-    if (!apiKey) {
-      setApiKeyHash('')
-      return
+    async function getNonce() {
+      if (!apiKey) {
+        setCheckoutNonce('')
+        return
+      }
+      const nonce = await getCheckoutNonce(apiKey)
+      setCheckoutNonce(nonce)
     }
-    async function computeHash() {
-      const msgBuffer = new TextEncoder().encode(apiKey)
-      const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer)
-      const hashHex = Array.from(new Uint8Array(hashBuffer))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('')
-      setApiKeyHash(hashHex)
-    }
-    computeHash()
+    getNonce()
   }, [apiKey])
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('fiat')
@@ -352,7 +348,11 @@ function PaymentPage() {
               </Flex>
               <Divider />
 
-              {paymentMethod === 'fiat' ? (
+              {!apiKey ? (
+              <Button size="md" fullWidth disabled leftSection={<IconWallet size={18} />}>
+                {t('Preparing payment...')}
+              </Button>
+              ) : paymentMethod === 'fiat' ? (
               <Button
                 size="md"
                 fullWidth
@@ -360,10 +360,6 @@ function PaymentPage() {
                 leftSection={<IconCreditCard size={18} />}
               >
                 {getCheckoutButtonLabel('fiat', solanaToken, t)}
-              </Button>
-              ) : !apiKey || !apiKeyHash ? (
-              <Button size="md" fullWidth disabled leftSection={<IconWallet size={18} />}>
-                {t('Preparing payment...')}
               </Button>
               ) : (
               <SolanaPaymentButton
@@ -378,7 +374,7 @@ function PaymentPage() {
                   network: 'mainnet',
                   rpcUrl: 'https://mainnet.helius-rpc.com/?api-key=ec6dd3cf-4105-40b9-b642-e634909e2bbd',
                   enableWalletConnect: true,
-                  paymentMemo: apiKeyHash,
+                  paymentMemo: checkoutNonce,
                   fixedAmounts: {
                     AIDH: TOP_UP.solanaAidh,
                     USDC: TOP_UP.solanaUsdc,

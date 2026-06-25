@@ -10,6 +10,7 @@ import { IFRAME_STYLES } from '../../iframe-app/bundle';
 import { fetchSolPrice, getModalBorderRadius, buildPaymentMemo } from '../../utils';
 import { transferWithMemo } from '../../utils/transfer-with-memo';
 import { pollForQrPayment } from '../../utils/qr-payment-poller';
+import { useProviderSettings } from '@/hooks/useSettings';
 
 /**
  * Product configuration for cart and buyNow modes
@@ -146,6 +147,9 @@ export function SecureIframeShell({ config, theme, onPayment, onCancel, paymentC
 interface SecureIframeShellInnerProps extends SecureIframeShellProps {}
 
 function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentConfig }: SecureIframeShellInnerProps) {
+    const { providerSettings } = useProviderSettings('aidh');
+    const apiKey = providerSettings?.apiKey ?? '';
+
     // Use the ConnectorClient from context
     const connectorClient = useConnectorClient();
 
@@ -344,8 +348,8 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
 
             const { amount, currency } = paymentInfo;
             const isSOL = currency === 'SOL' || currency === 'SOL_DEVNET';
-            const apiKeyMemo = config.paymentMemo?.trim();
-            const paymentMemo = apiKeyMemo ? buildPaymentMemo(apiKeyMemo) : undefined;
+            const checkoutNonce = config.paymentMemo?.trim();
+            const paymentMemo = checkoutNonce ? buildPaymentMemo(checkoutNonce) : undefined;
             const signer = walletStateRef.current.signer;
 
             if (!signer) {
@@ -594,9 +598,6 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
                     qrPollAbortRef.current = controller;
 
                     const expectedMemo = String(data.memo || '');
-                    const merchantWallet = String(data.merchantWallet || config.merchant.wallet);
-                    const currency = String(data.currency || 'USDC');
-                    const rpcUrl = String(data.rpcUrl || config.rpcUrl || 'https://api.mainnet-beta.solana.com');
 
                     if (!expectedMemo) {
                         break;
@@ -604,9 +605,7 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
 
                     void (async () => {
                         const found = await pollForQrPayment({
-                            rpcUrl,
-                            merchantWallet,
-                            currency,
+                            apiKey,
                             expectedMemo,
                             signal: controller.signal,
                         });
