@@ -167,7 +167,6 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const [height, setHeight] = useState<number>(400);
     const [ready, setReady] = useState(false);
-    const hasInitializedIframeRef = useRef(false);
     const qrPollAbortRef = useRef<AbortController | null>(null);
 
     // Use the standard transfer hooks at component level (not in async functions)
@@ -672,6 +671,18 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
                     qrPollAbortRef.current = null;
                     break;
                 case 'walletConnect': {
+                    if (config.enableWalletConnect === false) {
+                        iframeRef.current?.contentWindow?.postMessage(
+                            {
+                                type: 'walletConnectResult',
+                                success: false,
+                                walletName: data.walletName,
+                                error: 'Wallet connect is disabled',
+                            },
+                            '*',
+                        );
+                        break;
+                    }
                     try {
                         // Store payment details from the iframe for later execution
                         const paymentInfo = {
@@ -750,15 +761,13 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
             qrPollAbortRef.current?.abort();
             qrPollAbortRef.current = null;
         };
-    }, [onPayment, onCancel, config.merchant.wallet, config.rpcUrl, config.debug, apiKey]);
+    }, [onPayment, onCancel, config.merchant.wallet, config.rpcUrl, config.debug, config.enableWalletConnect, apiKey]);
 
-    // Send init message once when iframe is ready (avoid remounting on config tweaks)
+    // Send init when iframe is ready and whenever config changes
     useEffect(() => {
-        if (!ready || !iframeRef.current?.contentWindow || hasInitializedIframeRef.current) {
+        if (!ready || !iframeRef.current?.contentWindow) {
             return;
         }
-
-        hasInitializedIframeRef.current = true;
 
         const totalAmount = inferTotalAmount(config, paymentConfig);
         const paymentUrl =

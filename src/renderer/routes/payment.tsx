@@ -22,16 +22,17 @@ import {
 } from '@tabler/icons-react'
 import { useQueryClient } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Page from '@/components/Page'
 import { useAidhApiKeyDetails } from '@/hooks/useAidhApiKeyDetails'
 import { useProviderSettings } from '@/hooks/useSettings'
 import { useIsSmallScreen } from '@/hooks/useScreenChange'
-import { formatAidhExpiryDate, generateAidhApiKey, getCheckoutNonce } from '@/packages/aidh-api'
+import { formatAidhExpiryDate, generateAidhApiKey } from '@/packages/aidh-api'
 import { add as addToast } from '@/stores/toastActions'
 import { AIDH_API_URL } from '@/variables'
 import { SolanaPaymentButton } from '@/components/solana/SolanaPaymentButton'
+import platform from '@/platform'
 
 export const Route = createFileRoute('/payment')({
   component: PaymentPage,
@@ -360,7 +361,7 @@ function PaymentPage() {
                   allowedMints: solanaToken === 'aidh' ? ['AIDH'] : ['USDC'],
                   network: 'mainnet',
                   rpcUrl: 'https://mainnet.helius-rpc.com/?api-key=ec6dd3cf-4105-40b9-b642-e634909e2bbd',
-                  enableWalletConnect: true,
+                  enableWalletConnect: platform.type !== 'mobile' && !isSmallScreen,
                   fixedAmounts: {
                     AIDH: TOP_UP.solanaAidh,
                     USDC: TOP_UP.solanaUsdc,

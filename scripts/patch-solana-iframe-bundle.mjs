@@ -233,6 +233,26 @@ const PATCHES = [
     replace:
       'onPaymentComplete:()=>{l(),f()()},onPaymentError:C=>{e.debug&&console.error("Payment error:",C),m()},nonceKey:a.qrNonceKey}):(0,we.jsx)($m',
   },
+  {
+    name: 'tip modal default payment method respects enableWalletConnect/showQR',
+    find:
+      'ob=e=>({selectedAmount:e.fixedAmounts?.[e.allowedMints?.[0]||"USDC"]??5,selectedCurrency:e.allowedMints?.[0]||"USDC",selectedPaymentMethod:"qr",customAmount:"",showCustomInput:!1,isProcessing:!1,currentStep:"form",currencyDropdownOpen:!1,priceError:null,qrNonceKey:0});function ib',
+    replace:
+      'ob=e=>{let qr=e.showQR!==!1,w=e.enableWalletConnect!==!1;return{selectedAmount:e.fixedAmounts?.[e.allowedMints?.[0]||"USDC"]??5,selectedCurrency:e.allowedMints?.[0]||"USDC",selectedPaymentMethod:w&&!qr?"wallet":"qr",customAmount:"",showCustomInput:!1,isProcessing:!1,currentStep:"form",currencyDropdownOpen:!1,priceError:null,qrNonceKey:0}};function ib',
+  },
+  {
+    name: 'PaymentMethodSelector filters by enableWalletConnect and showQR',
+    find:
+      'au=(0,eg.memo)(({theme:e,selectedPaymentMethod:t,onSelect:n})=>(0,Ot.jsxs)("div",{className:"ck-form-section with-border",role:"group","aria-labelledby":"payment-method-label",style:{"--section-border-color":e.backgroundColor==="#ffffff"?"#f3f4f6":`${e.textColor}10`},children:[(0,Ot.jsx)("label",{id:"payment-method-label",className:"ck-form-label",children:"Payment method"}),(0,Ot.jsx)("div",{className:"ck-payment-methods-grid",role:"radiogroup","aria-labelledby":"payment-method-label",children:K1.map(r=>(0,Ot.jsx)(bC,{theme:e,method:r,isSelected:t===r.value,onClick:()=>n(r.value)},r.value))})]}))',
+    replace:
+      'au=(0,eg.memo)(({theme:e,config:g,selectedPaymentMethod:t,onSelect:n})=>{let S=K1.filter(r=>r.value==="qr"?g?.showQR!==!1:g?.enableWalletConnect!==!1);return S.length<=1?null:(0,Ot.jsxs)("div",{className:"ck-form-section with-border",role:"group","aria-labelledby":"payment-method-label",style:{"--section-border-color":e.backgroundColor==="#ffffff"?"#f3f4f6":`${e.textColor}10`},children:[(0,Ot.jsx)("label",{id:"payment-method-label",className:"ck-form-label",children:"Payment method"}),(0,Ot.jsx)("div",{className:"ck-payment-methods-grid",role:"radiogroup","aria-labelledby":"payment-method-label",children:S.map(r=>(0,Ot.jsx)(bC,{theme:e,method:r,isSelected:t===r.value,onClick:()=>n(r.value)},r.value))})]})})',
+  },
+  {
+    name: 'tip modal passes config to PaymentMethodSelector',
+    find: '(0,we.jsx)(au,{theme:t,selectedPaymentMethod:a.selectedPaymentMethod,onSelect:o.setPaymentMethod})',
+    replace:
+      '(0,we.jsx)(au,{theme:t,config:e,selectedPaymentMethod:a.selectedPaymentMethod,onSelect:o.setPaymentMethod})',
+  },
 ]
 
 function patchBundle(source) {
@@ -261,6 +281,9 @@ function patchBundle(source) {
   }
   if (!patched.includes('type:"qrWatchMemo"')) {
     throw new Error('QR parent polling patch verification failed')
+  }
+  if (!patched.includes('enableWalletConnect!==!1')) {
+    throw new Error('enableWalletConnect patch verification failed')
   }
   return patched
 }
