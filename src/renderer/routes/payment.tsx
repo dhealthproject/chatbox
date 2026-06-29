@@ -141,19 +141,6 @@ function PaymentPage() {
   const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
   const apiKey = providerSettings?.apiKey
 
-  const [checkoutNonce, setCheckoutNonce] = useState('')
-  useEffect(() => {
-    async function getNonce() {
-      if (!apiKey) {
-        setCheckoutNonce('')
-        return
-      }
-      const nonce = await getCheckoutNonce(apiKey)
-      setCheckoutNonce(nonce)
-    }
-    getNonce()
-  }, [apiKey])
-
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('fiat')
   const [solanaToken, setSolanaToken] = useState<SolanaToken>('usdc')
   const [isCreatingApiKey, setIsCreatingApiKey] = useState(false)
@@ -374,7 +361,6 @@ function PaymentPage() {
                   network: 'mainnet',
                   rpcUrl: 'https://mainnet.helius-rpc.com/?api-key=ec6dd3cf-4105-40b9-b642-e634909e2bbd',
                   enableWalletConnect: true,
-                  paymentMemo: checkoutNonce,
                   fixedAmounts: {
                     AIDH: TOP_UP.solanaAidh,
                     USDC: TOP_UP.solanaUsdc,

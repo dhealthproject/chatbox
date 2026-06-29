@@ -11,6 +11,7 @@ import { fetchSolPrice, getModalBorderRadius, buildPaymentMemo } from '../../uti
 import { transferWithMemo } from '../../utils/transfer-with-memo';
 import { pollForQrPayment } from '../../utils/qr-payment-poller';
 import { useProviderSettings } from '@/hooks/useSettings';
+import { getCheckoutNonce } from '@/packages/aidh-api';
 
 /**
  * Product configuration for cart and buyNow modes
@@ -348,8 +349,15 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
 
             const { amount, currency } = paymentInfo;
             const isSOL = currency === 'SOL' || currency === 'SOL_DEVNET';
-            const checkoutNonce = config.paymentMemo?.trim();
-            const paymentMemo = checkoutNonce ? buildPaymentMemo(checkoutNonce) : undefined;
+
+            // const checkoutNonce = config.paymentMemo?.trim();
+            // const paymentMemo = checkoutNonce ? buildPaymentMemo(checkoutNonce) : undefined;
+            const checkoutNonce = await getCheckoutNonce(apiKey);
+            if (!checkoutNonce) {
+                throw new Error('Checkout nonce not found');
+            }
+            const paymentMemo = buildPaymentMemo(checkoutNonce);
+
             const signer = walletStateRef.current.signer;
 
             if (!signer) {
@@ -592,6 +600,37 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
                 case 'payment':
                     onPayment(data.amount, data.currency);
                     break;
+                case 'qrRequestNonce': {
+                    void (async () => {
+                        try {
+                            const checkoutNonce = await getCheckoutNonce(apiKey);
+                            if (!checkoutNonce) {
+                                throw new Error('Checkout nonce not found');
+                            }
+                            iframeRef.current?.contentWindow?.postMessage(
+                                {
+                                    type: 'qrNonceResult',
+                                    nonce: buildPaymentMemo(checkoutNonce),
+                                    requestId: data.requestId,
+                                },
+                                '*',
+                            );
+                        } catch (err: any) {
+                            if (config.debug) {
+                                console.error('[SecureIframeShell] qrRequestNonce failed:', err);
+                            }
+                            iframeRef.current?.contentWindow?.postMessage(
+                                {
+                                    type: 'qrNonceResult',
+                                    error: err?.message || String(err),
+                                    requestId: data.requestId,
+                                },
+                                '*',
+                            );
+                        }
+                    })();
+                    break;
+                }
                 case 'qrWatchMemo': {
                     qrPollAbortRef.current?.abort();
                     const controller = new AbortController();
@@ -711,7 +750,7 @@ function SecureIframeShellInner({ config, theme, onPayment, onCancel, paymentCon
             qrPollAbortRef.current?.abort();
             qrPollAbortRef.current = null;
         };
-    }, [onPayment, onCancel, config.merchant.wallet, config.rpcUrl, config.debug]);
+    }, [onPayment, onCancel, config.merchant.wallet, config.rpcUrl, config.debug, apiKey]);
 
     // Send init message once when iframe is ready (avoid remounting on config tweaks)
     useEffect(() => {

@@ -42,7 +42,7 @@ const PATCHES = [
     name: 'cC payment memo',
     find: 'function cC(e,t,n,r){let a=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=`tip-${Math.floor(Math.random()*1e6)}`',
     replace:
-      'function cC(e,t,n,r,a){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;Jv(n);let u=a?String(a):`tip-${Math.floor(Math.random()*1e6)}`',
+      'function cC(e,t,n,r,a){let o=(0,Ym.useMemo)(()=>{if(!e||!t||!n)return null;if(a==null)return null;Jv(n);let u=a?String(a):`tip-${Math.floor(Math.random()*1e6)}`',
   },
   {
     name: 'cC include decimals in paymentData',
@@ -199,6 +199,39 @@ const PATCHES = [
     find: 'onPaymentComplete:f,onPaymentError:C=>{e.debug&&console.error("Payment error:",C)}',
     replace:
       'onPaymentComplete:()=>{l(),f()()},onPaymentError:C=>{e.debug&&console.error("Payment error:",C),m()}',
+  },
+  {
+    name: 'tip modal initial qrNonceKey',
+    find:
+      'selectedPaymentMethod:"qr",customAmount:"",showCustomInput:!1,isProcessing:!1,currentStep:"form",currencyDropdownOpen:!1,priceError:null});function ib',
+    replace:
+      'selectedPaymentMethod:"qr",customAmount:"",showCustomInput:!1,isProcessing:!1,currentStep:"form",currencyDropdownOpen:!1,priceError:null,qrNonceKey:0});function ib',
+  },
+  {
+    name: 'SET_PAYMENT_METHOD bumps qrNonceKey for QR',
+    find: 'case"SET_PAYMENT_METHOD":return{...e,selectedPaymentMethod:t.method};',
+    replace:
+      'case"SET_PAYMENT_METHOD":return{...e,selectedPaymentMethod:t.method,qrNonceKey:t.method==="qr"?e.qrNonceKey+1:e.qrNonceKey};',
+  },
+  {
+    name: 'SET_STEP bumps qrNonceKey when entering QR payment',
+    find: 'case"SET_STEP":return{...e,currentStep:t.step};',
+    replace:
+      'case"SET_STEP":return{...e,currentStep:t.step,qrNonceKey:t.step==="payment"&&e.selectedPaymentMethod==="qr"?e.qrNonceKey+1:e.qrNonceKey};',
+  },
+  {
+    name: 'Ys fetches checkout nonce from parent on each QR session',
+    find:
+      'Ys=(0,or.memo)(({theme:e,config:t,selectedAmount:n,selectedCurrency:r,customAmount:a,showCustomInput:o,onPaymentComplete:i,onPaymentError:c})=>{let s=o?a||"0":n.toString(),[u,d]=(0,or.useState)("Waiting for payment..."),f=(0,or.useRef)(null),l=uC(),m=sC({duration:120,autoStart:!1,onComplete:()=>{l.handleTimeout(),f.current&&(clearInterval(f.current),f.current=null)},onTick:I=>{I<=30&&d(`Payment expires in ${I}s...`)}}),E=o?parseFloat(a||"0"):n,{paymentRequest:T,loading:D}=cC(t.merchant.wallet,E,r,void 0,t.paymentMemo);',
+    replace:
+      'Ys=(0,or.memo)(({theme:e,config:t,selectedAmount:n,selectedCurrency:r,customAmount:a,showCustomInput:o,onPaymentComplete:i,onPaymentError:c,nonceKey:P})=>{let s=o?a||"0":n.toString(),[u,d]=(0,or.useState)("Waiting for payment..."),[qrMemo,L]=(0,or.useState)(null),f=(0,or.useRef)(null),l=uC(),m=sC({duration:120,autoStart:!1,onComplete:()=>{l.handleTimeout(),f.current&&(clearInterval(f.current),f.current=null)},onTick:I=>{I<=30&&d(`Payment expires in ${I}s...`)}}),E=o?parseFloat(a||"0"):n;(0,or.useEffect)(()=>{L(null);let W=qn=>{if(qn.source!==window.parent)return;let pt=qn.data;pt?.type==="qrNonceResult"&&pt.requestId===P&&pt.nonce&&L(pt.nonce)};window.addEventListener("message",W);try{window.parent.postMessage({type:"qrRequestNonce",requestId:P},"*")}catch(xe){console.warn("Failed to request QR nonce",xe)}return()=>window.removeEventListener("message",W)},[P]);let{paymentRequest:T,loading:D}=cC(t.merchant.wallet,E,r,void 0,qrMemo);',
+  },
+  {
+    name: 'tip modal passes nonceKey to Ys',
+    find:
+      'onPaymentComplete:()=>{l(),f()()},onPaymentError:C=>{e.debug&&console.error("Payment error:",C),m()}}):(0,we.jsx)($m',
+    replace:
+      'onPaymentComplete:()=>{l(),f()()},onPaymentError:C=>{e.debug&&console.error("Payment error:",C),m()},nonceKey:a.qrNonceKey}):(0,we.jsx)($m',
   },
 ]
 
