@@ -13,6 +13,8 @@ import * as localParser from '@/packages/local-parser'
 import { generateImage, generateText, streamText } from '@/packages/model-calls'
 import { getModelDisplayName } from '@/packages/model-setting-utils'
 import * as remote from '@/packages/remote'
+import { processPdfAttachment } from '@/packages/file-processing'
+import { isPdf } from '@/packages/filetype'
 import { estimateTokensFromMessages } from '@/packages/token'
 import { router } from '@/router'
 import { StorageKeyGenerator } from '@/storage/StoreStorage'
@@ -628,11 +630,19 @@ export async function submitNewUserMessage(params: {
 
     // 如果本次发送消息携带了附件，应该在这次发送中上传文件并构造文件信息(file uuid)
     if (attachments && attachments.length > 0) {
-      if (isChatboxAI) {
-        // Chatbox AI 方案
-        const licenseKey = settingActions.getLicenseKey()
-        const newFiles: MessageFile[] = []
-        for (const attachment of attachments || []) {
+      const newFiles: MessageFile[] = []
+      const nonPdfAttachments = attachments.filter((a) => !isPdf(a))
+      const tokenLimitPerFile =
+        nonPdfAttachments.length > 0 ? Math.ceil((40 * 1000) / nonPdfAttachments.length) : 0
+
+      for (const attachment of attachments) {
+        if (isPdf(attachment)) {
+          newFiles.push(await processPdfAttachment(settings, attachment))
+          continue
+        }
+
+        if (isChatboxAI) {
+          const licenseKey = settingActions.getLicenseKey()
           const storageKey = await remote.uploadAndCreateUserFile(licenseKey || '', attachment)
           newFiles.push({
             id: storageKey,
@@ -640,13 +650,7 @@ export async function submitNewUserMessage(params: {
             fileType: attachment.type,
             storageKey,
           })
-        }
-        modifyMessage(currentSessionId, { ...newUserMsg, files: newFiles }, false)
-      } else {
-        // 本地方案
-        const newFiles: MessageFile[] = []
-        const tokenLimitPerFile = Math.ceil((40 * 1000) / attachments.length)
-        for (const attachment of attachments) {
+        } else {
           await new Promise((resolve) => setTimeout(resolve, 3000)) // 等待一段时间，方便显示提示
           const result = await platform.parseFileLocally(attachment, { tokenLimit: tokenLimitPerFile })
           if (!result.isSupported || !result.key) {
@@ -656,7 +660,6 @@ export async function submitNewUserMessage(params: {
                 'mobile_not_support_local_file_parsing'
               )
             }
-            // 根据当前 IP，判断是否在错误中推荐 Chatbox AI
             if (remoteConfig.setting_chatboxai_first) {
               throw ChatboxAIAPIError.fromCodeName('model_not_support_file', 'model_not_support_file')
             } else {
@@ -670,8 +673,8 @@ export async function submitNewUserMessage(params: {
             storageKey: result.key,
           })
         }
-        modifyMessage(currentSessionId, { ...newUserMsg, files: newFiles }, false)
       }
+      modifyMessage(currentSessionId, { ...newUserMsg, files: newFiles }, false)
     }
     // 如果本次发送消息携带了链接，应该在这次发送中解析链接并构造链接信息(link uuid)
     if (links && links.length > 0) {
@@ -1146,6 +1149,13 @@ async function genMessageContext(settings: Settings, msgs: Message[]) {
     // 如果消息中包含本地文件（消息中携带有本地文件的storageKey），则将文件内容也作为 prompt 的一部分
     if (msg.files && msg.files.length > 0) {
       for (const [fileIndex, file] of msg.files.entries()) {
+        if (file.pageImageStorageKeys && file.pageImageStorageKeys.length > 0) {
+          msg = cloneMessage(msg)
+          for (const storageKey of file.pageImageStorageKeys) {
+            msg.contentParts = [...(msg.contentParts || []), { type: 'image', storageKey }]
+          }
+          continue
+        }
         if (file.storageKey) {
           msg = cloneMessage(msg) // 复制一份消息，避免修改原始消息
           const content = await storage.getBlob(file.storageKey).catch(() => '')

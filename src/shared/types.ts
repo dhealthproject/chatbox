@@ -18,6 +18,8 @@ export interface MessageFile {
   fileType: string
   url?: string
   storageKey?: string
+  /** Page images generated from a PDF attachment via file/process */
+  pageImageStorageKeys?: string[]
   chatboxAIFileUUID?: string
 }
 
