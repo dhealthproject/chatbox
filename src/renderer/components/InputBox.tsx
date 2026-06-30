@@ -334,8 +334,6 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
           const key = StorageKeyGenerator.picture('input-box')
           await storage.setBlob(key, base64)
           setPictureKeys((prev) => [...prev, { storageKey: key, path: file.path }].slice(-8)) // 最多插入 8 个图片
-        } else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-          alert('word document')
         } else {
           setAttachments((prev) => [...prev, file].slice(-10)) // 最多插入 10 个附件
         }

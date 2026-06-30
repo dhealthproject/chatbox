@@ -20,6 +20,8 @@ export interface MessageFile {
   storageKey?: string
   /** Page images generated from a PDF attachment via file/process */
   pageImageStorageKeys?: string[]
+  /** Ordered text/image blocks from file/process (PDF, DOCX, etc.) */
+  processedBlocks?: Array<{ type: 'text'; storageKey: string } | { type: 'image'; storageKey: string }>
   chatboxAIFileUUID?: string
 }
 

@@ -13,8 +13,8 @@ import * as localParser from '@/packages/local-parser'
 import { generateImage, generateText, streamText } from '@/packages/model-calls'
 import { getModelDisplayName } from '@/packages/model-setting-utils'
 import * as remote from '@/packages/remote'
-import { processPdfAttachment } from '@/packages/file-processing'
-import { isPdf } from '@/packages/filetype'
+import { processRemoteFileAttachment } from '@/packages/file-processing'
+import { isProcessedByRemoteEndpoint } from '@/packages/filetype'
 import { estimateTokensFromMessages } from '@/packages/token'
 import { router } from '@/router'
 import { StorageKeyGenerator } from '@/storage/StoreStorage'
@@ -631,13 +631,13 @@ export async function submitNewUserMessage(params: {
     // 如果本次发送消息携带了附件，应该在这次发送中上传文件并构造文件信息(file uuid)
     if (attachments && attachments.length > 0) {
       const newFiles: MessageFile[] = []
-      const nonPdfAttachments = attachments.filter((a) => !isPdf(a))
+      const locallyParsedAttachments = attachments.filter((a) => !isProcessedByRemoteEndpoint(a))
       const tokenLimitPerFile =
-        nonPdfAttachments.length > 0 ? Math.ceil((40 * 1000) / nonPdfAttachments.length) : 0
+        locallyParsedAttachments.length > 0 ? Math.ceil((40 * 1000) / locallyParsedAttachments.length) : 0
 
       for (const attachment of attachments) {
-        if (isPdf(attachment)) {
-          newFiles.push(await processPdfAttachment(settings, attachment))
+        if (isProcessedByRemoteEndpoint(attachment)) {
+          newFiles.push(await processRemoteFileAttachment(settings, attachment))
           continue
         }
 
@@ -1149,6 +1149,20 @@ async function genMessageContext(settings: Settings, msgs: Message[]) {
     // 如果消息中包含本地文件（消息中携带有本地文件的storageKey），则将文件内容也作为 prompt 的一部分
     if (msg.files && msg.files.length > 0) {
       for (const [fileIndex, file] of msg.files.entries()) {
+        if (file.processedBlocks && file.processedBlocks.length > 0) {
+          msg = cloneMessage(msg)
+          for (const block of file.processedBlocks) {
+            if (block.type === 'image') {
+              msg.contentParts = [...(msg.contentParts || []), { type: 'image', storageKey: block.storageKey }]
+              continue
+            }
+            const content = await storage.getBlob(block.storageKey).catch(() => '')
+            if (content) {
+              msg.contentParts = [...(msg.contentParts || []), { type: 'text', text: content }]
+            }
+          }
+          continue
+        }
         if (file.pageImageStorageKeys && file.pageImageStorageKeys.length > 0) {
           msg = cloneMessage(msg)
           for (const storageKey of file.pageImageStorageKeys) {

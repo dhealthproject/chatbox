@@ -25,6 +25,10 @@ export function isWord(file: File) {
   )
 }
 
+export function isProcessedByRemoteEndpoint(file: File) {
+  return isPdf(file) || isWord(file)
+}
+
 export function isPPT(file: File) {
   return (
     file.type === 'application/vnd.ms-powerpoint' ||
