@@ -14,6 +14,24 @@ export type FileContent = {
   image_url?: { url: string }
 }
 
+export type FileGenerationRequest = {
+  mime: string | undefined
+  filename: string
+  content: string
+}
+
+export type FileGenerationStatus = {
+  status: 'success' | 'failed'
+  filename: string
+  generatedAt: string
+  error?: string
+}
+
+export type FileGenerationResult = {
+  blob: Blob
+  status: FileGenerationStatus
+}
+
 export async function requestFileProcessing(
   settings: Settings,
   mime: string | undefined,
@@ -31,6 +49,36 @@ export async function requestFileProcessing(
     }
   )
   return resp.data
+}
+
+export async function requestFileGeneration(
+  settings: Settings,
+  mime: string | undefined,
+  filename: string,
+  content: string,
+): Promise<FileGenerationResult> {
+  const { providerSetting } = getProviderSettings(settings)
+  const resp = await axios.post(
+    `${AIDH_API_URL}/file/generate`,
+    { mime, filename, content },
+    {
+      headers: { Authorization: `Bearer ${providerSetting.apiKey}` },
+      responseType: 'arraybuffer',
+    }
+  )
+
+  const statusHeader = resp.headers['x-document-status'] as string | undefined
+  let status: FileGenerationStatus
+  try {
+    status = statusHeader
+      ? JSON.parse(statusHeader)
+      : { status: 'success', filename, generatedAt: new Date().toISOString() }
+  } catch {
+    status = { status: 'success', filename, generatedAt: new Date().toISOString() }
+  }
+
+  const blob = new Blob([resp.data], { type: mime })
+  return { blob, status }
 }
 
 async function storeProcessedBlocks(

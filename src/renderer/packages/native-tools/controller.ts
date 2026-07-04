@@ -4,6 +4,7 @@ import { GDriveTool } from './gdrive/gdrive'
 import { MemoryTool } from './memory'
 import { CHMED16A1Tool } from './chmed16a1/chmed16a1'
 import { EmailTool } from './email'
+import { DocxTool } from './docx/docx'
 
 /**
  * Native tools registry and exporter
@@ -72,7 +73,13 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     description: 'Send an email from given information',
     category: 'web',
     available: true,
-  }
+  },
+  generate_docx: {
+    name: 'Generate Docx',
+    description: 'Generate a docx file from a given json string',
+    category: 'research',
+    available: true,
+  },
 }
 
 /**
@@ -83,6 +90,7 @@ export function getNativeTools(): ToolSet {
   const memoryTool = MemoryTool.createInstance()
   const chmed16a1Tool = CHMED16A1Tool.createInstance()
   const emailTool = EmailTool.createInstance()
+  const docxTool = DocxTool.createInstance()
   return {
     native_fetch: fetchTool,
     gdrive_reader: gdriveInstance.gdriveTool,
@@ -93,6 +101,7 @@ export function getNativeTools(): ToolSet {
     get_medicament_id: chmed16a1Tool.getMedicamentIdTool,
     generate_chmed16a1_qr_codes: chmed16a1Tool.generateQRCodesTool,
     send_email: emailTool.sendEmailTool,
+    generate_docx: docxTool.generateDocxTool,
   }
 }
 
