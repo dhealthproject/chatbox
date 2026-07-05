@@ -5,6 +5,7 @@ import { MemoryTool } from './memory'
 import { CHMED16A1Tool } from './chmed16a1/chmed16a1'
 import { EmailTool } from './email'
 import { DocxTool } from './docx/docx'
+import { InterRAITool } from './interRAI/interRAI'
 
 /**
  * Native tools registry and exporter
@@ -80,6 +81,12 @@ const toolConfigs: Record<string, NativeToolConfig> = {
     category: 'research',
     available: true,
   },
+  generate_interRAI: {
+    name: 'Generate interRAI',
+    description: 'Generate an interRAI docx file based on a given json string',
+    category: 'research',
+    available: true,
+  },
 }
 
 /**
@@ -91,6 +98,7 @@ export function getNativeTools(): ToolSet {
   const chmed16a1Tool = CHMED16A1Tool.createInstance()
   const emailTool = EmailTool.createInstance()
   const docxTool = DocxTool.createInstance()
+  const interRAITool = InterRAITool.createInstance()
   return {
     native_fetch: fetchTool,
     gdrive_reader: gdriveInstance.gdriveTool,
@@ -102,6 +110,7 @@ export function getNativeTools(): ToolSet {
     generate_chmed16a1_qr_codes: chmed16a1Tool.generateQRCodesTool,
     send_email: emailTool.sendEmailTool,
     generate_docx: docxTool.generateDocxTool,
+    generate_interRAI: interRAITool.generateInterRAITool,
   }
 }
 
