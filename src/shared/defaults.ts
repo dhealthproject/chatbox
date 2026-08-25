@@ -204,7 +204,7 @@ export const SystemProviders: ProviderBaseInfo[] = [
       apiPath: '/chat/completions',
       models: [
         {
-          modelId: 'gva/claude-sonnet-4-6',
+          modelId: 'gva/claude-sonnet-5',
           capabilities: ['vision', 'reasoning', 'tool_use'],
           contextWindow: 200_000,
         }

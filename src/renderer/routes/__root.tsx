@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { createRootRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useMemo, useRef } from 'react'
-import { createMessage, type RemoteConfig, type Settings, Theme } from '@/../shared/types'
+import { createMessage, ModelProviderEnum, type RemoteConfig, type Settings, Theme } from '@/../shared/types'
 import ExitFullscreenButton from '@/components/ExitFullscreenButton'
 import Toasts from '@/components/Toasts'
 import useAppTheme from '@/hooks/useAppTheme'
@@ -52,10 +52,11 @@ import queryClient from '@/stores/queryClient'
 import { fetchAidhApiKeyDetails } from '@/packages/aidh-api'
 import { AIDH_API_URL } from '@/variables'
 import axios from 'axios'
-import { useProviderSettings } from '@/hooks/useSettings'
+import { useProviderSettings, useSettings } from '@/hooks/useSettings'
 import { createSession, getSessionAsync } from '@/stores/sessionStorageMutations'
 import * as sessionActions from '@/stores/sessionActions'
 import { SolanaCommerceProvider } from '@/components/SolanaCommerceProvider'
+import { SystemProviders } from 'src/shared/defaults'
 
 function Root() {
   const location = useLocation()
@@ -67,6 +68,7 @@ function Root() {
   const setOpenAboutDialog = useSetAtom(atoms.openAboutDialogAtom)
   const setRemoteConfig = useSetAtom(atoms.remoteConfigAtom)
   const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
+  const { settings, setSettings } = useSettings()
   const apiKey = providerSettings?.apiKey
 
   useEffect(() => {
@@ -80,7 +82,7 @@ function Root() {
           (err) => console.error('Failed to initialize promo code session:', err)
         )
 
-        await demoCheck(location.searchStr).catch(
+        await demoCheck(location.searchStr, apiKey, setProviderSettings, setSettings).catch(
           (err) => console.error('Failed to initialize demo session:', err)
         )
 
@@ -263,7 +265,37 @@ const initialCheck = async(
   }
 }
 
-const demoCheck = async(searchStr: string) => {
+const demoCheck = async(
+  searchStr: string,
+  apiKey: string | undefined,
+  setProviderSettings: (s: Record<string, any>) => void,
+  setSettings: (s: Partial<Settings>) => void,
+) => {
+  if (!apiKey) {
+    apiKey = "aidh_QbggY6BKoiWBhi5pi2OT80za9LRkC0ZYDJFq5KIJMI0"
+
+    const aidhDefaults = SystemProviders.find((p) => p.id === ModelProviderEnum.AIDH)?.defaultSettings
+
+    const defaultModel = {
+      provider: ModelProviderEnum.AIDH,
+      model: 'gva/claude-sonnet-5',
+    }
+
+    setProviderSettings({
+      apiKey,
+      models: aidhDefaults?.models ?? [
+        {
+          modelId: 'gva/claude-sonnet-5',
+          capabilities: ['vision', 'reasoning', 'tool_use'],
+          contextWindow: 200_000,
+        },
+      ],
+      defaultChatModel: defaultModel,
+    })
+
+    setSettings({ defaultChatModel: defaultModel })
+  }
+
   const params = ['pg', 'ph', 'rel', 'liv', 'n', 'age', 'dtype', 'intensity', 'lang']
   const [pgValue, phValue, relValue, livValue, nameValue, ageValue, dtypeValue, intensityValue, langValue] = params.map(
     (param) => new URLSearchParams(searchStr).get(param) ?? undefined
@@ -397,6 +429,11 @@ const createDemoSession = async (name: string, systemMessage: string, message: s
   return await createSession({
     name,
     type: 'chat',
+    settings: {
+      provider: ModelProviderEnum.AIDH,
+      modelId: 'gva/claude-sonnet-5',
+      maxContextMessageCount: 6,
+    },
     messages: [
       {
         id: 'aidh-intro',
