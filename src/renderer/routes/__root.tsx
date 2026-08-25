@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { createRootRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useMemo, useRef } from 'react'
-import { type RemoteConfig, type Settings, Theme } from '@/../shared/types'
+import { createMessage, type RemoteConfig, type Settings, Theme } from '@/../shared/types'
 import ExitFullscreenButton from '@/components/ExitFullscreenButton'
 import Toasts from '@/components/Toasts'
 import useAppTheme from '@/hooks/useAppTheme'
@@ -53,7 +53,7 @@ import { fetchAidhApiKeyDetails } from '@/packages/aidh-api'
 import { AIDH_API_URL } from '@/variables'
 import axios from 'axios'
 import { useProviderSettings } from '@/hooks/useSettings'
-import { createSession } from '@/stores/sessionStorageMutations'
+import { createSession, getSessionAsync } from '@/stores/sessionStorageMutations'
 import * as sessionActions from '@/stores/sessionActions'
 import { SolanaCommerceProvider } from '@/components/SolanaCommerceProvider'
 
@@ -284,7 +284,14 @@ const demoCheck = async(searchStr: string) => {
   )
 
   const session = await createDemoSession("Patient Care Demo", prompt, "Hi, how can I help you today?")
+
+  const loaded = await getSessionAsync(session.id)
+  console.log('loaded session', loaded?.messages?.length)
+
   sessionActions.switchCurrentSession(session.id)
+  const assistantMsg = createMessage('assistant', '')
+  sessionActions.insertMessage(session.id, assistantMsg)
+  await sessionActions.generate(session.id, assistantMsg)
 }
 
 const buildPrompt = (
@@ -386,6 +393,7 @@ const redeemPromoCode = async(promoCode: string): Promise<string> => {
 }
 
 const createDemoSession = async (name: string, systemMessage: string, message: string) => {
+  systemMessage += "\n\nCompose a first message to the caregiver of a dementia patient using the common-sense model of illness paradigm based on the role, situation, and conduct. Do not address the user by name. Actively offer that they can ask questions."
   return await createSession({
     name,
     type: 'chat',
@@ -402,18 +410,18 @@ const createDemoSession = async (name: string, systemMessage: string, message: s
           },
         ],
       },
-      {
-        id: 'aidh-intro',
-        role: 'assistant',
-        model: 'gva/claude-sonnet-5',
-        tokensUsed: 0,
-        contentParts: [
-          {
-            type: 'text',
-            text: message,
-          },
-        ],
-      },
+      // {
+      //   id: 'aidh-intro',
+      //   role: 'assistant',
+      //   model: 'gva/claude-sonnet-5',
+      //   tokensUsed: 0,
+      //   contentParts: [
+      //     {
+      //       type: 'text',
+      //       text: message,
+      //     },
+      //   ],
+      // },
     ],
   })
 }
