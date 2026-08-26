@@ -4,14 +4,18 @@ import { useMemo } from 'react'
 import { ModelProviderEnum, type ProviderModelInfo } from 'src/shared/types'
 import { getModelManifest } from '@/packages/remote'
 import { languageAtom } from '@/stores/atoms'
-import { useProviderSettings } from './useSettings'
+import { useProviderSettings, useSettings } from './useSettings'
 
 const useChatboxAIModels = () => {
   const language = useAtomValue(languageAtom)
+  const { settings } = useSettings()
   const { providerSettings: chatboxAISettings, setProviderSettings } = useProviderSettings(ModelProviderEnum.ChatboxAI)
+  // Skip remote Chatbox AI fetches unless a license is present (avoids CORS storms on custom web hosts)
+  const hasLicense = Boolean(settings.licenseKey)
 
   const { data, ...others } = useQuery({
     queryKey: ['chatbox-ai-models', language],
+    enabled: hasLicense,
     queryFn: async () => {
       const res = await getModelManifest({
         aiProvider: ModelProviderEnum.ChatboxAI,
@@ -39,6 +43,7 @@ const useChatboxAIModels = () => {
       return res.models
     },
     staleTime: 3600 * 1000,
+    retry: false,
   })
 
   const allChatboxAIModels = useMemo(

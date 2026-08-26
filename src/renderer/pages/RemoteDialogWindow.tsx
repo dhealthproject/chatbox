@@ -24,6 +24,10 @@ export default function RemoteDialogWindow() {
     if (version === '0.0.1') {
       return // 本地开发环境不显示远程弹窗
     }
+    // Web hosts that are not allowlisted by api.chatboxai.app will hit CORS; skip quietly
+    if (platform.type === 'web') {
+      return
+    }
     try {
       const dialog = await remote.getDialogConfig({
         uuid: config.uuid,

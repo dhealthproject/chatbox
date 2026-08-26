@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import { createRootRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { getDefaultStore, useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useMemo, useRef } from 'react'
 import { createMessage, ModelProviderEnum, type RemoteConfig, type Settings, Theme } from '@/../shared/types'
 import ExitFullscreenButton from '@/components/ExitFullscreenButton'
@@ -65,36 +65,51 @@ function Root() {
   const navigate = useNavigate()
   const spellCheck = useAtomValue(atoms.spellCheckAtom)
   const language = useAtomValue(atoms.languageAtom)
-  const initialized = useRef(false)
+  // Prevent re-entry when demoCheck writes apiKey / navigates to /session/:id
+  const bootStarted = useRef(false)
 
   const setOpenAboutDialog = useSetAtom(atoms.openAboutDialogAtom)
   const setRemoteConfig = useSetAtom(atoms.remoteConfigAtom)
-  const { providerSettings, setProviderSettings } = useProviderSettings('aidh')
-  const { settings, setSettings } = useSettings()
-  const apiKey = providerSettings?.apiKey
+  const { setProviderSettings } = useProviderSettings('aidh')
+  const { setSettings } = useSettings()
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: boot must not re-run when demo writes apiKey or navigates
   useEffect(() => {
-    if (initialized.current) {
+    if (bootStarted.current) {
       return
     }
     // 通过定时器延迟启动，防止处理状态底层存储的异步加载前错误的初始数据
     const tid = setTimeout(() => {
+      if (bootStarted.current) {
+        return
+      }
+      bootStarted.current = true
+
       ;(async () => {
-        await initialCheck(location.searchStr, apiKey, setProviderSettings).catch(
-          (err) => console.error('Failed to initialize promo code session:', err)
+        // Prefer the real browser query string — router searchStr can drop unknown demo params
+        const searchStr = typeof window !== 'undefined' ? window.location.search : location.searchStr
+        const isDemo = hasDemoSearchParams(searchStr)
+        const store = getDefaultStore()
+        const currentApiKey = store.get(atoms.settingsAtom).providers?.aidh?.apiKey
+
+        await initialCheck(searchStr, currentApiKey, setProviderSettings).catch((err) =>
+          console.error('Failed to initialize promo code session:', err)
         )
 
-        await demoCheck(location.searchStr, apiKey, setProviderSettings, setSettings).catch(
-          (err) => console.error('Failed to initialize demo session:', err)
+        await demoCheck(searchStr, currentApiKey, setProviderSettings, setSettings).catch((err) =>
+          console.error('Failed to initialize demo session:', err)
         )
 
-        const remoteConfig = await remote
-          .getRemoteConfig('setting_chatboxai_first')
-          .catch(() => ({ setting_chatboxai_first: false }) as RemoteConfig)
+        const remoteConfig =
+          platform.type === 'web'
+            ? ({ setting_chatboxai_first: false } as RemoteConfig)
+            : await remote
+                .getRemoteConfig('setting_chatboxai_first')
+                .catch(() => ({ setting_chatboxai_first: false }) as RemoteConfig)
         setRemoteConfig((conf) => ({ ...conf, ...remoteConfig }))
-        // 是否需要弹出设置窗口
-        initialized.current = true
-        if (settingActions.needEditSetting() && location.pathname !== '/settings/mcp') {
+
+        // Skip welcome modal for demo deep-links — demoCheck already injected an AIDH key
+        if (!isDemo && settingActions.needEditSetting() && location.pathname !== '/settings/mcp') {
           const res = await NiceModal.show('welcome')
           if (res) {
             if (res === 'custom') {
@@ -135,7 +150,7 @@ function Root() {
     }, 2000)
 
     return () => clearTimeout(tid)
-  }, [navigate, setOpenAboutDialog, setRemoteConfig, location.pathname, location.searchStr, apiKey])
+  }, [navigate, setOpenAboutDialog, setRemoteConfig, setProviderSettings, setSettings])
 
   const [showSidebar] = useAtom(atoms.showSidebarAtom)
   const sidebarWidth = useSidebarWidth()
@@ -159,6 +174,10 @@ function Root() {
 
   useEffect(() => {
     ;(async () => {
+      // Don't override demo deep-link navigation with a cached session
+      if (hasDemoSearchParams(typeof window !== 'undefined' ? window.location.search : '')) {
+        return
+      }
       const settings = await storage.getItem(StorageKey.Settings, {} as Settings)
       const sid = JSON.parse(localStorage.getItem('_currentSessionIdCachedAtom') || '""') as string
       if (sid && settings?.startupPage === 'session') {
@@ -229,6 +248,22 @@ function Root() {
   )
 }
 
+const hasDemoSearchParams = (searchStr: string) => {
+  const params = new URLSearchParams(searchStr)
+  const dementia = params.get('pg') && params.get('ph') && params.get('rel') && params.get('liv')
+  const nutrient =
+    params.get('c') &&
+    params.get('t') &&
+    params.get('s') &&
+    params.get('addr') &&
+    params.get('exp') &&
+    params.get('ex') &&
+    params.get('esc') &&
+    params.get('tel') &&
+    params.get('d')
+  return Boolean(dementia || nutrient)
+}
+
 const initialCheck = async(
   searchStr: string,
   apiKey: string | undefined,
@@ -267,37 +302,43 @@ const initialCheck = async(
   }
 }
 
+const DEMO_API_KEY = 'aidh_QbggY6BKoiWBhi5pi2OT80za9LRkC0ZYDJFq5KIJMI0'
+const DEMO_MODEL_ID = 'gva/claude-sonnet-5'
+
+const ensureDemoProviderSettings = (
+  apiKey: string | undefined,
+  setProviderSettings: (s: Record<string, any>) => void,
+  setSettings: (s: Partial<Settings>) => void,
+) => {
+  if (apiKey) return apiKey
+
+  const aidhDefaults = SystemProviders.find((p) => p.id === ModelProviderEnum.AIDH)?.defaultSettings
+  const defaultModel = {
+    provider: ModelProviderEnum.AIDH,
+    model: DEMO_MODEL_ID,
+  }
+
+  setProviderSettings({
+    apiKey: DEMO_API_KEY,
+    models: aidhDefaults?.models ?? [
+      {
+        modelId: DEMO_MODEL_ID,
+        capabilities: ['vision', 'reasoning', 'tool_use'],
+        contextWindow: 200_000,
+      },
+    ],
+    defaultChatModel: defaultModel,
+  })
+  setSettings({ defaultChatModel: defaultModel })
+  return DEMO_API_KEY
+}
+
 const demoCheck = async(
   searchStr: string,
   apiKey: string | undefined,
   setProviderSettings: (s: Record<string, any>) => void,
   setSettings: (s: Partial<Settings>) => void,
 ) => {
-  if (!apiKey) {
-    apiKey = "aidh_QbggY6BKoiWBhi5pi2OT80za9LRkC0ZYDJFq5KIJMI0"
-
-    const aidhDefaults = SystemProviders.find((p) => p.id === ModelProviderEnum.AIDH)?.defaultSettings
-
-    const defaultModel = {
-      provider: ModelProviderEnum.AIDH,
-      model: 'gva/claude-sonnet-5',
-    }
-
-    setProviderSettings({
-      apiKey,
-      models: aidhDefaults?.models ?? [
-        {
-          modelId: 'gva/claude-sonnet-5',
-          capabilities: ['vision', 'reasoning', 'tool_use'],
-          contextWindow: 200_000,
-        },
-      ],
-      defaultChatModel: defaultModel,
-    })
-
-    setSettings({ defaultChatModel: defaultModel })
-  }
-
   const params = [
     'pg', 'ph', 'rel', 'liv', 'n', 'age', 'dtype', 'intensity', 'lang',
     'c', 't', 's', 'addr', 'exp', 'ex', 'esc', 'tel', 'd', 'ref', 'hcp', 'next', 'tasks', 'xr', 'hrs', 'warn'
@@ -309,8 +350,9 @@ const demoCheck = async(
     (param) => new URLSearchParams(searchStr).get(param) ?? undefined
   )
 
-  let prompt = '';
-  let sessionTitle = '';
+  let prompt = ''
+  let sessionTitle = ''
+  let firstMessageHint: string | undefined
 
   if (pgValue && phValue && relValue && livValue) {
     sessionTitle = 'Dementia Patient Care Demo'
@@ -325,6 +367,8 @@ const demoCheck = async(
       intensityValue,
       langValue,
     )
+    firstMessageHint =
+      'Compose a first message to the caregiver of a dementia patient using the common-sense model of illness paradigm based on the role, situation, and conduct. Do not address the user by name. Actively offer that they can ask questions.'
   } else if (cValue && tValue && sValue && addrValue && expValue && exValue && escValue && telValue && dValue) {
     sessionTitle = 'Nutrient Counselling Demo'
 
@@ -351,9 +395,17 @@ const demoCheck = async(
       hrsValue,
       warnValue
     )
-  } else return;
+    // Nutrient prompt already embeds the first-message script — do not append dementia instructions
+  } else {
+    return
+  }
 
-  const session = await createDemoSession(sessionTitle, prompt)
+  // Only inject the demo key once we know this URL is a demo deep-link
+  ensureDemoProviderSettings(apiKey, setProviderSettings, setSettings)
+  // Let the jotai store flush before streaming reads provider settings
+  await Promise.resolve()
+
+  const session = await createDemoSession(sessionTitle, prompt, firstMessageHint)
 
   const loaded = await getSessionAsync(session.id)
   console.log('loaded session', loaded?.messages?.length)
@@ -361,7 +413,10 @@ const demoCheck = async(
   sessionActions.switchCurrentSession(session.id)
   const assistantMsg = createMessage('assistant', '')
   sessionActions.insertMessage(session.id, assistantMsg)
-  await sessionActions.generate(session.id, assistantMsg)
+  // Do not block boot on streaming — a hung generate previously froze the whole startup path
+  void sessionActions.generate(session.id, assistantMsg).catch((err) =>
+    console.error('Failed to generate demo first message:', err)
+  )
 }
 
 const getApiKeyDetails = fetchAidhApiKeyDetails
@@ -385,21 +440,23 @@ const redeemPromoCode = async(promoCode: string): Promise<string> => {
   return resp.data.apiKey
 }
 
-const createDemoSession = async (name: string, systemMessage: string) => {
-  systemMessage += "\n\nCompose a first message to the caregiver of a dementia patient using the common-sense model of illness paradigm based on the role, situation, and conduct. Do not address the user by name. Actively offer that they can ask questions."
+const createDemoSession = async (name: string, systemMessage: string, firstMessageHint?: string) => {
+  if (firstMessageHint) {
+    systemMessage += `\n\n${firstMessageHint}`
+  }
   return await createSession({
     name,
     type: 'chat',
     settings: {
       provider: ModelProviderEnum.AIDH,
-      modelId: 'gva/claude-sonnet-5',
+      modelId: DEMO_MODEL_ID,
       maxContextMessageCount: 6,
     },
     messages: [
       {
         id: 'aidh-intro',
         role: 'system',
-        model: 'gva/claude-sonnet-5',
+        model: DEMO_MODEL_ID,
         tokensUsed: 0,
         contentParts: [
           {
@@ -408,18 +465,6 @@ const createDemoSession = async (name: string, systemMessage: string) => {
           },
         ],
       },
-      // {
-      //   id: 'aidh-intro',
-      //   role: 'assistant',
-      //   model: 'gva/claude-sonnet-5',
-      //   tokensUsed: 0,
-      //   contentParts: [
-      //     {
-      //       type: 'text',
-      //       text: message,
-      //     },
-      //   ],
-      // },
     ],
   })
 }
