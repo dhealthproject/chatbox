@@ -1,46 +1,61 @@
 var generated = false;
 
 var TOPIC_SHORT: any = {
-  t2d:"Diabetes Typ 2", weight:"Gewicht", allergy:"Allergien", intol:"Unverträglichkeiten",
-  ibs:"Reizdarm", sport:"Sport", veg:"Vegetarisch / vegan", preg:"Schwangerschaft",
-  elder:"Alter", lipid:"Blutfette", malnut:"Mangelernährung"
+  t1d:"Diabetes Typ 1", t2d:"Diabetes Typ 2", gdm:"Gestationsdiabetes",
+  wloss:"Abnehmen", wgain:"Zunehmen", malnut:"Mangelernährung",
+  allergy:"Allergien", intol:"Unverträglichkeiten", ibs:"Reizdarm",
+  deb:"Essverhalten", rheu:"Rheuma", lipid:"Blutfette",
+  sport:"Sport", veg:"Vegetarisch / vegan", preg:"Schwangerschaft", elder:"Alter"
 };
 var EX_LABEL: any = {
   ed:"Essstörungen", kids:"Kinderernährung", supp:"Supplemente",
   diets:"Diäten ohne Absprache", numbers:"Kalorien und Gewichtsziele"
 };
 var TASK_LABEL: any = {
-  diary:"Ernährungstagebuch", plan:"Mahlzeitenplan", shop:"Einkaufsliste",
-  questions:"Fragen sammeln", move:"Bewegung"
+  impl:"Besprochenes umsetzen", diary:"Ernährungstagebuch", plan:"Mahlzeitenplan",
+  shop:"Einkaufsliste", questions:"Fragen sammeln", move:"Bewegung"
 };
 var LANG_LABEL: any = {de:"Deutsch", fr:"Français", it:"Italiano", en:"English"};
 var LANG_PROMPT: any = {de:"German (Switzerland)", fr:"French", it:"Italian", en:"English"};
-var DUR_DAYS: any = {"4w":28, "8w":56, "12w":84, "6m":182};
-var DUR_LABEL: any = {"4w":"4 Wochen", "8w":"8 Wochen", "12w":"12 Wochen", "6m":"6 Monate"};
+var DUR_DAYS: any = {"4w":28, "8w":56, "12w":84};
+var DUR_LABEL = {"4w":"4 Wochen", "8w":"8 Wochen", "12w":"12 Wochen"};
 
 // ---- Prompt vocabulary (the system prompt is written in English; the agent answers in the configured language) ----
 var TOPIC_EN: any = {
-  t2d:"Type 2 diabetes", weight:"Weight management", allergy:"Food allergies",
-  intol:"Intolerances (lactose, gluten)", ibs:"Irritable bowel / FODMAP", sport:"Sports nutrition",
-  veg:"Vegetarian and vegan", preg:"Pregnancy and breastfeeding", elder:"Nutrition in older age",
-  lipid:"Blood lipids and blood pressure", malnut:"Malnutrition and weight gain"
+  t1d:"Type 1 diabetes", t2d:"Type 2 diabetes", gdm:"Gestational diabetes",
+  wloss:"Weight management, losing weight", wgain:"Weight management, gaining weight",
+  malnut:"Malnutrition", allergy:"Food allergies",
+  intol:"Intolerances (as specified in the consultation text)", ibs:"Irritable bowel / FODMAP",
+  deb:"Disordered eating behaviour", rheu:"Rheumatic diseases",
+  lipid:"Blood lipids and blood pressure", sport:"Sports nutrition",
+  veg:"Vegetarian and vegan", preg:"Pregnancy and breastfeeding", elder:"Nutrition in older age"
 };
 var TOPIC_GUIDE: any = {
   t2d:"Type 2 diabetes. Support the person in recognising carbohydrates and spreading them over the day, in using the plate model as shown in the consultation, in choosing wholegrain over white flour, in avoiding sugary drinks, in reading labels, and in moving after meals. Do not interpret blood glucose values and say nothing about insulin or tablets. If the person describes trembling, sweating, palpitations, or confusion, repeat the instruction from the treatment plan. If there is none: take something sugary immediately and call the contact point or the doctor's practice. If consciousness is impaired, 144.",
-  weight:"Weight management. Support the person with a regular meal rhythm, portion sizes, hunger and fullness, drinks and snacks, eating out, and dealing with setbacks. Work with the steps from the consultation, not with goals of your own. Do not give calorie numbers or weight targets that do not come from the consultation. Do not judge the person's weight and speak without blame. Do not suggest crash diets or fasting.",
+  wloss:"Weight management, losing weight. Support the person with a regular meal rhythm, portion sizes, hunger and fullness, drinks and snacks, eating out, and dealing with setbacks. Work with the steps from the consultation, not with goals of your own. Do not give calorie numbers or weight targets that do not come from the consultation. Do not judge the person's weight and speak without blame. Do not suggest crash diets or fasting.",
   allergy:"Food allergies. Support the person in spotting the allergen on labels and in ingredient lists, in asking in restaurants, with hidden sources, and with substitute products. Never judge yourself whether a food is safe. When in doubt: avoid it and ask the nutrition counsellor. If the person describes shortness of breath, swelling of the face or throat, circulatory problems, or vomiting after eating: 144 immediately. Remind them to follow the doctor's instruction on emergency medication, without commenting on it.",
-  intol:"Intolerances (lactose, gluten). Explain in plain language what was established in the consultation, and support the person with alternatives, with hidden lactose or gluten in products, and with eating out. For coeliac disease the strictly gluten free diet applies, as set in the consultation. Do not give your own assessment of whether an intolerance is present, and do not suggest elimination or challenge trials. That belongs in the consultation.",
+  intol:"Intolerances. Which intolerance was established (for example lactose, fructose, histamine, gluten, or coeliac disease) is stated in the consultation text; support only what is stated there. Explain it in plain language and support the person with alternatives, with hidden sources in products, and with eating out. For coeliac disease the strictly gluten free diet applies, as set in the consultation. Do not give your own assessment of whether an intolerance is present, and do not suggest elimination or challenge trials. That belongs in the consultation.",
   ibs:"Irritable bowel and FODMAP. The FODMAP diet has three phases (restriction, reintroduction, personalisation) and is led by the nutrition counsellor. Support the person in the phase named in the treatment plan: which foods are suitable according to the documents, alternatives, symptom diary, eating out. Do not extend the restriction phase yourself and do not introduce new exclusions. If the person describes blood in the stool, unintended weight loss, fever, or symptoms that wake them at night: refer to the doctor's practice.",
   sport:"Sports nutrition. Support the person with meals around training, with carbohydrates and protein in everyday life, with drinking, and with recovery after sport. Do not recommend supplements, powders, or doses. Competition and training nutrition follows what was set in the consultation.",
   veg:"Vegetarian and vegan. Support the person with protein sources, with a varied composition, and with recognising critical nutrients in plain language (vitamin B12, iron, calcium, iodine, omega-3 fatty acids). Repeat what the consultation set on this. Do not recommend supplements or doses yourself.",
   preg:"Pregnancy and breastfeeding. Support the person with food safety (raw milk products, raw or undercooked meat, raw fish, thoroughly washed vegetables and fruit), with avoiding alcohol, with caffeine, with nausea, and with drinking while breastfeeding. Vitamins and supplements follow the gynaecologist or the midwife. If the person describes persistent vomiting, bleeding, or severe abdominal pain: refer to the gynaecologist, the midwife, or the emergency department.",
   elder:"Nutrition in older age. Support the person with protein at every meal, with drinking regularly (the sense of thirst declines), with smaller and more frequent meals, with lack of appetite, with simple preparation, and with eating in company. If the person describes unintended weight loss, swallowing problems, or new confusion: refer to the contact point or the family doctor's practice.",
   lipid:"Blood lipids and blood pressure. Support the person with fat quality (rapeseed oil, nuts, fish), with less salt, with wholegrain, vegetables, and fruit, and with alcohol. Do not interpret laboratory or blood pressure values and say nothing about medication.",
-  malnut:"Malnutrition and weight gain. Support the person with enriching meals with energy and protein, with small frequent meals, with snacks, and with favourite foods. Oral nutritional supplements only as set in the consultation, without product recommendations of your own. If the person describes further weight loss, swallowing problems, or persistent nausea: refer to the contact point."
+  malnut:"Malnutrition. Support the person with enriching meals with energy and protein, with small frequent meals, with snacks, and with favourite foods. Oral nutritional supplements only as set in the consultation, without product recommendations of your own. If the person describes further weight loss, swallowing problems, or persistent nausea: refer to the contact point.",
+  t1d:"Type 1 diabetes. Support the person with regular meals, with reading carbohydrate information on labels, and with applying the counting method as taught in the consultation. Do not estimate or confirm the carbohydrate content of specific meals and do not link food to insulin doses: dose questions belong to the diabetes team. Never calculate, check, or comment on insulin, pump, or sensor settings. If the person describes trembling, sweating, palpitations, or confusion, repeat the instruction from the treatment plan. If there is none: take something sugary immediately and contact the diabetes team or the doctor's practice. If consciousness is impaired, 144.",
+  gdm:"Gestational diabetes. Support the person with the meal structure from the consultation, with spreading carbohydrates over the day, with wholegrain choices, with avoiding sugary drinks, and with breakfast and snacks as agreed. Do not interpret blood glucose values, do not adjust targets, and say nothing about insulin or metformin: these questions belong to the diabetes team or the gynaecologist. If the person describes persistent vomiting, bleeding, severe abdominal pain, or noticeably fewer movements of the baby: refer to the gynaecologist or the emergency department immediately.",
+  wgain:"Weight management, gaining weight. Support the person with regular meals and snacks, with enriching meals with energy and protein as shown in the consultation, with favourite foods, and with eating despite little appetite. Do not give calorie numbers or weight targets that do not come from the consultation and do not judge the person's weight. If the person describes continued weight loss despite the plan: refer to the contact point.",
+  deb:"Disordered eating behaviour. Support the person with the meal structure and the steps from the treatment plan: regular meals, eating in company, calm situations around eating, and noting difficult moments for the next consultation. Speak neutrally about food and the body, never praise weight loss or restriction, and never comment on the person's weight or figure. Do not give calorie numbers, weight targets, or diet content, and no tips for restricting food, for compensating after eating, or for skipping meals. If the person asks for these: decline with care and refer to the counsellor. The safety floor applies unchanged: for vomiting after eating, very rapid weight loss, fainting, or a wish for extreme restriction, no nutrition tips; refer with care to the counsellor or the treating team.",
+  rheu:"Rheumatic diseases. Support the person with the everyday diet set out in the consultation: vegetables and fruit, wholegrain, legumes, fat quality with rapeseed oil, nuts, and oily fish, and with simple preparation when hands or joints hurt. Do not promise effects on pain or disease activity, and do not recommend supplements or doses. Say nothing about medication or its interactions with food; refer such questions to the rheumatology team or the pharmacy."
 };
 var TOPIC_OPENERS: any = {
   t2d:["What does the plate model mean for my breakfast?", "How do I spot carbohydrates on a label?"],
-  weight:["I get cravings in the evening. What helps?", "How do I plan the meals for the week?"],
+  wloss:["I get cravings in the evening. What helps?", "How do I plan the meals for the week?"],
+  wgain:["How do I gain weight in a healthy way?", "Which snacks give me energy?"],
+  t1d:["How do I find the carbohydrates on a label?", "Which snacks fit my plan?"],
+  gdm:["How do I spread carbohydrates over the day?", "Which breakfast fits my plan?"],
+  deb:["How do I get back into regular meals?", "What can I do when a meal feels difficult?"],
+  rheu:["Which foods fit my everyday diet?", "What can I prepare easily when my hands hurt?"],
   allergy:["How do I ask in a restaurant?", "Where does my allergen hide in products?"],
   intol:["Which alternatives to milk suit me?", "Where is gluten hidden without being on the label?"],
   ibs:["What can I eat in my current phase?", "How do I keep the symptom diary?"],
@@ -52,6 +67,7 @@ var TOPIC_OPENERS: any = {
   malnut:["How do I make my meals more nourishing?", "What do I eat when I am hardly hungry?"]
 };
 var TASK_GUIDE: any = {
+  impl:"Put what was discussed into practice: help the person turn the recommendations from the consultation into everyday steps, one at a time, and pick them up again after interruptions.",
   diary:"Keep the food diary: help with filling it in (what, when, how much, how it felt), remind the person gently, and do not judge the entries.",
   plan:"Try the new meal plan: help with putting the examples from the consultation into practice, with substitutes when something is missing, and with preparation.",
   shop:"Adjust the shopping list: help with putting together a shopping list according to the recommendations and with reading labels.",
@@ -59,6 +75,7 @@ var TASK_GUIDE: any = {
   move:"Movement in everyday life: support small, achievable steps (stairs, a walk after meals), without training plans or performance targets."
 };
 var TASK_GREET: any = {
+  impl:"the steps you agreed in the consultation",
   diary:"the food diary", plan:"the new meal plan", shop:"the shopping list",
   questions:"the questions you want to bring to the next appointment", move:"your daily movement"
 };
