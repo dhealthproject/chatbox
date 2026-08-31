@@ -369,7 +369,7 @@ const demoCheck = async(
     )
     firstMessageHint =
       'Compose a first message to the caregiver of a dementia patient using the common-sense model of illness paradigm based on the role, situation, and conduct. Do not address the user by name. Actively offer that they can ask questions.'
-  } else if (cValue && tValue && sValue && addrValue && expValue && exValue && escValue && telValue && dValue) {
+  } else if (cValue && tValue && sValue && addrValue && expValue && exValue && escValue && telValue) {
     sessionTitle = 'Nutrient Counselling Demo'
 
     const tValues = tValue?.split(',') ?? []

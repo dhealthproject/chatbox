@@ -112,15 +112,10 @@ function parseIso(s: string){
   var p = s.split("-");
   return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
 }
-function expiryDate(dur: string){
+function expiryDate(dur: string = '4w'){
   var d = new Date(); d.setHours(0,0,0,0);
   d.setDate(d.getDate() + DUR_DAYS[dur]);
   return d;
-}
-function bindCounter(id: string, counterId: string, max: number){
-  var el = document.getElementById(id) as HTMLInputElement, c = document.getElementById(counterId) as HTMLSpanElement;
-  function upd(){ c.textContent = el.value.length + " / " + max; }
-  el.addEventListener("input", upd); upd();
 }
 
 // ---- System prompt (English; the agent answers in the configured language) ----
@@ -144,7 +139,7 @@ function buildFirstMessage(esc: string, tel: string, hrs: string, hcp: string, n
   var p2 = "I explain what you discussed today and help with shopping, cooking, and eating out.";
   var rem = [];
   var nextTxt = next ? fmtDateEn(parseIso(next)) : "";
-  tasks.forEach((t: string) => {
+  tasks.forEach(function(t){
     if(t === "questions" && nextTxt) rem.push("the questions you want to bring to your next appointment on " + nextTxt);
     else rem.push(TASK_GREET[t]);
   });
@@ -165,7 +160,7 @@ function buildNutrientAgentPrompt(
   exValue: string[] = [],
   escValue: string,
   telValue: string,
-  dValue: string,
+  dValue: string = '4w',
   langValue: string = 'en',
   refValue: string = '',
   hcpValue: string = '',
@@ -176,6 +171,7 @@ function buildNutrientAgentPrompt(
   warnValue: string = '',
 ){
   var du = addrValue === "du";
+  var esc = escValue, tel = telValue, hrs = hrsValue;
   var L = [];
   L.push("# Personal Health Agent, Nutrition Counselling (configuration after the consultation)");
   L.push("");
@@ -187,17 +183,17 @@ function buildNutrientAgentPrompt(
   L.push("Consultation by: " + (hcpValue ? hcpValue + ", " : "") + escValue + ".");
   L.push("Consultation situation and recommendations, in the counsellor's own words, as written:");
   L.push("«" + sValue + "»");
-  L.push("Topics of this consultation: " + tValue.map(function(t){ return TOPIC_EN[t]; }).join(", ") + ".");
+  L.push("Indications from this consultation: " + tValue.map(function(t){ return TOPIC_EN[t]; }).join(", ") + ".");
   L.push("");
-  L.push("## Support by topic");
-  tValue.forEach(function(t: string | number){ L.push("- " + TOPIC_GUIDE[t]); });
+  L.push("## Support by indication");
+  tValue.forEach(function(t){ L.push("- " + TOPIC_GUIDE[t]); });
   if(tasksValue.length || nextValue){
     L.push("");
     L.push("## Tasks until the next appointment");
     tasksValue.forEach(function(t){ L.push("- " + TASK_GUIDE[t]); });
     if(nextValue) L.push("Next appointment: " + fmtDateEn(parseIso(nextValue)) + ". Remind the person in the days before and help collect open questions.");
   }
-  if(expValue.length || xrValue){
+  if(exValue.length || xrValue){
     L.push("");
     L.push("## Excluded topics");
     exValue.forEach(function(e){ L.push("- " + EX_GUIDE[e]); });
@@ -216,7 +212,7 @@ function buildNutrientAgentPrompt(
   L.push("- Remind of tasks and appointments in a friendly way, without pressure.");
   L.push("");
   L.push("## Escalation");
-  L.push("Contact point: " + escValue + ", phone " + telValue + (hrsValue ? ", available " + hrsValue : "") + ".");
+  L.push("Contact point: " + esc + ", phone " + tel + (hrs ? ", available " + hrs : "") + ".");
   L.push("For warning signs or uncertainty, refer to the contact point. Outside its hours, refer to the family doctor's practice or the medical on call service; in emergencies, 144.");
   if(warnValue) L.push("Warning signs from the counsellor's treatment plan, with the corresponding instruction, as written: «" + warnValue + "»");
   L.push("You only recognise whether a description meets a predefined warning sign and repeat the predefined instruction. You do not assess, do not calculate a score, and do not trigger any notification. The decision to act stays with the person.");
@@ -224,11 +220,11 @@ function buildNutrientAgentPrompt(
   L.push("## First message");
   L.push("Send this before the person writes anything. Render it in the conversation language, address the person as agreed, keep the content and the order, and do not add or drop sentences. Names, phone numbers, and opening hours are copied as written.");
   L.push("");
-  buildFirstMessage(escValue, telValue, hrsValue, hcpValue, nextValue, tasksValue).forEach((par: string) => { L.push(par); L.push(""); });
+  buildFirstMessage(escValue, telValue, hrsValue, hcpValue, nextValue, tasksValue).forEach(function(par){ L.push(par); L.push(""); });
   L.push("Then offer the three openers below as tappable suggestions.");
   L.push("");
   L.push("## Openers (with the first message, and again whenever the person does not know where to start)");
-  buildOpeners(tValue).forEach((o: string) => { L.push("- " + o); });
+  buildOpeners(tValue).forEach(function(o){ L.push("- " + o); });
   L.push("");
   L.push("## Safety floor (locked, not modified by configuration)");
   L.push("- Never diagnose, never interpret findings or laboratory values, never grade severity.");
